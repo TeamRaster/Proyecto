@@ -1,0 +1,52 @@
+// *********************************************************************************************************************
+//     Estilos del Slider
+// *********************************************************************************************************************
+#home {
+  background-size: cover; // La imagen abarca el tamaño del contenedor padre
+  background-position: center; // Centra la imagen
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; // Alinea los elementos verticalmente
+  height: 100vh; // Usa el tamaño maximo de la pantalla
+  text-align: center; // Alinea el texto al centro
+  h1 { // Elementos h1 dentro de home
+    font-size: 40px; // Tamaño de la fuente
+    color: $brand-white; // Color de la letra
+    font-family: $font-primary; // Tipo de fuente
+  }
+  h3 { // Elementos h3 dentro de home
+    font-size: 18px; // Tamaño de la fuente
+    color: $brand-white; // Color de la letra
+    font-family: $font-primary; // Tipo de fuente
+  }
+  hr {
+    width: 380px; // Ancho del separador
+  }
+  .btn-singup,
+  .btn-singin {
+    border-radius: 5px;
+    padding: 12px 42px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-right: 16px;
+    transition: all 0.4s ease-in-out;
+  }
+  .btn-singin {
+    background: $color-primary;
+    color: $brand-white;
+    &:hover {
+      background: darken($color-primary, 8);
+    }
+  }
+  .btn-singup {
+    background: $brand-white;
+    color: $color-primary;
+    &:hover {
+      background: darken($brand-white, 20);
+    }
+  }
+}

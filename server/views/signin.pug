@@ -1,0 +1,39 @@
+extends ./templates/template
+block main
+  include ./templates/index/header
+    block menu
+      li: a(href='/') Inicio
+      li: a(href='#') Oferta y Demanda
+      li: a(href='#') Fondos de Apoyo
+      li: a(href='#') I+D+I
+      li: a(href='#') Informacion tecnologica
+      li: a.active(href='/accounts/signup' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+
+  include ./templates/errorMessage
+  .container
+    .container_signin
+      .main
+        .social_network
+          i.icon-facebook-official
+          a(href="/auth/facebook" class="social_network__facebook") Inciar sesion con Facebook
+        .social_network
+          i.icon-twitter
+          a(href="/auth/twitter" class="social_network__twitter") Inciar sesion con Twitter
+        .social_network
+          i.icon-linkedin
+          a(href="/auth/linkedin" class="social_network__linkedin") Inciar sesion con Linkedin
+        .ui.horizontal.divider OR
+        form.ui.form(method="POST" action="/accounts/signin")
+          .field
+            label Correo Electronico
+            input(type='email', name='email', placeholder='Correo Electronico')
+          .field
+            label Contraseña
+            input(type='password', name='password', placeholder='Contraseña')
+          //.field
+          //  .ui.checkbox
+          //    input(type='checkbox' id="checkbox")
+          //    label(for="checkbox") Mantener la sesion
+          button.ui.button(type='submit') Iniciar Sesion
+          p Aun no tengo cuenta
+            a(href="/accounts/signup") Registrarse

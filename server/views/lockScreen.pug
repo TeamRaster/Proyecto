@@ -1,0 +1,14 @@
+extends ./templates/template
+block main
+  //- Seccion del menu principal de navegacion
+  include ./templates/index/header
+    li: a(href='/') Inicio
+      li: a(href='#') Oferta y Demanda
+      li: a(href='/supportfunds') Fondos de Apoyo
+      li: a(href='/idis') I+D+I
+      li: a(href='#') Informacion tecnologica
+      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+  //-
+
+  //- Seccion del footer
+  include ./templates/index/footer

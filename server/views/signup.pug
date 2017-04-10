@@ -1,0 +1,26 @@
+extends ./templates/template
+block main
+  //- Seccion del menu principal de navegacion
+  include ./templates/index/header
+    block menu
+      li: a(href='/') Inicio
+      li: a(href='/publications') Oferta y Demanda
+      li: a(href='#') Fondos de Apoyo
+      li: a(href='#') I+D+I
+      li: a(href='#') Informacion tecnologica
+      li: a.active(href='/accounts/signup' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+
+  include ./templates/errorMessage
+  .container
+    .container_signin
+      .main
+        form.ui.form(method="POST" action="/accounts/signup")
+          .field
+            label Correo Electronico
+            input(type='email', name='email', placeholder='Correo Electronico')
+          .field
+            label Contraseña
+            input(type='password', name='password', placeholder='Contraseña')
+          button.ui.button(type='submit') Registrarme
+          p Ya tengo cuenta
+            a(href="/accounts/signin") Iniciar sesion

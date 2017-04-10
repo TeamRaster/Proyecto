@@ -1,0 +1,65 @@
+// *********************************************************************************************************************
+//     Estilos de las ofertas que ofrece
+// *********************************************************************************************************************
+#gtco-features {
+  position:relative;
+  padding: 5em 0;
+  clear: both;
+  @media screen and (max-width: $screen-sm) {
+    padding: 3em 0;
+  }
+  .gtco-container {
+    max-width: 1140px;
+    position: relative;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    h2 {
+      color: $brand-white;
+      font-size: 3em;
+      font-family: $font-primary;
+      text-align: center;
+    }
+    .feature-center {
+      margin-top: 40px;
+      text-align: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      float: left;
+      width: 100%;
+      margin-bottom: 40px;
+      @media screen and (max-width: $screen-sm) {
+        margin-bottom: 50px;
+      }
+
+      .icon {
+        width: 90px;
+        height: 90px;
+        background: $color-primary;
+        display: table;
+        text-align: center;
+        margin: 0 auto 30px auto;
+        @include border-radius(50%);
+        .icono {
+          display: table-cell;
+          vertical-align: middle;
+          height: 90px;
+          font-size: 40px;
+          line-height: 40px;
+          color: $brand-white
+        }
+
+      }
+      p, h3 {
+        margin-bottom: 30px;
+        color: $brand-white;
+        text-align: justify;
+      }
+      h3 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 18px;
+      }
+    }
+  }
+}

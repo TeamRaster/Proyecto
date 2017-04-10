@@ -1,0 +1,119 @@
+extends ./templates/template
+block main
+  include ./templates/index/header
+    li: a(href='/') Inicio
+      li: a(href='/publications') Oferta y Demanda
+      li: a(href='/supportfunds') Fondos de Apoyo
+      li: a(href='/idis') I+D+I
+      li: a(href='#') Informacion tecnologica
+      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+
+  .row.center-xs
+    .col-xs-8
+      article.post
+        header
+          .row.start-xs
+            .col-xs-9.title
+              h2
+                a(href='#') Magna sed adipiscing
+              p Lorem ipsum dolor amet nullam consequat etiam feugiat
+            .col-xs-3.meta
+              time.published(datetime='2015-11-01') November 1, 2015
+              a.author(href='#')
+                span.name Jane Doe
+                img(src='http://lorempixel.com/50/50/', alt='')
+        span.image.featured
+          img(src='http://lorempixel.com/800/550/', alt='')
+        p.text Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra.
+        footer
+          .row.start-xs
+            .ui.labeled.button(tabindex='0')
+              .ui.red.button
+                i.heart.icon
+                |  Me gusta
+              a.ui.basic.red.left.pointing.label
+                | 1,048
+            .ui.labeled.button(tabindex='0')
+              .ui.basic.blue.button
+                i.comment.icon
+                |  Comentarios
+              a.ui.basic.left.pointing.blue.label
+                | 4
+
+  //- Formulario de nuevo comentario
+  .row.center-xs
+    .col-xs-8
+      .row.middle-xs
+        .col-xs-10
+          form(class="ui form")
+            .field
+              input(type='text', name='first-name', placeholder='Tu comentrio')
+        .col-xs-2
+          button.ui.red.right.labeled.icon.button
+            i.right.arrow.icon
+            |   Comentar
+  //- Seccion de los comentarios
+  .row-sm
+  .comment-section.row.center-xs
+    .col-xs-8.start-xs
+      .ui.threaded.comments
+        h3.ui.dividing.header Comentarios
+        .comment
+          a.avatar
+            img(src='http://lorempixel.com/30/30/')
+          .content
+            a.author Juanito
+            .metadata
+              span.date 12/feb/16 a las 5:42PM
+            .text
+              | ¿Que chilaquiles pican mas, los rojos o los verdes?
+            .actions
+              a.reply Responder
+        .comment
+          a.avatar
+            img(src='http://lorempixel.com/30/30/')
+          .content
+            a.author Elliot Fu
+            .metadata
+              span.date 12/feb/16 a las 12:30AM
+            .text
+              | Like si eres el primer comentario
+            .actions
+              a.reply Responder
+          .comments
+            .comment
+              a.avatar
+                img(src='http://lorempixel.com/30/30/')
+              .content
+                a.author Jenny Hess
+                .metadata
+                  span.date Ahora
+                .text
+                  | Pero que milagro
+                .actions
+                  a.reply Responder
+        .comment
+          a.avatar
+            img(src='http://lorempixel.com/30/30/')
+          .content
+            a.author Joe Henderson
+            .metadata
+              span.date Hace 5 dias
+            .text
+              | Simon!! ese, wachalo jaunito que si no, te petateas
+            .actions
+              a.reply Responder
+
+        //- form.ui.reply.form
+        //-   .field
+        //-     textarea
+        //-   .ui.blue.labeled.submit.icon.button
+        //-     i.icon.edit
+        //-     |  Add Reply
+  .row-md
+  script.
+    $('.ui.rating')
+      .rating('setting', 'clearable', true)
+    ;
+  //- Seccion del footer
+  include ./templates/index/footer

@@ -1,0 +1,50 @@
+// *********************************************************************************************************************
+//     Reset de los estilos generales
+// *********************************************************************************************************************
+
+// Template Base
+   body {
+     font-family: $font-primary;
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 1.7;
+     color: #7f7f7f;
+     background: $brand-white;
+     height: 100%;
+     position: relative;
+   }
+
+a {
+  color: $color-primary;
+  @include transition(.5s);
+  &:hover, &:active, &:focus {
+      color: $color-primary;
+      outline: none;
+    }
+}
+p {
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, figure {
+  color: rgba($brand-black, .7);
+  font-family: $font-primary !important;
+  font-weight: 400;
+  margin: 0 0 30px 0;
+  letter-spacing: 1px;
+}
+//::-webkit-selection {
+  //  color: $brand-white;
+  //  background: $color-primary;
+  //}
+//
+//::-moz-selection {
+  //  color: $brand-white;
+  //  background: $color-primary;
+  //}
+//::selection {
+  //  color: $brand-white;
+  //  background: $color-primary;
+  //}

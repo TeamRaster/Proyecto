@@ -1,0 +1,32 @@
+extends ./templates/template
+block main
+
+  //- Seccion del menu principal de navegacion
+  include ./templates/index/header
+    block menu
+      li: a(href='/') Inicio
+      li: a(href='#') Oferta y Demanda
+      li: a(href='#') Fondos de Apoyo
+      li: a.active(href='/idis') I+D+I
+      li: a(href='#') Informacion tecnologica
+      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+  .row
+    .col-xs-12
+      .ui.tabular.menu
+        .item.active(data-tab='convocations') Convocatorias
+        .item(data-tab='results') Resultados
+        .item(data-tab='national-funds') Fondos Nacionales
+      .ui.tab.active(data-tab='convocations')
+        .container-Idi
+          include ./templates/IDi/convocations
+      .ui.tab(data-tab='results')
+        .container-Idi
+          include ./templates/IDi/results
+      .ui.tab(data-tab='national-funds')
+        .container-Idi
+          include ./templates/IDi/national-funds
+  script.
+    $('.tabular.menu .item').tab();
+
+  //- Seccion del footer
+  include ./templates/index/footer

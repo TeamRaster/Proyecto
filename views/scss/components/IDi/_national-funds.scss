@@ -1,0 +1,19 @@
+.menu {
+  margin-bottom: 0 !important;
+}
+.container-Idi {
+  background-color: $brand-white; //Para que el contenedor se vea blanco
+  min-height:83vh; // Esto es solo para cuando exista una solo fila
+  .card-panel {
+    display: block;
+    margin: 0 auto;
+  }
+  .grid-card {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .center-panel {
+    display: block !important;
+    margin: 1em auto !important;
+  }
+}

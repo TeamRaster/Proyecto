@@ -1,0 +1,121 @@
+$font-primary: 'Roboto', Arial, sans-serif;
+$font-secondary: 'Open Sans', sans-serif;
+//     Componentes comunes
+// *********************************************************************************************************************
+@import 'helpers/sizes';
+@import 'helpers/mixins';
+@import 'helpers/colors';
+@import 'helpers/helpers';
+@import 'helpers/reset';
+@import 'helpers/btn';
+//     Componentes del index
+// *********************************************************************************************************************
+@import 'components/index/concepts';
+@import 'components/index/footer';
+@import 'components/index/header';
+@import 'components/index/offers';
+@import 'components/index/publications';
+@import 'components/index/services';
+@import 'components/index/slider';
+@import 'components/index/whatweoffer';
+
+//     Componentes de la pagina de inicio de sesion
+// *********************************************************************************************************************
+@import 'components/signin/form';
+
+//     Estilos IDi
+// *********************************************************************************************************************
+@import 'components/IDi/national-funds';
+
+//     Estilos del contenedor principal
+// *********************************************************************************************************************
+@import 'components/single/single';
+
+
+//     Estilos del contenedor principal
+// *********************************************************************************************************************
+#fh5co-page {
+  position: relative;
+  z-index: 2;
+  background: $brand-bg-color;
+  @include transition(.5s);
+}
+
+body {
+  background-color: #eee;
+}
+
+// Error 404 y 505
+#particles-js {
+  // position: absolute;
+  // z-index: 20;
+  max-height: 100vh;
+  overflow: hidden;
+  .container-1 {
+    position: absolute;
+    z-index: 0;
+    height: 100vh;
+    width: 100vw;
+    .panel-error {
+      @include border-radius(10px);
+      padding: 2.6em;
+      text-align: center;
+      background-color: $brand-white;
+      &__title {
+        color: $brand-notFound !important;
+        margin-bottom: 1em;
+        span {
+          display: block;
+          font-size: 2.2em;
+          margin-bottom: .5em;
+        }
+        h2 {
+          margin-bottom: .8em;
+          font-weight: 600;
+          font-size: 1.2em;
+          color: $brand-black;
+        }
+      }
+      &__main {
+        p {
+          font-size: .9em;
+        }
+        .field {
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+
+
+
+//¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+.card-haeder {
+  margin-top: .5em !important;
+}
+
+.context1 {
+  margin: 0 1em;
+  .item {
+    &.active {
+      background-color: rgba($color-primary, .8) !important;
+      color: $brand-white !important;
+    }
+  }
+}
+// Index Admin
+.nav-menu {
+  padding: 0 1em;
+  background-color: $brand-white;
+  .item {
+    &.active {
+      background-color: rgba($color-primary, .8) !important;
+      color: $brand-white !important;
+    }
+  }
+}
+// Breadcrumber
+.container-breadcrumb {
+  margin: .5em 0;
+}

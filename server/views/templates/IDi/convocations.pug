@@ -1,0 +1,24 @@
+- var card = 0;
+.row
+  while card < 14
+    .col-xs-3.grid-card
+      .ui.special.cards
+        .card.center-panel
+          .blurring.dimmable.image
+            .ui.inverted.dimmer
+              .content
+                .center
+                  a.ui.primary.button(href="single.html") Ver mas
+            img(src='http://lorempixel.com/300/300/')
+          .content
+            a.header Resultado #{card++}
+            .meta
+              span.date Creado el #{card} de Enero del 2016
+          .extra.content
+            a
+              i.users.icon
+              | #{card} Resultados
+script.
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });

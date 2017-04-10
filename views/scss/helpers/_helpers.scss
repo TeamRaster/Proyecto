@@ -1,0 +1,120 @@
+// Variables que pueden ayudar en el diseño
+$top-space: 40px !default;
+$bottom-space: 40px !default;
+$border-radius-base: 4px !default;
+
+.border {
+  border: 1px solid red;
+}
+
+//Fila con padding-bottom largo
+.row-bottom-padded-lg {
+  padding-bottom: 7em;
+  @media screen and (max-width: $screen-sm ) {
+    padding-bottom: 1em;
+  }
+}
+//Fila con padding-bottom mediano
+.row-bottom-padded-md {
+  padding-bottom: 4em;
+  @media screen and (max-width: $screen-sm ) {
+    padding-bottom: 1em;
+  }
+}
+//Fila con padding-bottom pequeño
+.row-bottom-padded-sm {
+  padding-bottom: 1em;
+  @media screen and (max-width: $screen-sm ) {
+    padding-bottom: 1em;
+  }
+}
+
+// *********************************************************************************************************************
+//     Iconos Redes Sociales
+// *********************************************************************************************************************
+.icons-social {
+  padding: 0;
+  margin: 0;
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    @include inline-block;
+    a {
+
+      font-size: 22px;
+      color: $brand-white;
+      padding: 0;
+      margin: 0;
+      // background: $color-primary;
+      padding: 2px;
+      @include inline-block;
+      @include border-radius(4px);
+      @media screen and (max-width: $screen-sm) {
+      }
+      &:hover {
+        color: $color-primary;
+      }
+      &:hover, &:active, &:focus {
+        outline: none;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// *********************************************************************************************************************
+//     Framework de Animaciones
+// *********************************************************************************************************************
+//.animate-box {
+//  .js & {
+//    opacity: 0;
+//  }
+//}
+
+// *********************************************************************************************************************
+//     Estilos del Scroll del navegador
+// *********************************************************************************************************************
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+  background: $brand-white;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: $color-primary;
+}
+
+// Espacios
+.row-xs {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.row-sm {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.row-md {
+  margin-top: 3.5em;
+  margin-bottom: 3.5em;
+}
+.row-lg {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+.row-xl {
+  margin-top: 7em;
+  margin-bottom: 7em;
+}
+
+// Sin background
+.no-background {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+// Margin a los lados
+.col-space-xs-l {
+  margin-left: 1em !important;
+}

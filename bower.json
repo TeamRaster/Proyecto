@@ -1,0 +1,20 @@
+{
+  "name": "proyectoob",
+  "description": "Proyecto colaborativo",
+  "main": "index.js",
+  "authors": [
+    "EderMarcos <skrap.marcos@gmail.com>",
+    "pio777 <lpab777@gmail.com>",
+    "XxKarlozxX <>",
+    "SonGabo <gabriel.95k@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/TeamRaster/ProyectoOb",
+  "private": true,
+  "dependencies": {
+    "flexboxgrid": "^6.3.2",
+    "ed-grid": "^2.0.1",
+    "materialize": "^0.98.0",
+    "moment": "^2.17.1"
+  }
+}

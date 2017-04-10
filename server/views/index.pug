@@ -1,0 +1,29 @@
+extends ./templates/template
+block main
+  //- Seccion del menu principal de navegacion
+  include ./templates/index/header
+    block menu
+      li: a.active(href='/') Inicio
+      li: a(href='/publications') Oferta y Demanda
+      li: a(href='/supportfunds') Fondos de Apoyo
+      li: a(href='/idis') I+D+I
+      li: a(href='#') Informacion tecnologica
+      if(!user)
+        li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+      else if (user)
+        li: a(href='/accounts/logout') Cerrar sesion
+  //- Seccion del slider principal de imagenes sobre el observatorio
+  include ./templates/index/slider
+  //- Seccion que ofrecemos, quienes somos
+  include ./templates/index/whatweoffer
+  //- Seccion donde se muestran los conceptos del Observatorio, Vision, Mision, Perfil
+  include ./templates/index/concepts
+  //- Seccion donde se muestran los servicios del Observatorio
+  include ./templates/index/services
+  //- Seccion donde se muestran las publicaciones del Observatorio
+  include ./templates/index/publications
+  //- Seccion donde se muestra las principales ofertas que existen
+  include ./templates/index/offers
+  //- Seccion final del Observatorio
+  include ./templates/index/footer
+

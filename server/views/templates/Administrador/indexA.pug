@@ -1,0 +1,73 @@
+extends ../template
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.active.item
+          | Home
+        a.item
+          | Users
+        a.item
+          | Offers
+        a.item
+          | Demands
+        a.item
+          | Groups
+        a.item
+          | Publications
+        .right.menu
+          .item
+            .ui.category.search
+              .ui.icon.input
+                input.prompt(type='text', placeholder='Search ...')
+                i.search.icon
+              .results
+          span.item
+            .ui.inline.dropdown
+              .text
+                img.ui.avatar.image(src='http://lorempixel.com/20/20/')
+                |       Jenny Hess
+              i.dropdown.icon.col-space-xs-l
+              .menu
+                a(href="#").item
+                  i.user.icon
+                  | My profile
+                a(href="#").item
+                  i.settings.icon
+                  | Settings
+                a(href="#").item
+                  i.archive.icon
+                  | Notifications
+                a(href="#").item
+                  i.talk.icon
+                  | Messages
+                a(href="#").item
+                  i.history.icon
+                  | history
+                a(href="#").item
+                  i.sign.out.icon
+                  | Sign Out
+
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section Home
+        i.right.chevron.icon.divider
+        a.section Registration
+        i.right.chevron.icon.divider
+        .active.section Personal Information
+
+  //- Seccion sidebar
+
+
+
+
+  script.
+    $('.ui.dropdown')
+      .dropdown()
+    ;
+
+
+
+

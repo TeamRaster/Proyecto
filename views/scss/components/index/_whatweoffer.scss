@@ -1,0 +1,31 @@
+.whatweoffer {
+  background-color: $brand-white;
+  @include padding_x_container();
+  .offer-left {
+    background: url(../images/6.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    min-height: 450px;
+    float: left;
+    width: 40%;
+  }
+  .offer-right {
+    padding: 1.8em 1.8em 0;
+    .container {
+      width: 100%;
+      h2 {
+        color: $color-primary;
+        font-size: 3em;
+        font-family: $font-primary;
+      }
+      h4 {
+        color: $color-primary;
+        font-size: 1.2em;
+        text-transform: uppercase;
+      }
+      p {
+        font-family: $font-primary;
+        text-align: justify;
+      }
+    }
+  }
+}

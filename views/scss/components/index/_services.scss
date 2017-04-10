@@ -1,0 +1,54 @@
+.services-agileits {
+  text-align: center;
+  background: rgb(232, 239, 247);
+  .services-left {
+    background: url('../images/left.jpg')no-repeat 0px 0px;
+    background-size: cover;
+    min-height: 727px;
+    float: left;
+  }
+  .services-right-agileinfo {
+    background: #E8EFF7;
+    padding: 60px 0px 0px;
+    .service-grids-wthree {
+      i {
+        color: $color-primary;
+        font-size: 35px;
+        padding: 20px 20px;
+        line-height: 59px;
+      }
+      p {
+        color: #838383;
+        font-size: 14px;
+        width: 65%;
+        margin: 0 auto;
+        text-align: justify;
+      }
+      h4 {
+        font-size: 1.5em;
+        letter-spacing: normal;
+        color: $brand-black;
+        margin-bottom: 10px;
+      }
+    }
+    .right-header-w3ls {
+      p {
+        font-size: 14px;
+        width: 85%;
+        margin: 0 auto 25px;
+        text-align: justify;
+      }
+      h3 {
+        color: $color-primary;
+        font-size: 3em;
+        text-align: center;
+      }
+      h5 {
+        color:#000000;
+        font-size:30px;
+        margin-bottom: 10px;
+        text-transform:uppercase;
+      }
+    }
+  }
+}

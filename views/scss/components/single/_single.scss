@@ -1,0 +1,64 @@
+.post {
+  background-color: $brand-white;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  border: 1px solid #E3E3E3;
+  header {
+    border-bottom: 1px solid #E3E3E3;
+    .title {
+      padding: 2em 4.3em;
+      h2 {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+      }
+      p {
+        font-size: .9em;
+      }
+    }
+    .meta {
+      border-left: 1px solid #E3E3E3;
+      padding: 2em 2em .5em;
+      .published {
+        display: block;
+        letter-spacing: .2em;
+        margin-bottom: .5em;
+        margin-left: .8em;
+        color: $brand-black;
+      }
+      .author {
+        display: flex;
+        justify-content: space-around;
+        span {
+          line-height: 50px;
+        }
+        img {
+          border-radius: 50%;
+          max-height: 50px;
+          max-width: 50px;
+        }
+      }
+    }
+  }
+  span.image {
+    max-height: 500px;
+    max-width: 800px;
+    display: block;
+    margin: 2em auto 5em;
+  }
+  p.text {
+    margin: 0 49.328px;
+    text-align: justify;
+  }
+
+  footer {
+    margin: 1.5em 3.5em;
+  }
+
+  .comment-section {
+    .text {
+      font-size: 1em;
+    }
+  }
+}

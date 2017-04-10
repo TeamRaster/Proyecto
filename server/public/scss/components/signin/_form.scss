@@ -1,0 +1,64 @@
+.container_signin {
+  margin-top: 2em;
+  .main {
+    text-align: center;
+    margin-bottom: 3em;
+    .social_network {
+      width: 300px;
+      margin: 0 auto;
+      position: relative;
+      a {
+        width: 300px;
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 4px;
+        color: $brand-white;
+        text-decoration: none;
+        cursor: pointer;
+        margin-bottom: 0.5em;
+        // font-size: 1em !important;
+      }
+      i {
+        // font-style: normal !important;
+        position: absolute;
+        top: .3em;
+        left: .8em;
+        font-size: 1.4em;
+        color: $brand-white;
+      }
+      &__facebook {
+        background-color: #3F51B5;
+        &:hover {
+          background-color: lighten(#3F51B5, 8%);
+        }
+      }
+      &__twitter {
+        background-color: #1DA1F2;
+      }
+      &__linkedin {
+        background-color: #0177B5;
+      }
+    }
+    .middle {
+      padding: 1em 0;
+    }
+    form {
+      width: 300px;
+      margin: 0 auto;
+      label {
+        text-align: justify;
+      }
+      #checkbox {
+        + label {
+          cursor: pointer;
+        }
+      }
+      a {
+        margin-left: 1em;
+      }
+      p, a {
+        font-size: 1em;
+      }
+    }
+  }
+}

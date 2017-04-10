@@ -1,0 +1,155 @@
+// *********************************************************************************************************************
+//     Estilos del Footer
+// *********************************************************************************************************************
+#fh5co-footer{
+  background: $color-primary;
+  color: #74889e;
+  padding: 5em 0;
+  @media screen and (max-width: $screen-sm) {
+    padding: 2em 0;
+  }
+  a{
+    color: #74889e;
+    &:hover {
+      color: $brand-white!important;
+      text-decoration: underline;
+    }
+  }
+
+  .section-title{
+    font-family: $font-primary;
+    font-size: 22px;
+    color: $brand-white;
+    position: relative;
+    margin-bottom: 10px;
+    &:after{
+      position: absolute;
+      content: '';
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 55px;
+      height: 2px;
+      background: $color-primary;
+    }
+  }
+  p {
+    font-size: 16px;
+    text-align: justify;
+  }
+  // Derechos de autor
+  .copy-right{
+    position: relative;
+    padding-top: 20px;
+    margin-top: 40px;
+    font-size: 13px;
+    &:after{
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      display: block;
+      width: 35px;
+      height: 2px;
+      background: $color-primary;
+    }
+  }
+  // Nuestra Direccion
+  .contact-info{
+    margin: 0 0 60px 0;
+    padding: 0;
+    li{
+      font-size: 16px;
+      list-style: none;
+      margin: 0 0 20px 0;
+      position: relative;
+      padding-left: 40px;
+      i{
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 22px;
+        color: $brand-white;
+      }
+    }
+  }
+  // Contactanos
+  .social-media{
+    margin: 0 0 30px 0;
+    padding: 0;
+    li{
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-size: 24px;
+      margin-right: 10px;
+      a{
+        color: $color-secundary;
+        &:hover, &:focus, &:active{
+          text-decoration: none;
+        }
+      }
+      i {
+        margin-left: 8px;
+        margin-right: 8px;
+        font-size: 22px;
+        color: $brand-white;
+      }
+    }
+  }
+  // Envianos tu opinion
+  .contact-form{
+    .form-group{
+      input[type="name"],
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        font-size: 16px;
+        width: 360px;
+        padding: 8px 12px;
+        margin-bottom: .8em;
+        @include border-radius(4px);
+        &::-webkit-input-placeholder {
+          color: rgba(255,255,255,.5);
+        }
+
+        &:-moz-placeholder { /* Firefox 18- */
+          color: rgba(255,255,255,.5);
+        }
+
+        &::-moz-placeholder {  /* Firefox 19+ */
+          color: rgba(255,255,255,.5);
+        }
+
+        &:-ms-input-placeholder {
+          color: rgba(255,255,255,.5);
+        }
+      }
+      input{
+        color: #fff;
+        background: transparent;
+        border: none;
+        background: #485b71;
+        box-shadow: none;
+      }
+      textarea{
+        color: #fff;
+        background: transparent;
+        border: none;
+        background: #485b71;
+        box-shadow: none;
+        max-width: 360px;
+      }
+    }
+  }
+  .button {
+    border: 1px solid $brand-white;
+    color: $brand-white;
+    background-color: transparent;
+    @include border-radius(30px);
+    &:hover {
+      background: $brand-white;
+      color: $color-primary;
+    }
+  }
+}

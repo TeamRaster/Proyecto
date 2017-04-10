@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    title Observatorio Tecnologico
+    meta(charset="UTF-8")
+    meta(name='viewport', content="width=device-width, initial-scale=1.0")
+    meta(name='description', content="Descripcion")
+    meta(name="keywords" content="observatorio tecnologico, uaeh, team raster")
+    meta(name='author', content="Autor")
+
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900" type='text/css')
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css")
+    link(rel="stylesheet" href="https://file.myfontastic.com/RsaCTwQbtGJYEnLCQN6Pyn/icons.css")
+    link(rel="stylesheet" href="/css/styles.css")
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src="/js/jquery.waypoints.min.js")
+    script(src="/js/main.js")
+    script(src="/js/jquery.backstretch.min.js")
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js')
+
+    //- Icono de la pagina
+    link(rel="shortcut icon" href="/images/workspace.png")
+
+  body
+    block main
+    script(src="/js/particles.min.js")
+    script(src="/js/particlesjs-config.js")
+    script.
+      $(function(){
+        jQuery(document).ready(function() {
+        $('#home').backstretch([
+           "images/1.jpg",
+           "images/2.jpg",
+           "images/3.jpg",
+           "images/4.jpg",
+           "images/5.jpg",
+           "images/6.jpg",
+            ],  {duration: 4000, fade: 750});
+        });
+      })
+

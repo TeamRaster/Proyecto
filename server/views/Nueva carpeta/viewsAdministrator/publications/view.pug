@@ -1,0 +1,17 @@
+extends ../../layout/layoutIndex
+
+block title
+  title Publication
+
+block main
+  .row.center-xs
+    .col-xs-8
+      h3 Publication
+  .row.center-xs
+    .col-xs-10
+      h5 Titulo: #{storedPublication.title}
+      h5 Tipo de informacion: #{storedPublication.typePublication}
+      h5 Fecha: #{storedPublication.creationDate.hour + storedPublication.creationDate.date}
+      h5 Imagen: #{storedPublication.image}
+      h5 Foto
+      img(src="/images/imagesPublications/" + storedPublication.image)
