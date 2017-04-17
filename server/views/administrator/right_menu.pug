@@ -1,0 +1,62 @@
+.item
+  .ui.action.input
+    input(type='text', placeholder='Search...')
+    select.ui.compact.selection.dropdown
+      option(value='all') Todo
+      option(selected='', value='articles') Usuarios
+      option(value='products') Ofertas
+      option(value='products') Demandas
+      option(value='products') Fondos de apoyo
+      option(value='products') Grupos
+    button.ui.teal.right.labeled.icon.button(type="submit")
+      i.search.icon
+      |     Buscar
+span.item.padding-x-xs.no-margin-x
+  .ui.inline.dropdown
+    i.grey.mail.icon.col-space-xs-l
+  .ui.circular.labels
+    .ui.label.red
+      | 1
+.item.padding-x-xs.no-margin-x
+  .ui.inline.dropdown
+    i.grey.alarm.icon.col-space-xs-l
+  .ui.circular.labels
+    .ui.label.blue
+      | 11
+span.item
+  .ui.inline.dropdown
+    .text
+      if (user && user.photo && !user.facebook)
+        img.ui.avatar.image(src='/images/imagesUsers/ ' + user.photo)
+        span= user.username
+      else if (user && user.facebook && user.username)
+        img.ui.avatar.image(src='' + user.photo)
+        span= user.username
+      else if (user && user.facebook)
+        img.ui.avatar.image(src='http://lorempixel.com/20/20/')
+        span Administrador
+      else if (!user)
+        img.ui.avatar.image(src='http://lorempixel.com/20/20/')
+        |       Unknow
+    i.grey.dropdown.icon.col-space-xs-l
+    .menu
+      a(href="/profile").item
+        i.user.icon
+        | My profile
+      a(href="/settings").item
+        i.settings.icon
+        | Settings
+      a(href="/notifications").item
+        i.archive.icon
+        | Notifications
+      a(href="/messages").item
+        i.talk.icon
+        | Messages
+      a(href="/accounts/logout").item
+        i.sign.out.icon
+        | Sign Out
+script.
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+

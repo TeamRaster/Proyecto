@@ -1,0 +1,305 @@
+extends templates/template
+block main
+  #app.app
+    #content.app-content.box-shadow-z2.pjax-container(role='main')
+      .app-header.hidden-lg-up.black.lt.b-b
+      .app-body
+        // ############ PAGE START
+        .app-body-inner
+          .row-col
+            #list.col-xs-3.w-lg.modal.fade.aside.aside-sm
+              .row-col.success
+                // header
+                div
+                  .p-a
+                    form
+                      .input-group.input-group-sm.p-x-sm.dker.rounded
+                        input.form-control.no-bg.no-border.text-white(type='text', placeholder='Search', required='')
+                        span.input-group-btn
+                          button.btn.no-bg.no-border.no-shadow(type='button')
+                            i.fa.fa-search
+                  .nav.text-center.p-b
+                    a.nav-link.m-x(href='#', data-toggle='tooltip', title='Add Contact')
+                      i.ion-person-add
+                    a.nav-link.m-x(href='#', data-toggle='tooltip', title='Contacts')
+                      i.ion-person-stalker
+                    a.nav-link.m-x(href='#', data-toggle='tooltip', title='Chat')
+                      i.ion-chatbubble
+                    a.nav-link.m-x(href='#', data-toggle='tooltip', title='Location')
+                      i.ion-location
+                    a.nav-link.m-x(href='#', data-toggle='tooltip', title='Plugins')
+                      i.ion-grid
+                // /
+                // flex content
+                .row-row
+                  .row-body.scrollable.hover
+                    .row-inner
+                      // left content
+                      .list.inset(data-ui-list='active')
+                        .p-x.text-dark.m-t.m-b-sm.text-sm Messages
+                        .list-item
+                          .list-left
+                            span.w-40.avatar.circle.indigo
+                              i.on.b-white.avatar-right
+                              img(src='http://lorempixel.com/35/35', alt='.')
+                          .list-body
+                            span.pull-right.text-xs.label.rounded.lt
+                              | 8
+                            .item-title
+                              a._500(href='#') Fifth Harmony
+                            small.block.text-muted.text-ellipsis
+                              | Send you a invitation to SWO
+                        .list-item
+                          .list-left
+                            span.w-40.avatar.circle.light-blue
+                              i.off.b-white.avatar-right
+                              img(src='http://lorempixel.com/35/35', alt='.')
+                          .list-body
+                            span.pull-right.text-xs.label.rounded.lt
+                              | 30
+                            .item-title
+                              a._500(href='#') Kygo
+                            small.block.text-muted.text-ellipsis
+                              | What's the project progress now
+                        .list-item
+                          .list-left
+                            span.w-40.avatar.circle.teal
+                              i.on.b-white.avatar-right
+                              img(src='http://lorempixel.com/35/35', alt='.')
+                          .list-body
+                            .item-title
+                              a._500(href='#') RYD
+                            small.block.text-muted.text-ellipsis
+                              | Added you to repo
+                        .list-item
+                          .list-left
+                            span.w-40.avatar.circle.blue
+                              i.on.b-white.avatar-right
+                              img(src='http://lorempixel.com/35/35', alt='.')
+                          .list-body
+                            .item-title
+                              a._500(href='#') Postiljonen
+                            small.block.text-muted.text-ellipsis
+                              | Looking for some client-work
+                        .list-item
+                          .list-left
+                            span.w-40.avatar.circle.grey
+                              i.on.b-white.avatar-right
+                              img(src='http://lorempixel.com/35/35', alt='.')
+                          .list-body
+                            .item-title
+                              a._500(href='#') Summerella
+                            small.block.text-muted.text-ellipsis
+                              | Send you a message
+                        .p-x.text-dark.m-t.m-b-sm.text-sm Groups
+                        .list-item
+                          .list-left
+                            span.w-40.avatar.circle
+                              span.w-40.avatar.lter WG
+                          .list-body
+                            a._500(href='#') Work group
+                            small.block.text-muted.text-ellipsis
+                              | 32 persons
+                      // /
+                // /
+                // footer
+                .p-x-md.p-y
+                  a.pull-right.btn.btn-xs.rounded.dk
+                    i.fa.fa-plus
+                  span.text-sm.text-muted Messages: 90+
+                // /
+            #detail.col-xs-6
+              .row-col.dark-light
+                // header
+                .dark-white.b-b
+                  .navbar
+                    // nabar right
+                    ul.nav.navbar-nav.pull-right.m-l
+                      li.nav-item
+                        a.nav-link(data-toggle='tooltip', data-placement='bottom', title='Phone Call')
+                          span.btn.btn-sm.btn-icon.rounded.success
+                            i.fa.fa-phone
+                      li.nav-item
+                        a.nav-link(data-toggle='tooltip', data-placement='bottom', title='Face Call')
+                          span.btn.btn-sm.btn-icon.rounded.success
+                            i.fa.fa-video-camera
+                    // / navbar right
+                    a.m-r-0.m-l.navbar-item.pull-right.hidden-lg-up(data-toggle='modal', data-target='#profile', data-ui-modal='')
+                      span.btn.btn-sm.btn-icon.rounded.success
+                        i.ion-person
+                    a.navbar-item.pull-left.hidden-md-up(data-toggle='modal', data-target='#list', data-ui-modal='')
+                      span.btn.btn-sm.btn-icon.success
+                        i.fa.fa-list
+                    span.navbar-item.text-md.text-ellipsis
+                      | Pablo Nouvelle
+                // /
+                // flex content
+                .row-row
+                  .row-body
+                    .row-inner
+                      // content
+                      .p-a-md
+                        .m-b
+                          a.pull-left.w-40.m-r-sm(href='#')
+                            img.w-full.img-circle(src='http://lorempixel.com/35/35', alt='.')
+                          .clear
+                            div
+                              .p-a.p-y-sm.success.inline.rounded
+                                | Hi John, What's up...
+                            .m-t-xs
+                              .p-a.p-y-sm.success.inline.rounded
+                                | hmm...
+                            .text-muted.text-xs.m-t-xs
+                              i.fa.fa-ok.text-success
+                              |  2 minutes ago
+                        .m-b
+                          a.pull-right.w-40.m-l-sm(href='#')
+                            img.w-full.img-circle(src='http://lorempixel.com/35/35', alt='.')
+                          .clear.text-right
+                            .p-a.p-y-sm.dark-white.inline.rounded.text-left
+                              | Lorem ipsum dolor soe rooke..
+                            .text-muted.text-xs.m-t-xs 1 minutes ago
+                        .m-b
+                          a.pull-left.w-40.m-r-sm(href='#')
+                            img.w-full.img-circle(src='http://lorempixel.com/35/35', alt='.')
+                          .clear
+                            .p-a.p-y-sm.success.inline.rounded
+                              | Good!
+                            .text-muted.text-xs.m-t-xs
+                              i.fa.fa-ok.text-success
+                              |  5 seconds ago
+                        .m-b
+                          a.pull-right.w-40.m-l-sm(href='#')
+                            img.w-full.img-circle(src='http://lorempixel.com/35/35', alt='.')
+                          .clear.text-right
+                            div
+                              .p-a.p-y-sm.dark-white.inline.rounded.text-left
+                                | Dlor soe isep slie gosese..
+                            .m-t-xs
+                              .p-a.p-y-sm.dark-white.inline.rounded.text-left
+                                | Loris aspim..
+                            .text-muted.text-xs.m-t-xs 3 seconds ago
+                        .m-b
+                          a.pull-left.w-40.m-r-sm(href='#')
+                            img.w-full.img-circle(src='http://lorempixel.com/35/35', alt='.')
+                          .clear
+                            div
+                              .p-a.p-y-sm.success.inline.rounded.text-left
+                                | Typing...
+                            .text-muted.text-xs.m-t-xs
+                              i.fa.fa-ok.text-success
+                              |  Just now
+                      // /
+                // /
+                .p-a.b-t.dark-white
+                  form
+                    .input-group
+                      input.form-control(type='text', placeholder='Say something')
+                      span.input-group-btn
+                        button.btn.white.b-a.no-shadow(type='button')
+                          i.fa.fa-send.text-success
+            #profile.col-xs-3.w-md.modal.fade.aside.aside-md.aside-md-right
+              .row-col.dark-white.b-l
+                // flex content
+                .row-row
+                  .row-body.scrollable.hover
+                    .row-inner
+                      // content
+                      .p-a-lg.text-center
+                        img.w-full.circle(src='http://lorempixel.com/214/214', alt='.')
+                        span.text-md.m-t.block Pablo Nouvelle
+                        small.text-muted UX/UI Designer
+                        .block.clearfix.m-t
+                          a.btn.btn-icon.btn-social.rounded.btn-sm(href='#')
+                            i.fa.fa-facebook
+                            i.fa.fa-facebook.indigo
+                          a.btn.btn-icon.btn-social.rounded.btn-sm(href='#')
+                            i.fa.fa-twitter
+                            i.fa.fa-twitter.light-blue
+                          a.btn.btn-icon.btn-social.rounded.btn-sm(href='#')
+                            i.fa.fa-google-plus
+                            i.fa.fa-google-plus.red
+                          a.btn.btn-icon.btn-social.rounded.btn-sm(href='#')
+                            i.fa.fa-linkedin
+                            i.fa.fa-linkedin.cyan-600
+                      .p-a-md
+                        ul.nav
+                          li.nav-item.m-b-xs
+                            a.nav-link.text-muted.block
+                              span.pull-right.text-sm
+                                i.fa.fa-fw.fa-map-marker
+                              span London
+                          li.nav-item.m-b-xs
+                            a.nav-link.text-muted.block
+                              span.pull-right.text-sm
+                                i.fa.fa-fw.fa-phone
+                              span 123-456-789
+                          li.nav-item.m-b-xs
+                            a.nav-link.text-muted.block
+                              span.pull-right.text-sm
+                                i.fa.fa-fw.fa-birthday-cake
+                              span July 03
+                          li.nav-item.m-b-xs
+                            a.nav-link.text-muted.block
+                              span.pull-right.text-sm
+                                i.fa.fa-fw.fa-envelope
+                              span Nouvelle@gmail.com
+                      // /
+                // /
+        // ############ PAGE END
+    // /
+    // ############ SWITHCHER START
+    #switcher
+      #sw-theme.switcher.dark-white
+        a.dark-white.sw-btn(href='#', data-ui-toggle-class='active', data-ui-target='#sw-theme')
+          i.fa.fa-gear.text-muted
+        .box-header
+          a.btn.btn-xs.rounded.danger.pull-right(href='https://themeforest.net/item/aside-dashboard-ui-kit/17903768?ref=flatfull') BUY
+          strong Theme Switcher
+        .box-divider
+        .box-body
+          p#settingLayout.hidden-md-down
+            label.md-check.m-y-xs(data-target='folded')
+              input(type='checkbox')
+              i
+              span Folded Aside
+            label.m-y-xs.pointer(data-ui-fullscreen='', data-target='fullscreen')
+              span.fa.fa-expand.fa-fw.m-r-xs
+              span Fullscreen Mode
+          p Colors:
+          p(data-target='color')
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='primary')
+              i.primary
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='accent')
+              i.accent
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='warn')
+              i.warn
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='success')
+              i.success
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='info')
+              i.info
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='warning')
+              i.warning
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-md
+              input(type='radio', name='color', value='danger')
+              i.danger
+          p Themes:
+          .clearfix(data-target='bg')
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-lg
+              input(type='radio', name='theme', value='')
+              i.light
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-lg
+              input(type='radio', name='theme', value='grey')
+              i.grey
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-lg
+              input(type='radio', name='theme', value='dark')
+              i.dark
+            label.radio.radio-inline.m-a-0.ui-check.ui-check-color.ui-check-lg
+              input(type='radio', name='theme', value='black')
+              i.black

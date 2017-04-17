@@ -1,0 +1,16 @@
+extends ./templates/template
+block main
+  include ./templates/index/header
+    block menu
+      li: a(href='/') Inicio
+      li: a(href='/offers-demands') Oferta y Demanda
+      li: a(href='/support-funds') Fondos de Apoyo
+      li: a(href='/idis') I+D+I
+      li: a.active(href='/technological-information') Informacion tecnologica
+      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+  .row.center-xs
+    .col-xs-6
+      h2 Informacion tecnologica
+  //include ./templates/index/footer
+
+

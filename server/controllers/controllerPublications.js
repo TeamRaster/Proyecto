@@ -45,22 +45,23 @@ module.exports = (app) => {
     }
 
     this.__gets = (req, res) => {
-        Publication.find({}, (err, storedPublications) => {  // Devuelve todos los datos de la tabla usuarios
-            if (!err) {
-                // Renderiza los posibles mensajes que le puede llegar a la vista
-                res.render('./viewsAdministrator/publications/index', {
-                    publications : storedPublications,
-                    err          : req.flash('err'),
-                    warning      : req.flash('warning'),
-                    info         : req.flash('info'),
-                    success      : req.flash('success')
-                })
-            } else {
-                console.log(`\n[ControllerPublications.getPublications]: Ups! parece que hubo un error => ${err}`)
-                req.flash('err', '[Servidor]: Ups! parece que hubo un error en la base datos')
-                res.redirect(redirect)  // Redirecciona y muestra el error
-            }
-        })
+        // Publication.find({}, (err, storedPublications) => {  // Devuelve todos los datos de la tabla usuarios
+        //     if (!err) {
+        //         // Renderiza los posibles mensajes que le puede llegar a la vista
+        //         res.render('./viewsAdministrator/publications/index', {
+        //             publications : storedPublications,
+        //             err          : req.flash('err'),
+        //             warning      : req.flash('warning'),
+        //             info         : req.flash('info'),
+        //             success      : req.flash('success')
+        //         })
+        //     } else {
+        //         console.log(`\n[ControllerPublications.getPublications]: Ups! parece que hubo un error => ${err}`)
+        //         req.flash('err', '[Servidor]: Ups! parece que hubo un error en la base datos')
+        //         res.redirect(redirect)  // Redirecciona y muestra el error
+        //     }
+        // })
+        res.render('publications')
     }
 
     this.__update = (req, res) => {

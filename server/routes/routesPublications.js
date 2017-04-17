@@ -38,5 +38,16 @@ module.exports = (app) => {
         .get([auth.isLogged, Publication.__gets])  // Obtiene todas las fuentes de informacion
         .post([auth.isLogged, upload.single('image'), Publication.__set])  // Agrega una fuentes de informacion
 
+    app.get('/offers', (req, res) => {
+        res.render('offers')
+    })
+
+    app.get('/demands', (req, res) => {
+        res.render('demands')
+    })
+
+    app.get('/offers-demands', (req, res) => {
+        res.render('offers-demands')
+    })
     return this
 }

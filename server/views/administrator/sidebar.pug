@@ -1,0 +1,43 @@
+.ui.left.vertical.sidebar.menu#sidebar_container
+  .item
+    i.smile.icon
+    |     Configuracion
+    a.item
+      i.block.layout.icon
+      |     Mi perfil
+    a.item
+      i.smile.icon
+      |     Configuracion
+    a.item
+      i.smile.icon
+      |     Usuarios
+  a.item
+    i.block.layout.icon
+    |     Mi perfil
+  a.item
+    i.smile.icon
+    |     Configuracion
+  a.item
+    i.smile.icon
+    |     Usuarios
+  a.item
+    i.smile.icon
+    |     Publicaciones
+  a.item
+    i.smile.icon
+    |     Grupos
+  a.item
+    i.smile.icon
+    |     Comunidad
+  a.item
+    i.smile.icon
+    |     Observatorio
+
+script.
+  $('#sidebar').click(function () {
+    $('#sidebar_container')
+      .sidebar('setting', 'transition', 'overlay')
+      .sidebar('toggle')
+    ;
+  })
+

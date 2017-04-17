@@ -1,0 +1,14 @@
+.row.center-xs.nav-menu
+  .col-xs-12
+    .ui.secondary.menu
+      a.item(id="sidebar")
+        i.sidebar.icon
+        | Menu
+      a.item(href="/home")
+        | Home
+      a.item.lasted(href="/" data-tooltip="Regresa a la pagina del OTecH" data-position="bottom left")
+        button.ui.red.basic.button
+          i.arrow.left.icon
+          |   OTecH
+      .right.menu
+        include right_menu

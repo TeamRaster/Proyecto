@@ -1,0 +1,91 @@
+extends templates/template
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          | Mensajes
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section(href="/home") Home
+        i.right.chevron.icon.divider.teal
+        a.section(href="/") nombre_user
+        i.right.chevron.icon.divider.teal
+        .active.section Mensajes
+  include templates/errorMessage
+  // Inicia pagina
+  .row.full-height
+    .col-xs-3.nav-bar-left
+      .space-xs
+      .ui.fluid.category.search.center-xs
+        .ui.icon.input
+          input.prompt.prompt_.width-80(type='text', placeholder='Buscar')
+          i.search.icon
+        .results
+      .ui.icon.center-xs.space-xs
+        a(href=""): i.add.user.icon.margin-xs
+        a(href=""): i.users.icon.margin-xs
+        a(href=""): i.talk.icon.margin-xs
+        a(href=""): i.marker.icon.margin-xs
+      .row.center-xs
+        .col-xs-11.start-xs
+          | Mensajes
+          .ui.list
+            -var mensaje = 0
+            while mensaje < 8
+              a.item
+                .ui.green.empty.circular.label.label-custom
+                .right.floated.ui.grey.circular.label 1#{mensaje}
+                img.ui.avatar.image(src='http://lorempixel.com/25/25')
+                .content
+                  .header Rachel
+                  .description Mensaje...#{mensaje}
+              -mensaje++
+      .space-xs
+      .row.center-xs
+        .col-xs-11.start-xs
+          | Grupos
+          .ui.list
+            .item
+              .right.floated.ui.blue.circular.label 2
+              img.ui.avatar.image(src='http://lorempixel.com/25/25')
+              .content
+                a(href="")
+                  .header Noobs
+                .description 34 Integrantes
+            .item
+              .right.floated.ui.blue.circular.label 21
+              img.ui.avatar.image(src='http://lorempixel.com/25/25')
+              .content
+                a(href="")
+                  .header Developers
+                .description 0 Integrantes
+
+          .ui.list.margin-md-top
+            .item
+              a(href="").right.floated.middle.aligned
+                i.icon.plus.green
+              .middle.aligned.content
+                .header Mensajes: 15
+    .col-xs-9
+      .ui.segments
+        .ui.segment
+          .ui.relaxed.divided.list.small
+            .item.padding-x-md
+              a(href=""): i.right.floated.large.phone.middle.aligned.icon.mini-padding-top
+              .middle.aligned.content
+                a.header.text-md Jose Eder Marcos Lara
+                .description.mini-padding-top En linea
+        .ui.segment
+
+
+
+  // Termina Pagina

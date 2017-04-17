@@ -1,0 +1,301 @@
+extends templates/template
+block title
+  | Profile
+block main
+  // Navbar del home
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          | Profile
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section(href="/home") Home
+        i.right.chevron.icon.divider.teal
+        a.section(href="/") nombre_user
+        i.right.chevron.icon.divider.teal
+        .active.section Perfil
+  include templates/errorMessage
+  - var grupos = 0;
+  - var ofertas = 0;
+  - var demandas = 0;
+  - var amigos = 0;
+  .row.center-xs
+    .col-xs-11.start-xs
+      .row
+        .col-xs-4
+          //img.ui.centered.small.circular.image.slide.masked.reveal(src='http://lorempixel.com/300/300')
+          //img.ui.centered.small.circular
+          .ui.centered.medium.slide.masked.reveal.image
+            img.visible.content(src='http://lorempixel.com/300/300')
+            img.hidden.content(src='http://lorempixel.com/300/300')
+          .ui.segments
+            .ui.segment
+              h3.ui.header Jose Eder Marcos Lara
+              p Programador autodidacta, amante de las nuevas tecnologias que existen para crear nuevas cosas
+              .ui.buttons
+                button.ui.button.green
+                  i.icon.user
+                  |   Add Friend
+                button.ui.button
+                  i.icon.user
+                  |   Mensaje
+            .ui.segment
+              h4.ui.header Acerca de mi
+              .ui.list
+                .item
+                  i.mail.icon
+                  .content
+                    a(href='mailto:jack@semantic-ui.com') skrap.marcos@gmail.com
+                .item.margin-bottom
+                  i.marker.icon
+                  .content
+                    | 7712950501
+                .item
+                  button.ui.circular.facebook.icon.button
+                    i.facebook.icon
+                  button.ui.circular.twitter.icon.button
+                    i.twitter.icon
+                  button.ui.circular.linkedin.icon.button
+                    i.linkedin.icon
+            .ui.segment
+              h4.ui.header Rango
+              .ui.red.tag.label Administrador
+
+
+        .col-xs-8
+          .ui.teal.segment
+            .ui.pointing.secondary.menu
+              a.item.active(data-tab='1') Mis grupos
+                .ui.circular.labels
+                  .ui.label
+                    | 11
+              a.item(data-tab='2') Mis ofertas
+                .ui.circular.labels
+                  .ui.label
+                    | 18
+              a.item(data-tab='3') Mis demandas
+                .ui.circular.labels
+                  .ui.label
+                    | 12
+              a.item(data-tab='4') Mis amigos
+                .ui.circular.labels
+                  .ui.label
+                    | 1
+              a.item(data-tab='5') Mi historial
+                .ui.circular.labels
+                  .ui.label
+                    | 19
+            .ui.bottom.attached.tab.segment.active(data-tab='1')
+              .ui.divided.items
+                while grupos < 5
+                  .item
+                    .image
+                      img(src='http://lorempixel.com/175/145')
+                    .content
+                      a.header My Neighbor Totoro
+                      .meta
+                        span.cinema IFC Cinema
+                      .description
+                        p
+                      .extra
+                        .ui.icon.top.left.pointing.dropdown.button.right.floated.button
+                          i.settings.icon
+                          .menu
+                            .header Configuracion del grupo
+                            .item Editar la configuracion
+                            .item Abandonar grupo
+                            .item Añadir a favoritos
+                        .ui.label Pachuca
+                        .ui.label Tags
+                        .ui.label Filtros
+                  -grupos++
+
+            .ui.bottom.attached.tab.segment(data-tab='2')
+              .ui.cards.four
+                while ofertas < 5
+                  .card
+                    .image
+                      img(src='http://lorempixel.com/176/145')
+                    .content
+                      span.right.floated
+                        i.heart.outline.like.icon
+                        |       17 likes
+                      i.comment.icon
+                      |     3 comments
+                  -ofertas++
+
+            .ui.bottom.attached.tab.segment(data-tab='3')
+              .ui.cards.four
+                while demandas < 1
+                  .card
+                    .image
+                      img(src='http://lorempixel.com/176/145')
+                    .content
+                      span.right.floated
+                        i.heart.outline.like.icon
+                        |       17 likes
+                      i.comment.icon
+                      |     3 comments
+                  -demandas++
+
+            .ui.bottom.attached.tab.segment(data-tab='4')
+              .ui.items.divided
+                while amigos < 5
+                  .item
+                    a.ui.small.image
+                      img(src='http://lorempixel.com/150/125')
+                    .middle.aligned.content
+                      a.header Stevie Feliciano
+                      .description
+                        p Stevie Feliciano is a
+                      .extra
+                        .right.floated.content
+                          .ui.labeled.icon.right.pointing.dropdown.button
+                            i.checkmark.icon
+                            span.text.middle.aligned Amigos
+                            .menu
+                              .header
+                                |       ¿Que deseas hacer?
+                              .item
+                                .ui.black.empty.circular.label
+                                |       Bloquear
+                              .item
+                                .ui.blue.empty.circular.label
+                                |       Mejores amigos
+                              .item
+                                .ui.red.empty.circular.label
+                                |       Eliminar
+                  -amigos++
+                        script.
+                          $('.ui.dropdown')
+                            .dropdown()
+                          ;
+            .ui.bottom.attached.tab.segment(data-tab='5')
+              .ui.feed
+                .event
+                  .label
+                    img(src='http://lorempixel.com/35/35')
+                  .content
+                    .summary
+                      a.user
+                        | Elliot Fu
+                      |  added you as a friend
+                      .date
+                        | 1 Hour Ago
+                    .meta
+                      a.like
+                        i.like.icon
+                        |  4 Likes
+                .event
+                  .label
+                    img(src='http://lorempixel.com/35/35')
+                  .content
+                    .summary
+                      a Helen Troy
+                      |  added
+                      a 2 new illustrations
+                      .date
+                        | 4 days ago
+                    .extra.images
+                      a
+                        img(src='http://lorempixel.com/84/84')
+                      a
+                        img(src='http://lorempixel.com/84/84')
+                    .meta
+                      a.like
+                        i.like.icon
+                        |  1 Like
+                .event
+                  .label
+                    img(src='http://lorempixel.com/35/35')
+                  .content
+                    .summary
+                      a.user
+                        | Jenny Hess
+                      |  added you as a friend
+                      .date
+                        | 2 Days Ago
+                    .meta
+                      a.like
+                        i.like.icon
+                        |  8 Likes
+                .event
+                  .label
+                    img(src='http://lorempixel.com/35/35')
+                  .content
+                    .summary
+                      a Joe Henderson
+                      |  posted on his page
+                      .date
+                        | 3 days ago
+                    .extra.text
+                      | Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                    .meta
+                      a.like
+                        i.like.icon
+                        |  5 Likes
+                .event
+                  .label
+                    img(src='http://lorempixel.com/35/35')
+                  .content
+                    .summary
+                      a Justen Kitsune
+                      |  added
+                      a 2 new photos
+                      |  of you
+                      .date
+                        | 4 days ago
+                    .extra.images
+                      a
+                        img(src='http://lorempixel.com/84/84')
+                      a
+                        img(src='http://lorempixel.com/84/84')
+                    .meta
+                      a.like
+                        i.like.icon
+                        |  41 Likes
+
+            script.
+              $('.menu .item')
+                .tab()
+              ;
+      //.ui.segments
+      //  .ui.segment.padding-md.img_background
+      //    .row.z-index
+      //      .col-xs-6.space-lg
+      //        .ui.items
+      //          .item
+      //            img.ui.middle.aligned.small.image.esfera(src='http://lorempixel.com/150/150')
+      //            .middle.aligned.content
+      //              .header Jose Eder Marcos Lara
+      //              .meta
+      //                p Desarrollador
+      //              .description
+      //                button.ui.circular.facebook.icon.button
+      //                  i.facebook.icon
+      //                button.ui.circular.twitter.icon.button
+      //                  i.twitter.icon
+      //                button.ui.circular.linkedin.icon.button
+      //                  i.linkedin.icon
+      //                button.ui.circular.google.plus.icon.button
+      //                  i.google.plus.icon
+      //              .extra
+      //                button.ui.active.button
+      //                  i.user.icon
+      //                  |   Follow
+      //                button.ui.active.button
+      //                  i.user.icon
+      //                  |   Follow
+      //      .col-xs-6
+      //
+
+      //  .ui.segment

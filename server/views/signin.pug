@@ -3,11 +3,11 @@ block main
   include ./templates/index/header
     block menu
       li: a(href='/') Inicio
-      li: a(href='#') Oferta y Demanda
-      li: a(href='#') Fondos de Apoyo
-      li: a(href='#') I+D+I
-      li: a(href='#') Informacion tecnologica
-      li: a.active(href='/accounts/signup' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+      li: a(href='/offers-demands') Oferta y Demanda
+      li: a(href='/support-funds') Fondos de Apoyo
+      li: a(href='/idis') I+D+I
+      li: a(href='/technological-information') Informacion tecnologica
+      li: a.active(class="btn-primary btn-outline btn-white" data-tooltip="Esta pagina es un formulario para iniciar sesion" data-position="bottom left" data-inverted="") Iniciar sesion
 
   include ./templates/errorMessage
   .container
@@ -37,3 +37,4 @@ block main
           button.ui.button(type='submit') Iniciar Sesion
           p Aun no tengo cuenta
             a(href="/accounts/signup") Registrarse
+

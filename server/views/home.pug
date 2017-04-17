@@ -1,0 +1,292 @@
+extends templates/template
+block main
+  // Navbar del home
+  include administrator/navbar
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section(href="/home") Home
+        i.right.chevron.icon.divider.teal
+  // Seccion de los mensajes
+  include templates/errorMessage
+  // Seccion pasos a seguir despues del registro
+  include administrator/step
+  //Sidebar
+  include administrator/sidebar
+  // Seccion ventana modal nuevo usuario
+  .space-xs
+  // Seccion de widgets principales
+  .row.center-xs
+    .col-xs-11.start-xs
+      .ui.four.cards
+        .red.card
+          .content
+            .header Ofertas y Demandas
+            .meta En tiempo real
+            .description
+              .row.center-xs
+                .ui.statistics
+                  .statistic
+                    .value
+                      i.plane.icon.red
+                      |  963
+                    .label
+                      | Publicaciones
+        .red.card
+          .content
+            .header Comunidad
+            .meta En tiempo real
+            .description
+              .row.center-xs
+                .ui.statistics
+                  .statistic
+                    .value
+                      i.plane.icon.red
+                      |  88
+                    .label
+                      | Grupos
+        .red.card
+          .content
+            .header Comunidad
+            .meta En tiempo real
+            .description
+              .row.center-xs
+                .ui.statistics
+                  .statistic
+                    .value
+                      img.ui.circular.inline.image(src='http://lorempixel.com/50/50')
+                      |  225
+                    .label
+                      | Usuarios
+        .red.card
+          .content
+            .header Administracion
+            .meta En tiempo real
+            .description
+              .row.center-xs
+                .ui.statistics
+                  .statistic
+                    .value
+                      img.ui.circular.inline.image(src='http://lorempixel.com/50/50')
+                      |  3
+                    .label
+                      | Moderadores
+  // Seccion de botones
+  .space-md
+  .row.center-xs
+    .col-xs-11
+      button.ui.active.button
+        i.user.icon
+        |   Crear nuevo grupo
+      button.ui.active.button
+        i.user.icon
+        |   Crear nueva publicacion
+      button.ui.active.button
+        i.user.icon
+        |   Explorar la comunidad
+  .space-md
+  .row.center-xs
+    .col-xs-11
+      .row.start-xs
+        .col-xs-9
+          .ui.piled.segment
+            .content
+              .header ¿Que esta pasando en este momento?
+            .ui.feed
+              .event
+                .label
+                  img(src='http://lorempixel.com/35/35')
+                .content
+                  .summary
+                    a.user
+                      | Elliot Fu
+                    |  added you as a friend
+                    .date
+                      | 1 Hour Ago
+                  .meta
+                    a.like
+                      i.like.icon
+                      |  4 Likes
+              .event
+                .label
+                  img(src='http://lorempixel.com/35/35')
+                .content
+                  .summary
+                    a Helen Troy
+                    |  added
+                    a 2 new illustrations
+                    .date
+                      | 4 days ago
+                  .extra.images
+                    a
+                      img(src='http://lorempixel.com/84/84')
+                    a
+                      img(src='http://lorempixel.com/84/84')
+                  .meta
+                    a.like
+                      i.like.icon
+                      |  1 Like
+              .event
+                .label
+                  img(src='http://lorempixel.com/35/35')
+                .content
+                  .summary
+                    a.user
+                      | Jenny Hess
+                    |  added you as a friend
+                    .date
+                      | 2 Days Ago
+                  .meta
+                    a.like
+                      i.like.icon
+                      |  8 Likes
+              .event
+                .label
+                  img(src='http://lorempixel.com/35/35')
+                .content
+                  .summary
+                    a Joe Henderson
+                    |  posted on his page
+                    .date
+                      | 3 days ago
+                  .extra.text
+                    | Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                  .meta
+                    a.like
+                      i.like.icon
+                      |  5 Likes
+              .event
+                .label
+                  img(src='http://lorempixel.com/35/35')
+                .content
+                  .summary
+                    a Justen Kitsune
+                    |  added
+                    a 2 new photos
+                    |  of you
+                    .date
+                      | 4 days ago
+                  .extra.images
+                    a
+                      img(src='http://lorempixel.com/84/84')
+                    a
+                      img(src='http://lorempixel.com/84/84')
+                  .meta
+                    a.like
+                      i.like.icon
+                      |  41 Likes
+        .col-xs-3
+          .ui.card
+            .content
+              .header Grupos al que pertenezco
+            .content
+              .ui.relaxed.divided.list
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI
+                    .description Updated 10 mins ago
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Docs
+                    .description Updated 22 mins ago
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Meteor
+                    .description Updated 34 mins ago
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Meteor
+                    .description Updated 34 mins ago
+            .content
+              .header Mis grupos
+            .content
+              .ui.relaxed.divided.list
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Meteor
+                    .description Updated 34 mins ago
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Meteor
+                    .description Updated 34 mins ago
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Meteor
+                    .description Updated 34 mins ago
+                .item
+                  i.large.github.middle.aligned.icon
+                  .content
+                    a.header Semantic-Org/Semantic-UI-Meteor
+                    .description Updated 34 mins ago
+
+  .row
+  .space-lg
+  .row.center-xs
+    .col-xs-11.start-xs
+      .ui.raised.segment
+        .content
+          .header Solicitudes de Amistad
+        .ui.cards
+          .card
+            .content
+              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+              .header
+                | Elliot Fu
+              .meta
+                | Friends of Veronika
+              .description
+                | Elliot requested permission to view your contact details
+            .extra.content
+              .ui.two.buttons
+                .ui.basic.green.button Approve
+                .ui.basic.red.button Decline
+          .card
+            .content
+              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+              .header
+                | Jenny Hess
+              .meta
+                | New Member
+              .description
+                | Jenny wants to add you to the group
+                b best friends
+            .extra.content
+              .ui.two.buttons
+                .ui.basic.green.button Approve
+                .ui.basic.red.button Decline
+          .card
+            .content
+              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+              .header
+                | Jenny Hess
+              .meta
+                | New Member
+              .description
+                | Jenny wants to add you to the group
+                b best friends
+            .extra.content
+              .ui.two.buttons
+                .ui.basic.green.button Approve
+                .ui.basic.red.button Decline
+          .card
+            .content
+              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+              .header
+                | Jenny Hess
+              .meta
+                | New Member
+              .description
+                | Jenny wants to add you to the group
+                b best friends
+            .extra.content
+              .ui.two.buttons
+                .ui.basic.green.button Approve
+                .ui.basic.red.button Decline

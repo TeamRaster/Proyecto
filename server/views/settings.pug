@@ -1,0 +1,299 @@
+extends templates/template
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          | Profile
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section(href="/home") Home
+        i.right.chevron.icon.divider.teal
+        a.section(href="/") nombre_user
+        i.right.chevron.icon.divider.teal
+        .active.section Settings
+  include templates/errorMessage
+  // Main
+  .row.center-xs
+    .col-xs-11
+      .row
+        .col-xs-12.col-sm-3.start-xs
+          .ui.vertical.pointing.menu#menu_tabs
+            a.active.item(data-tab='General')
+              | General
+              i.setting.icon
+            a.item(data-tab='Account')
+              | Contacto
+              i.share.alternate.icon
+            a.item(data-tab='Emails')
+              | Correo Electronico
+              i.at.icon
+            a.item(data-tab='Security')
+              | Securidad
+              i.protect.icon
+            a.item(data-tab='Organizations')
+              | Organizationes
+              i.users.icon
+            a.item(data-tab='Blocked users')
+              | Bloqueos
+              i.ban.icon
+        .col-xs-12.col-sm-9.start-xs
+          .container_page
+            .ui.tab.active(data-tab='General')
+              .ui.segments
+                .ui.segment
+                  h4.ui.header Configuracion general
+                .ui.segment
+                  .row
+                    .col-xs-9
+                      form.ui.form#configGeneral
+                        .two.fields
+                          .field
+                            label Nombre
+                            input(placeholder='Nombre Completo', name='name', type='text')
+                          .field
+                            label Nombre de usuario
+                            input(placeholder='Nickname', name='username', type='text')
+                        .two.fields
+                          .field
+                            label Antigua Contraseña
+                            input(type='password', name='password')
+                          .field
+                            label Nueva Contraseña
+                            input(type='password', name='new_password')
+                        .field
+                          label Rango
+                          .ui.selection.dropdown
+                            i.warning.circle.icon
+                            input(name='range', type='hidden')
+                            .default.text Tipo de usuario
+                            i.dropdown.icon
+                            .menu
+                              .item(data-value='Usuario')
+                                i.user.icon
+                                |       Usuario
+                              .item(data-value='Administrador')
+                                i.child.icon
+                                |       Administrador
+                              .divider
+                              .item(data-value='Desarrollador')
+                                i.spy.icon
+                                |       Desarrollador
+                        .field
+                          label Imagen de perfil
+                          input(type='file', name='name')
+                        .field
+                          label Biografia
+                          textarea
+                        .ui.positive.right.labeled.icon.button.submit
+                          | Guardar cambios
+                          i.save.icon
+                          script.
+                            $('.ui.dropdown')
+                              .dropdown({})
+                            ;
+                    .col-xs-3.padding-xs
+                      .ui.column.grid
+                        .column
+                          .ui.fluid.image
+                            .ui.blue.ribbon.label
+                              i.photo.icon
+                              |  Imagen de perfil
+                            img(src='http://lorempixel.com/185/185')
+            .ui.tab(data-tab='Account')
+              .ui.segments
+                .ui.segment
+                  h4.ui.header Configuracion de contacto
+                .ui.segment
+                  form.ui.form
+                    .two.fields
+                      .field
+                        label Telefono
+                        input(name='phone', type='text')
+                      .field
+                        label Direccion
+                        input(name='address', type='text')
+                    .field
+                      label Contacto Facebook
+                      input(type='password', name='facebook')
+                    .field
+                      label Contacto Twitter
+                      input(type='password', name='twitter')
+                    .field
+                      label Contacto Linkedin
+                      input(type='password', name='linkedin')
+                    .ui.positive.right.labeled.icon.button.submit
+                      | Guardar cambios
+                      i.save.icon
+
+
+            .ui.tab(data-tab='Emails')
+              .ui.segments
+                .ui.segment
+                  h4.ui.header Configuracion de correo electronico
+                .ui.segment
+                  .ui.relaxed.divided.list
+                    .item
+                      a(href=""): i.right.floated.large.remove.middle.aligned.icon.mini-padding-top
+                      i.large.minus.middle.aligned.icon.blue
+                      .middle.aligned.content
+                        .header skrap.marcos@gmail.com
+                          .ui.blue.label.margin-sm-left Principal
+                          .ui.red.label.margin-sm-left Privado
+                    .item
+                      a(href=""): i.right.floated.large.remove.middle.aligned.icon.mini-padding-top
+                      i.large.minus.middle.aligned.icon
+                      .middle.aligned.content
+                        .header segundo.marcos@gmail.com
+                          .ui.green.label.margin-sm-left Publico
+                    .item
+                      a(href=""): i.right.floated.large.remove.middle.aligned.icon.mini-padding-top
+                      i.large.minus.middle.aligned.icon
+                      .middle.aligned.content
+                        .header teamraster.marcos@gmail.com
+                          .ui.green.label.margin-sm-left Publico
+                    .item
+                      a(href=""): i.right.floated.large.remove.middle.aligned.icon.mini-padding-top
+                      i.large.minus.middle.aligned.icon
+                      .middle.aligned.content
+                        .header teamskrap.marcos@gmail.com
+                          .ui.green.label.margin-sm-left Publico
+                .ui.segment
+                  h4.ui.header Agrega un correo electronico
+                  form.ui.form
+                    .field
+                      label Correo Electronico
+                      input(type='text', name='first-name', placeholder='Correo Electronico')
+                    button.ui.button(type='submit') Agregar
+                .ui.segment
+                  h4.ui.header Selecciona el correo electronico primario
+                  form.ui.form
+                    .field
+                      label Seleccione
+                      select.ui.fluid.dropdown
+                        option(value='') Correo Electronico
+                        option(value='1') teamskrap.marcos@gmail.com
+                        option(value='2') teamraster.marcos@gmail.com
+                    button.ui.button(type='submit') Guardar
+                .ui.segment
+                  h4.ui.header Preferencias
+                  .ui.form
+                    .inline.field
+                      .ui.toggle.checkbox
+                        input.hidden(type='checkbox', tabindex='0')
+                        label Ocultar mi correo electronico de la gente
+                        span Si esta activado, tu correo electronico no sera visible para las personas excepto los administradores
+                    .inline.field
+                      .ui.toggle.checkbox
+                        input.hidden(type='checkbox', tabindex='2')
+                        label Recibir notificaciones por correo
+                        span Recibiras todas las notificaciones en tu correo electronico
+                        script.
+                          $('.ui.checkbox')
+                            .checkbox()
+                          ;
+                    button.ui.button(type='submit') Guardar cambios
+
+            .ui.tab(data-tab='Security')
+              .ui.segments
+                .ui.segment
+                  h4.ui.header Configuracion de la seguridad
+                .ui.segment
+                  h4.ui.header Historial de actividad con la cuenta
+                  .space-xs Este es un registro de seguridad de eventos importantes relacionados con su cuenta.
+                  .ui.relaxed.divided.list
+                    -var i = 0
+                    while i < 15
+                      .item
+                        .right.floated.large.middle.aligned.mini-padding-top Hace 5 Dias
+                        .middle.aligned.content
+                          a.header Usuario inicio sesion
+                          .description Desde la direccion 200.34.44.95
+                      -i++
+                .ui.segment.red
+                  h4.ui.header Configuracion cuenta
+                  button.ui.red.button
+                    i.icon.warning.sign
+                    |   Eliminar esta cuenta
+                  .space-xs Si eliminas tu cuenta, se perderan todos los registros que ha realizado hasta ahora
+
+
+            .ui.tab(data-tab='Organizations')
+              .ui.segments
+                .ui.segment
+                  h4.ui.header Crear un nuevo grupo
+                  a(href="").ui.basic.button.green
+                    i.icon.plus
+                    | Nuevo grupo
+                .ui.segment
+                  h4.ui.header Configuracion con los grupos
+                  .ui.relaxed.divided.list
+                    -var i = 0
+                    while i < 6
+                      .item
+                        a(href="").right.floated.middle.aligned.ui.basic.button.red
+                          i.icon.remove.user
+                          | Salir del grupo
+                        i.large.users.middle.aligned.icon
+                        .middle.aligned.content
+                          a.header Grupo #{i}
+                          .description Creador
+                      -i++
+
+
+            .ui.tab(data-tab='Blocked users')
+              .ui.segments
+                .ui.segment
+                  h4.ui.header Bloquea a un usuarios
+                  .space-xs Al bloquear un usuario no podra realizar las siguientes opciones,
+                    b  excepto si es Administrador:
+                  .ui.list
+                    .item
+                      i.info.icon.red
+                      .content
+                        .header Visitar tu perfil
+                    .item
+                      i.info.icon.red
+                      .content
+                        .header Mandarte mensajes
+                    .item
+                      i.info.icon.red
+                      .content
+                        .header Ver tus ofertas, demandas, noticias etc.
+                    .item
+                      i.info.icon.red
+                      .content
+                        .header Recibir notificaciones tuyas
+                .ui.segment.red
+                  form.ui.form
+                    .field
+                      label Correo Electronico
+                      input(type='email', name='email_block', placeholder='Correo Electronico')
+                    button.ui.right.labeled.icon.button.red(type='submit')
+                      i.lock.icon
+                      |   Bloquear
+                .ui.segment.red
+                  h4.ui.header Usuarios bloqueados
+                  .ui.relaxed.list.divided
+                    -var i = 0
+                    while i < 6
+                      .item
+                        a(href="").right.floated.middle.aligned.ui.basic.button
+                          i.icon.unlock
+                          | Desbloquear
+                        img.ui.avatar.image(src='http://lorempixel.com/25/25')
+                        .content
+                          a.header Rachel Sanchez
+                          .description
+                            | Usuario
+                      -i++
+  script.
+    $('#menu_tabs .item').tab();

@@ -1,0 +1,91 @@
+extends templates/template
+block main
+  - var users = 1;
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(href="/home")
+          | Home
+        a.active.item(href="/users")
+          | Users
+        a.item(href="/offers")
+          | Offers
+        a.item(href="/demands")
+          | Demands
+        a.item(href="/groups")
+          | Groups
+        a.item(href="/publications")
+          | Publications
+        .right.menu
+          include administrator/right_menu
+
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section(href="/") Home
+        i.right.chevron.icon.divider.teal
+        .active.section Users
+
+  //Tabla para visualizar todos los usuarios modo Administrador
+  .row.center-xs
+    .col-xs-11.start-lg
+      table.ui.teal.sortable.celled.table.no-margin-top
+        thead
+          tr
+            th: span(data-tooltip="Datos principales del usuario" data-position="right center") User
+            th: span(data-tooltip="Usuarios que son Administradores" data-position="bottom right") Administrator
+            th: span(data-tooltip="Cuentas verificadas por correo" data-position="bottom right") Verified
+            th: span(data-tooltip="Fecha de registro" data-position="bottom right") Registration Date
+            th: span(data-tooltip="Fecha de la ultima modificacion" data-position="bottom right") Update Date
+            th: span(data-tooltip="Cuentas enlazadas con redes sociales" data-position="bottom right") Social Network
+            th: span(data-tooltip="Cambiar a modo administrador/usuario" data-position="bottom right") Role
+            th: span(data-tooltip="Operaciones que puedes realizar" data-position="bottom right") CRUD
+        tbody
+          while users < 14
+            tr
+              td
+                h4.ui.image.header
+                  img.ui.mini.rounded.image(src='http://lorempixel.com/27/27/')
+                  .content
+                    | Eder Marcos
+                    .sub.header
+                      | skrap.marcos@gmail.com
+              td.center.aligned
+                i.large.green.checkmark.box.icon
+              td.center.aligned
+                i.large.green.checkmark.box.icon
+              td #{users}/Noviembre/20#{users}
+              td #{users}/Enero/20#{users} 08:31
+              td.center.aligned
+                i.large.green.checkmark.box.icon
+              td.collapsing
+                .ui.fitted.slider.checkbox
+                  input(type='checkbox')
+                  label
+              td.center.aligned
+                .ui.small.basic.icon.buttons
+                  a.ui.button(href="" data-tooltip="Editar" data-position="bottom right")
+                    i.edit.icon.green
+                  a.ui.button(href="" data-tooltip="Ver" data-position="bottom right")
+                    i.unhide.icon.blue
+                  a.ui.button(href="" data-tooltip="Eliminar" data-position="bottom right")
+                    i.delete.icon.red
+            -users++
+        tfoot
+          tr
+            th(data-tooltip="Total de usuarios" data-position="top right") 2 Users
+            th(data-tooltip="Total de administradores" data-position="top right") 2 Administrators
+            th(data-tooltip="Total de cuentas verificadas" data-position="top right") 2 Accounts
+            th(colspan='2')
+            th(data-tooltip="Total de cuentas enlazadas" data-position="top right") 3 Accounts
+            th(colspan='2')
+          tr
+            th(colspan='8')
+              .ui.right.floated.small.primary.labeled.icon.button
+                i.user.icon
+                |  Agregar Usuario
+              .ui.green.small.button
+                | Cambiar role
+              .ui.small.disabled.button
+                | Cambiar role a los seleccionados

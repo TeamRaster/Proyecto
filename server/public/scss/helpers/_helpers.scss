@@ -3,8 +3,53 @@ $top-space: 40px !default;
 $bottom-space: 40px !default;
 $border-radius-base: 4px !default;
 
+$posiciones: (
+  top,
+  left,
+  right,
+  bottom
+);
 .border {
-  border: 1px solid red;
+  border: 1px solid red !important;
+}
+// Border
+@each $p in $posiciones {
+  .border-#{$p} {
+    border-#{$p}: 1px solid #000;
+  }
+}
+
+// Padding
+@each $p in $posiciones {
+  .padding-#{$p} {
+    padding-#{$p}: 1em;
+  }
+}
+.mini-padding-top {
+  padding-top: 0.2em !important;
+}
+
+// Margenes por lado
+@each $p in $posiciones {
+  $i: index($posiciones, $p);
+  .margin-#{$p} {
+    margin-#{$p}: 1em !important;
+  }
+  .margin-xs-#{$p} {
+    margin-#{$p}: 1em !important;
+  }
+  .margin-sm-#{$p} {
+    margin-#{$p}: 2em !important;
+  }
+  .margin-md-#{$p} {
+    margin-#{$p}: 4em !important;
+  }
+  .margin-lg-#{$p} {
+    margin-#{$p}: 6em !important;
+  }
+  .margin-xl-#{$p} {
+    margin-#{$p}: 10em !important;
+  }
 }
 
 //Fila con padding-bottom largo
@@ -76,36 +121,64 @@ $border-radius-base: 4px !default;
 //     Estilos del Scroll del navegador
 // *********************************************************************************************************************
 ::-webkit-scrollbar{
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
   background: $brand-white;
 }
 
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
+  border-radius: 4px;
   background: $color-primary;
 }
 
 // Espacios
-.row-xs {
-  margin-top: 1em;
-  margin-bottom: 1em;
+.width-80 {
+  width: 300px !important;
 }
-.row-sm {
-  margin-top: 2em;
-  margin-bottom: 2em;
+$sizes: (
+  xs,
+  sm,
+  md,
+  lg,
+  xl
+);
+
+@each $size in $sizes {
+  $i: index($sizes, $size);
+  .margin-#{$size} {
+    margin-left: 1em * $i !important;
+    margin-right: 1em * $i !important;
+  }
 }
-.row-md {
-  margin-top: 3.5em;
-  margin-bottom: 3.5em;
+
+@each $size in $sizes {
+  $i: index($sizes, $size);
+  .space-#{$size} {
+    margin-top: 1em * $i;
+    margin-bottom: 1em * $i;
+  }
 }
-.row-lg {
-  margin-top: 5em;
-  margin-bottom: 5em;
+
+@each $size in $sizes {
+  $i: index($sizes, $size);
+  .padding-#{$size} {
+    padding: 1.5em * $i !important;
+  }
 }
-.row-xl {
-  margin-top: 7em;
-  margin-bottom: 7em;
+
+.flex-parent{
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-child{
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 // Sin background
@@ -117,4 +190,49 @@ $border-radius-base: 4px !default;
 // Margin a los lados
 .col-space-xs-l {
   margin-left: 1em !important;
+}
+.no-padding-top {
+  padding-top: 0 !important;
+}
+.no-padding-bottom {
+  padding-bottom: 0 !important;
+}
+//No margenes
+.no-margin-top {
+  margin-top: 0 !important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.no-margin-x {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.padding-x-xs {
+  padding-left: .2em !important;
+  padding-right: .2em !important;
+}
+
+.padding-x-md {
+  padding-left: 1.1em !important;
+  padding-right: 1.1em !important;
+}
+
+.white-text {
+  color: #f3f3f3 !important;
+}
+
+.custom-text {
+  color: #86D7B0 !important;
+}
+
+.label-custom {
+  font-size: .5em !important;
+}
+
+.text-md {
+  font-size: 1.125rem !important;
 }

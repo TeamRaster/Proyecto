@@ -21,6 +21,10 @@ module.exports = (app) => {
         .get([SF.__gets])
         .post([auth.isLogged, SF.__set])
 
+    app.get('/support-funds', (req, res) => {
+        res.render('supportfunds')
+    })
+
     return this
 }
 

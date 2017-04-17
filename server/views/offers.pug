@@ -1,0 +1,27 @@
+extends templates/template
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(href="/")
+          | Home
+        a.item(href="/users")
+          | Users
+        a.active.item(href="/offers")
+          | Offers
+        a.item(href="/demands")
+          | Demands
+        a.item(href="/groups")
+          | Groups
+        a.item(href="/publications")
+          | Publications
+        .right.menu
+          include administrator/right_menu
+
+  //- Seccion Breadcrumb
+  .row.center-xs.middle-xs.container-breadcrumb
+    .col-xs-11.start-xs
+      .ui.small.breadcrumb
+        a.section(href="/") Home
+        i.right.chevron.icon.divider
+        .active.section Offers

@@ -44,14 +44,15 @@ module.exports = (app) => {
 
     this.getGroups = (req, res) => {
 
-        Group.find({}, (err, storedGroups) => {
-            if(err) {
-                console.log(`  Error al buscar todo grupo ${err}`)
-                res.redirect('/groups')
-            }
-
-            res.render('./viewsUserPlus/groups/index', {groups: storedGroups})
-        })
+        // Group.find({}, (err, storedGroups) => {
+        //     if(err) {
+        //         console.log(`  Error al buscar todo grupo ${err}`)
+        //         res.redirect('/groups')
+        //     }
+        //
+        //     res.render('./viewsUserPlus/groups/index', {groups: storedGroups})
+        // })
+        res.render('groups')
     }
 
 

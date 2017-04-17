@@ -44,7 +44,6 @@ module.exports = (app) => {
 
     app.get('/accounts/logout', (req, res) => {  // URL para eliminar y cerrar la sesion
         req.logout()  // Sale de la sesion actual
-        req.session.destroy()  // Destruye la sesion que se genera todo En produccion, ya no sera necesario si se implementa bien deserializeUser
         res.redirect('/')  // Redirige al inicio
     })
 
@@ -63,7 +62,7 @@ module.exports = (app) => {
     })
 
     app.post('/accounts/signin', passport.authenticate('local-signin', {  // URL de callback
-        successRedirect : '/',  // Redirecciona si el proceso es exitoso
+        successRedirect : '/home',  // Redirecciona si el proceso es exitoso
         failureRedirect : '/accounts/signin',  // Redirecciona si el proceso falla
         failureFlash : true  // Permite enviar mensajes Flash
     }))
@@ -79,7 +78,7 @@ module.exports = (app) => {
     })
 
     app.post('/accounts/signup', passport.authenticate('local-signup', {  // URL de callback
-        successRedirect : '/',  // Redirecciona si el proceso es exitoso
+        successRedirect : '/home',  // Redirecciona si el proceso es exitoso
         failureRedirect : '/accounts/signup',  // Redirecciona si el proceso falla
         failureFlash    : true  // Permite enviar mensajes Flash
     }))
@@ -89,7 +88,7 @@ module.exports = (app) => {
         scope : 'email'
     }))
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {  // URL de callback
-        successRedirect : '/',  // Redirecciona si el proceso es exitoso
+        successRedirect : '/home',  // Redirecciona si el proceso es exitoso
         failureRedirect : '/accounts/signin',  // Redirecciona si el proceso falla
         failureFlash    : true  // Permite enviar mensajes Flash
     }))
@@ -99,7 +98,7 @@ module.exports = (app) => {
         scope : 'email'
     }))
     app.get('/auth/twitter/callback', passport.authenticate('twitter', {  // URL de callback
-        successRedirect : '/',  // Redirecciona si el proceso es exitoso
+        successRedirect : '/home',  // Redirecciona si el proceso es exitoso
         failureRedirect : '/accounts/signin',  // Redirecciona si el proceso falla
         failureFlash    : true  // Permite enviar mensajes Flash
     }))
@@ -107,7 +106,7 @@ module.exports = (app) => {
 // Linkedin ************************************************************************************************************
     app.get('/auth/linkedin', passport.authenticate('linkedin'))
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {  // URL de callback
-        successRedirect : '/',  // Redirecciona si el proceso es exitoso
+        successRedirect : '/home',  // Redirecciona si el proceso es exitoso
         failureRedirect : '/accounts/signin',  // Redirecciona si el proceso falla
         failureFlash    : true  // Permite enviar mensajes Flash
     }))

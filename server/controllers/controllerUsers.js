@@ -50,22 +50,23 @@ module.exports = (app) => {
     }
 
     this.getUsers = (req, res) => {  // Funcion para obtener los usuarios
-        User.find({}, (err, storedUsers) => {  // Devuelve todos los datos de la tabla usuarios
-            if (!err) {
-                // Renderiza los posibles mensajes que le puede llegar a la vista
-                res.render('./viewsAdministrator/users/index', {
-                    users   : storedUsers,
-                    err     : req.flash('err'),
-                    warning : req.flash('warning'),
-                    info    : req.flash('info'),
-                    success : req.flash('success')
-                })
-            } else {
-                console.log(`\n[ControllerUser.getUsers]: Ups! parece que hubo un error => ${err}`)
-                req.flash('err', '[Servidor]: Ups! parece que hubo un error en la base datos, codigo: GUS.CU')  // Guarda un error
-                res.redirect(redirect)  // Redirecciona y muestra el error
-            }
-        })
+        // User.find({}, (err, storedUsers) => {  // Devuelve todos los datos de la tabla usuarios
+        //     if (!err) {
+        //         // Renderiza los posibles mensajes que le puede llegar a la vista
+        //         res.render('./viewsAdministrator/users/index', {
+        //             users   : storedUsers,
+        //             err     : req.flash('err'),
+        //             warning : req.flash('warning'),
+        //             info    : req.flash('info'),
+        //             success : req.flash('success')
+        //         })
+        //     } else {
+        //         console.log(`\n[ControllerUser.getUsers]: Ups! parece que hubo un error => ${err}`)
+        //         req.flash('err', '[Servidor]: Ups! parece que hubo un error en la base datos, codigo: GUS.CU')  // Guarda un error
+        //         res.redirect(redirect)  // Redirecciona y muestra el error
+        //     }
+        // })
+        res.render('users')
     }
 
     this.updateUser = (req, res) => {  // Funcion para actualizar un usuario

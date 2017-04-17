@@ -1,0 +1,65 @@
+//Formulario de nuevo usuario con validaciones
+.ui.modal.dos
+  i.close.icon
+  .header
+    | Agrega un nuevo usuario
+  .content
+    form.ui.form
+      .two.fields
+        .field
+          label Nombre
+          input(placeholder='First Name', name='name', type='text')
+        .field
+          label Apellido
+          input(placeholder='Username', name='lastname', type='text')
+      .two.fields
+        .field
+          label Password
+          input(type='password', name='password')
+        .field
+          label Privilegios
+          .ui.floating.labeled.icon.dropdown.button
+            i.filter.icon
+            span.text Seleccione el rango
+            .menu
+              .item
+                i.attention.icon
+                |       Usuario
+              .item
+                i.comment.icon
+                |       Administrador
+              .divider
+              .item
+                i.conversation.icon
+                |       Developer
+  .actions
+    .ui.positive.right.labeled.icon.button
+      | Crear Usuario
+      i.user.icon
+script.
+  $('.ui.form')
+    .form({
+      fields: {
+        name: 'empty',
+        gender: 'empty',
+        username: 'empty',
+        password: ['minLength[6]', 'empty'],
+        skills: ['empty'],
+        terms: 'checked'
+      },
+      inline : true,
+    })
+  ;
+  $('.ui.dropdown')
+    .dropdown({})
+  ;
+  $('#btn_nuevo').click(function () {
+    $('.ui.modal.dos')
+      .modal({
+        blurring: true,
+        closable: false,
+      })
+      .modal('show')
+    ;
+  })
+

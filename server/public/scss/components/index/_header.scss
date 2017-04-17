@@ -75,7 +75,7 @@
             text-decoration: none;
             color: rgba($brand-black,1);
           }
-          &.active, &:focus {
+          &.active {
             outline: none;
             text-decoration: none;
             color: rgba($brand-white, 1);
@@ -294,5 +294,14 @@
     display: block;
     top: 40px;
   }
+}
 
+//Nav del menu principal
+.reset_a {
+  font-size: 14px !important;
+  i {
+    line-height: 16px !important;
+    font-size: 16px !important;
+    top: 0px !important;
+  }
 }
