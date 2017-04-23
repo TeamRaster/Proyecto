@@ -1,27 +1,89 @@
 extends templates/template
+block title
+  | Groups
 block main
   .row.center-xs.nav-menu
     .col-xs-12
       .ui.secondary.menu
-        a.item(href="/")
-          | Home
-        a.item(href="/users")
-          | Users
-        a.item(href="/offers")
-          | Offers
-        a.item(href="/demands")
-          | Demands
-        a.active.item(href="/groups")
-          | Groups
-        a.item(href="/publications")
-          | Publications
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section(href="/home") Inicio
+            i.right.chevron.icon.divider
+            .active.section Grupos
         .right.menu
           include administrator/right_menu
-
-  //- Seccion Breadcrumb
-  .row.center-xs.middle-xs.container-breadcrumb
-    .col-xs-11.start-xs
-      .ui.small.breadcrumb
-        a.section(href="/") Home
-        i.right.chevron.icon.divider
-        .active.section Groups
+  include administrator/sidebar
+  include templates/errorMessage
+  .ui.segment.blue
+    h2.ui.center.aligned.icon.header.blue
+      i.circular.users.icon.blue
+      |   Grupos
+  .ui.segments
+    h5.ui.top.attached.header
+      | Invitaciones
+    .ui.segment
+      .row.end-xs
+        .col-xs-4
+          .ui.blue.button
+            i.plus.icon
+            | Crear grupo
+    .ui.segment
+      -var card = 0
+      .row.center-xs
+        .col-xs-11.start-xs
+          .ui.cards
+            while card < 2
+              .card
+                .content
+                  img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+                  .header
+                    | Developers #{card}
+                  .meta
+                    | Categorias de los grupos
+                  .description
+                    | Descripcion del grupo en general
+                .extra.content
+                  .ui.two.buttons
+                    .ui.basic.green.button Aceptar
+                    .ui.basic.red.button Rechazar
+              -card++
+    .ui.bottom.attached.yellow.message
+      i.warning.icon
+      |   ¡Tienes invitaciones pendientes para unirte a los siguientes grupos!
+    h5.ui.top.attached.header
+      | Grupos
+    .ui.segment
+      -var grupos = 0
+      .ui.divided.items
+        while grupos < 2
+          .item
+            .image
+              img(src='http://lorempixel.com/175/145')
+            .content
+              a.header Titulo
+              .meta
+                span.cinema Numero de miembros
+              .description
+                p Mini Descripcion
+              .extra
+                .ui.right.floated.green.button
+                  | Unirte
+                  i.right.plus.icon
+                .ui.icon.top.left.pointing.dropdown.button.right.floated.button
+                  i.settings.icon
+                  .menu
+                    .header Opciones del grupo
+                    .item Agregar a favoritos
+                    .item Recordarmelo mas tarde
+                    .item Ocultar
+                .ui.label Pachuca
+                .ui.label Tags
+                .ui.label Filtros
+          -grupos++
+          script.
+            $('.ui.dropdown')
+              .dropdown()
+            ;

@@ -1,6 +1,6 @@
 .row.center-xs
   .col-xs-10.start-xs
-    if (err != "")
+    if (err != "" && err !== undefined)
       .ui.mini.negative.message.transition
         i.close.icon
         .header

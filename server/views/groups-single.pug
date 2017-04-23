@@ -1,0 +1,214 @@
+extends templates/template
+block title
+  | Groups
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section(href="/home") Inicio
+            i.right.chevron.icon.divider
+            .active.section Grupos
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  include templates/errorMessage
+  .space-xs
+  .row.center-xs
+    .col-xs-10.start-xs
+      .row
+        .col-xs-12
+          .ui.segment.green
+            //img.ui.fluid.rounded.image.max-height-400(src='http://lorempixel.com/900/400')
+            .ui.fluid.image.rounded
+              .ui.ribbon.label.green
+                i.check.circle.icon.inverted
+                |  Plug-ins
+              img.max-height-400(src='http://lorempixel.com/900/400')
+            h2.ui.header
+              img.ui.circular.image(src='http://lorempixel.com/60/60')
+              .ui.right.floated.button.green
+                | Unirme al Grupo
+                i.right.plus.icon
+              .ui.right.floated.button
+                i.feed.icon.no-margin-right.no-margin-left
+              .ui.right.floated.button
+                i.comment.icon.no-margin-right.no-margin-left
+              .ui.right.floated.button
+                i.like.icon.no-margin-right.no-margin-left
+              .content
+                | Plug-ins
+                .sub.header Check out our plug-in marketplace
+
+      .row.space-xs
+        .col-xs-4
+          .ui.segments
+            h5.ui.top.attached.header
+              | Informacion
+            .ui.segment.pink
+              .ui.relaxed.divided.list
+                .item
+                  i.large.users.middle.aligned.icon.margin-xs-right
+                  | Semantic UI
+                .item
+                  i.large.marker.middle.aligned.icon.margin-xs-right
+                  | New York, NY
+                .item
+                  i.large.mail.middle.aligned.icon.margin-xs-right
+                  | jack@semantic-ui.com
+                .item
+                  i.large.linkify.middle.aligned.icon.margin-xs-right
+                  | semantic-ui.com
+            h5.ui.top.attached.header
+              | Paginas que esta pagina sigue
+            .ui.segment.purple
+              .ui.middle.aligned.animated.list.divided
+                -var item = 0
+                while item < 5
+                  .item
+                    .ui.right.floated.icon.button
+                      i.feed.icon
+                    img.ui.avatar.mini.image(src='http://lorempixel.com/35/35')
+                    .content
+                      .header Christian #{item}
+                  -item++
+            h5.ui.top.attached.header Filtrar
+            .ui.segment.brown
+              .ui.secondary.vertical.pointing.fluid.menu#menu_tabs
+                a.active.teal.item(data-tab='Inicio')
+                  | Inicio
+                  .ui.teal.right.pointing.label 1
+                a.teal.item(data-tab='Informacion')
+                  | Informacion
+                  .ui.teal.right.pointing.label 51
+                a.teal.item(data-tab='Fotos')
+                  | Fotos
+                  .ui.teal.right.pointing.label 12
+                a.teal.item(data-tab='Videos')
+                  | Videos
+                  .ui.teal.right.pointing.label 14
+                a.teal.item(data-tab='Publicaciones')
+                  | Publicaciones
+                  .ui.teal.right.pointing.label 16
+                a.teal.item(data-tab='Archivos')
+                  | Archivos
+                  .ui.teal.right.pointing.label 19
+                .item
+                  .ui.transparent.icon.input
+                    input(type='text', placeholder='Buscar en esta pagina')
+                    i.search.icon
+        .col-xs-8
+          .ui.tab.active(data-tab='Inicio')
+            .ui.segments
+              h5.ui.top.attached.header Publicaciones
+              .ui.segment
+                .ui.feed
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a.user
+                          | Elliot Fu
+                        |  added you as a friend
+                        .date
+                          | 1 Hour Ago
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  4 Likes
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a Helen Troy
+                        |  added
+                        a 2 new illustrations
+                        .date
+                          | 4 days ago
+                      .extra.images
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  1 Like
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a.user
+                          | Jenny Hess
+                        |  added you as a friend
+                        .date
+                          | 2 Days Ago
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  8 Likes
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a Joe Henderson
+                        |  posted on his page
+                        .date
+                          | 3 days ago
+                      .extra.text
+                        | Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  5 Likes
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a Justen Kitsune
+                        |  added
+                        a 2 new photos
+                        |  of you
+                        .date
+                          | 4 days ago
+                      .extra.images
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  41 Likes
+          .ui.tab(data-tab='Informacion')
+            .ui.segments
+              h5.ui.top.attached.header Informacion
+              .ui.segment
+          .ui.tab(data-tab='Fotos')
+            .ui.segments
+              h5.ui.top.attached.header Fotos
+              .ui.segment
+          .ui.tab(data-tab='Videos')
+            .ui.segments
+              h5.ui.top.attached.header Videos
+              .ui.segment
+          .ui.tab(data-tab='Publicaciones')
+            .ui.segments
+              h5.ui.top.attached.header Publicaciones
+              .ui.segment
+          .ui.tab(data-tab='Archivos')
+            .ui.segments
+              h5.ui.top.attached.header Archivos
+              .ui.segment
+
+  script.
+    $('#menu_tabs .item').tab();

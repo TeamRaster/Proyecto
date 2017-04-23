@@ -1,22 +1,42 @@
 extends templates/template
 block main
-  // Navbar del home
-  include administrator/navbar
-  //- Seccion Breadcrumb
-  .row.center-xs.middle-xs.container-breadcrumb
-    .col-xs-11.start-xs
-      .ui.small.breadcrumb
-        a.section(href="/home") Home
-        i.right.chevron.icon.divider.teal
-  // Seccion de los mensajes
-  include templates/errorMessage
-  // Seccion pasos a seguir despues del registro
-  include administrator/step
-  //Sidebar
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            .active.section Inicio
+        a.item.lasted(href="/" data-tooltip="Regresa a la pagina del OTecH" data-position="bottom left")
+          button.ui.red.basic.button
+            i.arrow.left.icon
+            |   OTecH
+        .right.menu
+          include administrator/right_menu
   include administrator/sidebar
-  // Seccion ventana modal nuevo usuario
-  .space-xs
+  include templates/errorMessage
+  .ui.segment.orange.no-margin-top
+    h2.ui.center.aligned.icon.header.orange
+      i.circular.user.icon.orange
+      |   Panel de Administracion
+    .space-sm
+      include administrator/step
+    .row.center-xs
+      .col-xs-11
+        button.ui.active.button
+          i.user.icon
+          |   Grupos
+        button.ui.active.button
+          i.user.icon
+          |   Publicaciones
+        button.ui.active.button
+          i.user.icon
+          |   Comunidad
+
   // Seccion de widgets principales
+  .space-sm
   .row.center-xs
     .col-xs-11.start-xs
       .ui.four.cards
@@ -72,27 +92,14 @@ block main
                       |  3
                     .label
                       | Moderadores
-  // Seccion de botones
-  .space-md
-  .row.center-xs
-    .col-xs-11
-      button.ui.active.button
-        i.user.icon
-        |   Crear nuevo grupo
-      button.ui.active.button
-        i.user.icon
-        |   Crear nueva publicacion
-      button.ui.active.button
-        i.user.icon
-        |   Explorar la comunidad
-  .space-md
+  .space-sm
   .row.center-xs
     .col-xs-11
       .row.start-xs
         .col-xs-9
           .ui.piled.segment
             .content
-              .header ¿Que esta pasando en este momento?
+              h2.header ¿Que esta pasando en este momento?
             .ui.feed
               .event
                 .label
@@ -227,66 +234,29 @@ block main
                     a.header Semantic-Org/Semantic-UI-Meteor
                     .description Updated 34 mins ago
 
-  .row
-  .space-lg
+  .space-sm
   .row.center-xs
     .col-xs-11.start-xs
-      .ui.raised.segment
-        .content
-          .header Solicitudes de Amistad
-        .ui.cards
-          .card
-            .content
-              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
-              .header
-                | Elliot Fu
-              .meta
-                | Friends of Veronika
-              .description
-                | Elliot requested permission to view your contact details
-            .extra.content
-              .ui.two.buttons
-                .ui.basic.green.button Approve
-                .ui.basic.red.button Decline
-          .card
-            .content
-              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
-              .header
-                | Jenny Hess
-              .meta
-                | New Member
-              .description
-                | Jenny wants to add you to the group
-                b best friends
-            .extra.content
-              .ui.two.buttons
-                .ui.basic.green.button Approve
-                .ui.basic.red.button Decline
-          .card
-            .content
-              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
-              .header
-                | Jenny Hess
-              .meta
-                | New Member
-              .description
-                | Jenny wants to add you to the group
-                b best friends
-            .extra.content
-              .ui.two.buttons
-                .ui.basic.green.button Approve
-                .ui.basic.red.button Decline
-          .card
-            .content
-              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
-              .header
-                | Jenny Hess
-              .meta
-                | New Member
-              .description
-                | Jenny wants to add you to the group
-                b best friends
-            .extra.content
-              .ui.two.buttons
-                .ui.basic.green.button Approve
-                .ui.basic.red.button Decline
+      .ui.segments
+        h5.ui.top.attached.header
+          | Solicitudes de Ammistad
+        .ui.segment
+          .ui.cards
+            .card
+              .content
+                img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+                .header
+                  | Elliot Fu
+                .meta
+                  | Friends of Veronika
+                .description
+                  | Elliot requested permission to view your contact details
+              .extra.content
+                .ui.two.buttons
+                  .ui.basic.green.button Approve
+                  .ui.basic.red.button Decline
+        .ui.bottom.attached.yellow.message
+          i.warning.icon
+          |   ¡Tienes algunas solicitudes de amistad pendientes, Revisalos!
+
+  .space-sm

@@ -39,15 +39,33 @@ module.exports = (app) => {
         .post([auth.isLogged, upload.single('image'), Publication.__set])  // Agrega una fuentes de informacion
 
     app.get('/offers', (req, res) => {
-        res.render('offers')
+        res.render('offers', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     })
 
     app.get('/demands', (req, res) => {
-        res.render('demands')
+        res.render('demands', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     })
 
     app.get('/offers-demands', (req, res) => {
-        res.render('offers-demands')
+        res.render('offers-demands', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     })
     return this
 }

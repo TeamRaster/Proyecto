@@ -136,6 +136,28 @@ $posiciones: (
 .width-80 {
   width: 300px !important;
 }
+// Alto maximo
+$heights: (
+  100,
+  200,
+  300,
+  400,
+  600,
+  700,
+  800,
+  900,
+  1000,
+);
+
+@each $height in $heights {
+  .max-height-#{$height} {
+    max-height: #{$height}px !important;
+  }
+  .max-width-#{$height} {
+    max-width: #{$height}px !important;
+  }
+}
+
 $sizes: (
   xs,
   sm,
@@ -204,6 +226,14 @@ $sizes: (
 
 .no-margin-bottom {
   margin-bottom: 0 !important;
+}
+
+.no-margin-left {
+  margin-left: 0 !important;
+}
+
+.no-margin-right {
+  margin-right: 0 !important;
 }
 
 .no-margin-x {

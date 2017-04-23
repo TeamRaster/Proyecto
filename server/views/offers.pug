@@ -1,27 +1,23 @@
 extends templates/template
+block title
+  | Groups
 block main
   .row.center-xs.nav-menu
     .col-xs-12
       .ui.secondary.menu
-        a.item(href="/")
-          | Home
-        a.item(href="/users")
-          | Users
-        a.active.item(href="/offers")
-          | Offers
-        a.item(href="/demands")
-          | Demands
-        a.item(href="/groups")
-          | Groups
-        a.item(href="/publications")
-          | Publications
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section(href="/home") Inicio
+            i.right.chevron.icon.divider
+            .active.section Ofertas
         .right.menu
           include administrator/right_menu
-
-  //- Seccion Breadcrumb
-  .row.center-xs.middle-xs.container-breadcrumb
-    .col-xs-11.start-xs
-      .ui.small.breadcrumb
-        a.section(href="/") Home
-        i.right.chevron.icon.divider
-        .active.section Offers
+  include administrator/sidebar
+  include templates/errorMessage
+  .ui.segment.teal
+    h2.ui.center.aligned.icon.header.teal
+      i.circular.users.icon.teal
+      |   Ofertas

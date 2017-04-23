@@ -52,7 +52,13 @@ module.exports = (app) => {
         //
         //     res.render('./viewsUserPlus/groups/index', {groups: storedGroups})
         // })
-        res.render('groups')
+        res.render('groups', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     }
 
 

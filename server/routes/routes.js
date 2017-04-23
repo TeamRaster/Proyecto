@@ -56,5 +56,15 @@ module.exports = (app) => {
             success : req.flash('success')
         })
     })
+    // Grupos
+    app.get('/grupo/id', (req, res) => {
+        res.render('groups-single', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
     return this
 }
