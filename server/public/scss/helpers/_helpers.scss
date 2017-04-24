@@ -2,6 +2,9 @@
 $top-space: 40px !default;
 $bottom-space: 40px !default;
 $border-radius-base: 4px !default;
+.ui.horizontal.list:not(.celled)>.margin-edit:first-child {
+  margin-left: 14px !important;
+}
 
 $posiciones: (
   top,
@@ -17,14 +20,14 @@ $posiciones: (
   .border-#{$p} {
     border-#{$p}: 1px solid #000;
   }
-}
-
-// Padding
-@each $p in $posiciones {
+  .no-border-#{$p} {
+    border-#{$p}: none !important;
+  }
   .padding-#{$p} {
     padding-#{$p}: 1em;
   }
 }
+
 .mini-padding-top {
   padding-top: 0.2em !important;
 }
@@ -106,6 +109,10 @@ $posiciones: (
       }
     }
   }
+}
+
+.bac-white {
+  background-color: #fff !important;
 }
 
 // *********************************************************************************************************************
@@ -202,7 +209,9 @@ $sizes: (
   justify-content: center;
   flex-direction: column;
 }
-
+.no-border {
+  border: none !important;
+}
 // Sin background
 .no-background {
   background: none !important;
@@ -265,4 +274,13 @@ $sizes: (
 
 .text-md {
   font-size: 1.125rem !important;
+}
+
+.font-size-09 {
+  // Lista de home
+  font-size: .85em !important;
+}
+
+.no-display {
+  display: none;
 }

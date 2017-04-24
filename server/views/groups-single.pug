@@ -26,26 +26,53 @@ block main
             //img.ui.fluid.rounded.image.max-height-400(src='http://lorempixel.com/900/400')
             .ui.fluid.image.rounded
               .ui.ribbon.label.green
-                i.check.circle.icon.inverted
+                i.lock.icon.inverted
                 |  Plug-ins
-              img.max-height-400(src='http://lorempixel.com/900/400')
+              img.max-height-400(src='http://lorempixel.com/1100/500')
             h2.ui.header
               img.ui.circular.image(src='http://lorempixel.com/60/60')
               .ui.right.floated.button.green
                 | Unirme al Grupo
                 i.right.plus.icon
-              .ui.right.floated.button
-                i.feed.icon.no-margin-right.no-margin-left
-              .ui.right.floated.button
-                i.comment.icon.no-margin-right.no-margin-left
-              .ui.right.floated.button
-                i.like.icon.no-margin-right.no-margin-left
+              .ui.right.floated.labeled.button(tabindex='0')
+                .ui.red.button
+                  i.heart.icon
+                  |  Like
+                a.ui.basic.red.left.pointing.label
+                  | 1,048
+              .ui.right.floated.labeled.button(tabindex='0')
+                .ui.blue.button
+                  i.feed.icon
+                  |  Seguir
+                a.ui.basic.blue.left.pointing.label
+                  | 1,048
               .content
                 | Plug-ins
                 .sub.header Check out our plug-in marketplace
 
       .row.space-xs
         .col-xs-4
+          .ui.segments
+            h5.ui.top.attached.header
+              | Filtrar
+            .ui.segment.brown
+              .ui.secondary.vertical.pointing.fluid.menu#menu_tabs
+                a.active.teal.item(data-tab='Inicio')
+                  | Inicio
+                  .ui.teal.right.pointing.label 1
+                a.teal.item(data-tab='Miembros')
+                  | Miembros
+                  .ui.teal.right.pointing.label 51
+                a.teal.item(data-tab='Fotos')
+                  | Fotos
+                  .ui.teal.right.pointing.label 12
+                a.teal.item(data-tab='Archivos')
+                  | Archivos
+                  .ui.teal.right.pointing.label 19
+                .item
+                  .ui.transparent.icon.input
+                    input(type='text', placeholder='Buscar en esta pagina')
+                    i.search.icon
           .ui.segments
             h5.ui.top.attached.header
               | Informacion
@@ -63,6 +90,7 @@ block main
                 .item
                   i.large.linkify.middle.aligned.icon.margin-xs-right
                   | semantic-ui.com
+          .ui.segments
             h5.ui.top.attached.header
               | Paginas que esta pagina sigue
             .ui.segment.purple
@@ -76,31 +104,7 @@ block main
                     .content
                       .header Christian #{item}
                   -item++
-            h5.ui.top.attached.header Filtrar
-            .ui.segment.brown
-              .ui.secondary.vertical.pointing.fluid.menu#menu_tabs
-                a.active.teal.item(data-tab='Inicio')
-                  | Inicio
-                  .ui.teal.right.pointing.label 1
-                a.teal.item(data-tab='Informacion')
-                  | Informacion
-                  .ui.teal.right.pointing.label 51
-                a.teal.item(data-tab='Fotos')
-                  | Fotos
-                  .ui.teal.right.pointing.label 12
-                a.teal.item(data-tab='Videos')
-                  | Videos
-                  .ui.teal.right.pointing.label 14
-                a.teal.item(data-tab='Publicaciones')
-                  | Publicaciones
-                  .ui.teal.right.pointing.label 16
-                a.teal.item(data-tab='Archivos')
-                  | Archivos
-                  .ui.teal.right.pointing.label 19
-                .item
-                  .ui.transparent.icon.input
-                    input(type='text', placeholder='Buscar en esta pagina')
-                    i.search.icon
+
         .col-xs-8
           .ui.tab.active(data-tab='Inicio')
             .ui.segments
@@ -189,26 +193,88 @@ block main
                         a.like
                           i.like.icon
                           |  41 Likes
-          .ui.tab(data-tab='Informacion')
+          .ui.tab(data-tab='Miembros')
             .ui.segments
-              h5.ui.top.attached.header Informacion
+              h5.ui.top.attached.header Miembros
               .ui.segment
+                .ui.items
+                  -var miembro_grupo = 0
+                  while miembro_grupo < 10
+                    .item
+                      a.ui.tiny.image
+                        img(src='http://lorempixel.com/80/80')
+                      .content
+                        a.header Stevie Feliciano
+                        .meta
+                          span.price Es miembro
+                        .extra 1 de abril
+                    -miembro_grupo++
           .ui.tab(data-tab='Fotos')
             .ui.segments
               h5.ui.top.attached.header Fotos
               .ui.segment
-          .ui.tab(data-tab='Videos')
-            .ui.segments
-              h5.ui.top.attached.header Videos
-              .ui.segment
-          .ui.tab(data-tab='Publicaciones')
-            .ui.segments
-              h5.ui.top.attached.header Publicaciones
-              .ui.segment
+                .ui.four.cards
+                  -var image = 0
+                  while image < 5
+                    a.red.card
+                      .image
+                        img.ui.image(src='http://lorempixel.com/150/124')
+                    -image++
+
+
           .ui.tab(data-tab='Archivos')
             .ui.segments
               h5.ui.top.attached.header Archivos
               .ui.segment
+                .ui.list
+                  .item
+                    i.folder.icon
+                    .content
+                      .header src
+                      .description Source files for project
+                      .list
+                        .item
+                          i.folder.icon
+                          .content
+                            .header site
+                            .description Your site's theme
+                        .item
+                          i.folder.icon
+                          .content
+                            .header themes
+                            .description Packaged theme files
+                            .list
+                              .item
+                                i.folder.icon
+                                .content
+                                  .header default
+                                  .description Default packaged theme
+                              .item
+                                i.folder.icon
+                                .content
+                                  .header my_theme
+                                  .description Packaged themes are also available in this folder
+                        .item
+                          i.file.icon
+                          .content
+                            .header theme.config
+                            .description Config file for setting packaged themes
+                  .item
+                    i.folder.icon
+                    .content
+                      .header dist
+                      .description Compiled CSS and JS files
+                      .list
+                        .item
+                          i.folder.icon
+                          .content
+                            .header components
+                            .description Individual component CSS and JS
+                  .item
+                    i.file.icon
+                    .content
+                      .header semantic.json
+                      .description Contains build settings for gulp
 
   script.
     $('#menu_tabs .item').tab();

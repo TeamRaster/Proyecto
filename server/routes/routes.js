@@ -20,6 +20,7 @@ module.exports = (app) => {
         success : req.flash('success')
         })
     })
+
     app.get('/profile', (req, res) => {
         res.render('profile', {
             user    : req.user,
@@ -29,6 +30,16 @@ module.exports = (app) => {
             success : req.flash('success')
         })
     })
+    app.get('/public/profile', (req, res) => {
+        res.render('public-profile', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
+
     app.get('/settings', (req, res) => {
         res.render('settings', {
             user    : req.user,

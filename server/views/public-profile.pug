@@ -1,2 +1,88 @@
-
+extends templates/template
+block title
+  | Public Profile
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section(href="/home") Inicio
+            i.right.chevron.icon.divider
+            .active.section Perfil Publico
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  include templates/errorMessage
+  .space-xs
+  .row.center-xs.middle-xs
+    .col-xs-9.start-xs
+      .ui.segments
+        .ui.horizontal.segments
+          .ui.segment.bac-white
+            .ui.centered.medium.slide.masked.reveal.image
+              img.visible.content(src='http://lorempixel.com/300/300')
+              img.hidden.content(src='http://lorempixel.com/301/300')
+          .ui.segment.bac-white.no-border-left
+            .ui.segments
+              .ui.segment
+                h3.ui.header Jose Eder Marcos Lara
+                p Programador autodidacta, amante de las nuevas tecnologias que existen para crear nuevas cosas
+                .ui.buttons
+                  button.ui.button.green
+                    i.icon.user
+                    |   Add Friend
+                  button.ui.button
+                    i.icon.user
+                    |   Mensaje
+              .ui.segment
+                h4.ui.header Acerca de mi
+                .ui.list
+                  .item
+                    i.mail.icon
+                    .content
+                      a(href='mailto:jack@semantic-ui.com') skrap.marcos@gmail.com
+                  .item.margin-bottom
+                    i.marker.icon
+                    .content
+                      | 7712950501
+                  .item
+                    button.ui.circular.facebook.icon.button
+                      i.facebook.icon
+                    button.ui.circular.twitter.icon.button
+                      i.twitter.icon
+                    button.ui.circular.linkedin.icon.button
+                      i.linkedin.icon
+        .ui.segment
+          .ui.pointing.secondary.menu#op_profile
+            a.item.active(data-tab='first') Amigos
+            a.item(data-tab='second') Fotos
+            a.item(data-tab='third') Informacion
+          .ui.bottom.attached.active.tab.segment(data-tab='first')
+            .ui.horizontal.list
+              -var amigo = 0
+              while amigo < 15
+                .item.margin-edit
+                  img.ui.mini.circular.image(src='http://lorempixel.com/35/35')
+                  .content
+                    .ui.sub.header Molly
+                    |       Coordinator
+                -amigo++
+          .ui.bottom.attached.tab.segment(data-tab='second')
+            .ui.four.cards
+              -var image = 0
+              while image < 5
+                a.red.card
+                  .image
+                    img.ui.image(src='http://lorempixel.com/150/124')
+                -image++
+          .ui.bottom.attached.tab.segment(data-tab='third')
+            p Informacion general, no se, Estadisticas etc.
+          script.
+            $('#op_profile .item')
+              .tab()
+            ;
 
