@@ -1,2 +1,34 @@
+extends templates/template
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section.section-a(href="/home") Inicio
+            i.right.chevron.icon.divider
+            a.section.section-a(href="/profile") #{user.id}
+            i.right.chevron.icon.divider
+            .active.section Notificaciones
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  include templates/errorMessage
+  include templates/push-notifications
 
-
+  #example1.ui.red.progress(data-percent='30')
+    .bar
+    .label 30% de avance en esta pagina (Notificaciones)
+  .space-lg
+  h2.ui.center.aligned.icon.header.huge
+    i.warning.circle.icon#icon
+    |   Lo sentimos pero esta pagina aun esta en desarrollo. Pronto se vendran novedades interesantes
+  script.
+    $('#example1').progress();
+    $('#icon')
+      .transition('set looping')
+      .transition('bounce', '2000ms')
+    ;

@@ -61,7 +61,13 @@ module.exports = (app) => {
         //         res.redirect(redirect)  // Redirecciona y muestra el error
         //     }
         // })
-        res.render('publications')
+        res.render('publications', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     }
 
     this.__update = (req, res) => {

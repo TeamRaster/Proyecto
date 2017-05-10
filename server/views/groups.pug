@@ -17,19 +17,34 @@ block main
           include administrator/right_menu
   include administrator/sidebar
   include templates/errorMessage
-  .ui.segment.blue
-    h2.ui.center.aligned.icon.header.blue
-      i.circular.users.icon.blue
-      |   Grupos
+  include templates/push-notifications
+  .ui.segments.no-margin-top
+    .ui.segment
+      h2.ui.center.aligned.icon.header.blue
+        i.circular.users.icon.blue
+        |   Grupos
+    .ui.segment.blue
+      button.ui.active.button.green#openFormNew
+        i.plus.icon
+        | Crear Grupo
+      script.
+        $('#openFormNew').click(function () {
+          $('#formNewGroup')
+            .modal('setting', 'closable', false)
+            .modal('show')
+          ;
+          $('#second')
+            .modal('attach events', '#formNewGroup .button')
+            .modal('setting', 'closable', false)
+          ;
+        })
+      a(href="/")
+        button.ui.active.button
+          i.eye.icon
+          | Mis grupos
   .ui.segments
     h5.ui.top.attached.header
       | Invitaciones
-    .ui.segment
-      .row.end-xs
-        .col-xs-4
-          .ui.blue.button
-            i.plus.icon
-            | Crear grupo
     .ui.segment
       -var card = 0
       .row.center-xs
@@ -58,7 +73,7 @@ block main
     .ui.segment
       -var grupos = 0
       .ui.divided.items
-        while grupos < 2
+        while grupos < 8
           .item
             .image
               img(src='http://lorempixel.com/175/145')
@@ -69,7 +84,7 @@ block main
               .description
                 p Mini Descripcion
               .extra
-                .ui.right.floated.green.button
+                .ui.right.floated.green.button.btnApproveGroup
                   | Unirte
                   i.right.plus.icon
                 .ui.icon.top.left.pointing.dropdown.button.right.floated.button
@@ -87,3 +102,66 @@ block main
             $('.ui.dropdown')
               .dropdown()
             ;
+
+  // Formulario Nuevos grupos
+  .ui.modal#formNewGroup
+    i.close.icon
+    .header
+      | Nuevo grupo
+      .content_form
+        .ui.segment
+          form.ui.fluid.form(method="POST" action="" enctype="multipart/form-data")
+            .field
+              label Nombre del grupo
+              input(type="text" name="nameGroup" placeholder="Nombre")
+            .field
+              label Descripcion
+              textarea
+            .field
+              .ui.checkbox
+                input.hidden(type='checkbox', tabindex='0')
+                label Grupo privado
+            script.
+              $('.ui.checkbox')
+                .checkbox()
+              ;
+            .field
+              label Logotipo del grupo
+              input(type="file")
+            //todo Esto puede hacerse con ajax, y jquery para que cuando se presione el boton, se envie el form por post
+            button.ui.button.positive.right.labeled.icon(type='button')
+              | Guardar cambios
+              i.plus.icon
+        script.
+          $('.ui.accordion')
+            .accordion()
+          ;
+  .ui.modal#second
+    i.close.icon
+    .header
+      | Muy bien hecho
+    .image.content
+      .description
+        | El grupo se ha creado con exito, termina de configurarlo y comienza a agregar nuevos miembros
+    .actions
+      .ui.button.positive OK
+  // Modal Unirte aviso
+  .ui.modal#approveGroup
+    .header
+      | Enviado
+    .image.content
+      .description
+        | Tu solicitud ha sido enviada a este grupo
+    .actions
+      .ui.button.positive OK
+    script.
+      $('.btnApproveGroup').click(function () {
+        $('#approveGroup')
+          .modal({
+            inverted: true
+          })
+          .modal('setting', 'closable', false)
+          .modal('show')
+        ;
+      })
+

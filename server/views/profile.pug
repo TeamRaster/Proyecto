@@ -13,17 +13,18 @@ block main
           .ui.small.breadcrumb
             a.section.section-a(href="/home") Inicio
             i.right.chevron.icon.divider
-            a.section.section-a(href="/") nombre_user
+            a.section.section-a(href="/") #{user.id}
             i.right.chevron.icon.divider
             .active.section Perfil
         .right.menu
           include administrator/right_menu
   include administrator/sidebar
   include templates/errorMessage
+  include templates/push-notifications
   .ui.segment.brown.no-margin-top
     h2.ui.center.aligned.icon.header.brown
       i.circular.user.icon.brown
-      |   Hola, Jose Eder Marcos Lara
+      |   Hola, #{user.id}
   - var grupos = 0;
   - var ofertas = 0;
   - var demandas = 0;

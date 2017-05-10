@@ -1,0 +1,18 @@
+.ui.right.vertical.inverted.sidebar.menu#pushNotifications
+  -var notification = 0
+  while notification < 10
+    a.item
+      i.newspaper.icon
+      | Notificacion #{notification + 1}
+    -notification++
+
+script.
+  $('#btnPush').click(function () {
+    $('#pushNotifications')
+      .sidebar('setting', 'transition', 'overlay')
+      .sidebar('toggle')
+    ;
+  })
+
+
+

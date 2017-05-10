@@ -280,7 +280,28 @@ $sizes: (
   // Lista de home
   font-size: .85em !important;
 }
+.font-size-xxs {
+  font-size: 8px !important;
+}
+.font-size-xs {
+  font-size: 14px !important;
+}
+.font-size-sm {
+  font-size: 18px !important;
+}
+.font-size-md {
+  font-size: 1.5em !important;
+}
+.font-size-lg {
+  font-size: 2.5em !important;
+}
 
 .no-display {
-  display: none;
+  display: none !important;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+

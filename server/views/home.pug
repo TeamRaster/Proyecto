@@ -17,23 +17,13 @@ block main
           include administrator/right_menu
   include administrator/sidebar
   include templates/errorMessage
+  include templates/push-notifications
   .ui.segment.orange.no-margin-top
     h2.ui.center.aligned.icon.header.orange
       i.circular.user.icon.orange
       |   Panel de Administracion
     .space-sm
       include administrator/step
-    .row.center-xs
-      .col-xs-11
-        button.ui.active.button
-          i.user.icon
-          |   Grupos
-        button.ui.active.button
-          i.user.icon
-          |   Publicaciones
-        button.ui.active.button
-          i.user.icon
-          |   Comunidad
 
   // Seccion de widgets principales
   .space-sm
@@ -188,51 +178,28 @@ block main
             .content
               .header Grupos al que pertenezco
             .content
-              .ui.relaxed.divided.list.font-size-09
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI
-                    .description Updated 10 mins ago
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Docs
-                    .description Updated 22 mins ago
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Meteor
-                    .description Updated 34 mins ago
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Meteor
-                    .description Updated 34 mins ago
+              .ui.relaxed.divided.list
+                // todo Maximo se deben de mostrar 6 elementos
+                -var groups = 0
+                while groups < 6
+                  .item
+                    i.large.github.middle.aligned.icon
+                    .content
+                      a.header Ventas pachuca #{groups}
+                      .description Actualizado hace 4#{groups} mins
+                  -groups++
             .content
               .header Mis grupos
             .content
-              .ui.relaxed.divided.list.font-size-09
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Meteor
-                    .description Updated 34 mins ago
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Meteor
-                    .description Updated 34 mins ago
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Meteor
-                    .description Updated 34 mins ago
-                .item
-                  i.large.github.middle.aligned.icon
-                  .content
-                    a.header Semantic-Org/Semantic-UI-Meteor
-                    .description Updated 34 mins ago
+              .ui.relaxed.divided.list
+                -var myGroups = 0
+                while myGroups < 6
+                  .item
+                    i.large.github.middle.aligned.icon
+                    .content
+                      a.header Grupo #{myGroups + 1}
+                      .description Actualizado hace 1#{myGroups} mins
+                  -myGroups++
 
   .space-sm
   .row.center-xs
@@ -258,86 +225,5 @@ block main
         .ui.bottom.attached.yellow.message
           i.warning.icon
           |   ¡Tienes algunas solicitudes de amistad pendientes, Revisalos!
-
   .space-sm
-
-
-  .row.center-xs
-    .col-xs-11
-      .ui.four.cards
-        .red.card.start-xs
-          .content
-            .header Ofertas y Demandas
-            .meta En tiempo real
-            .description
-              .row.center-xs
-                .ui.statistics
-                  .statistic
-                    .value
-                      i.plane.icon.red
-                      |  963
-                    .label
-                      | Publicaciones
-        .red.card.start-xs#aaa
-          .content
-            .header Ofertas y Demandas
-            .meta En tiempo real
-            .description
-              .row.center-xs
-                .ui.statistics
-                  .statistic
-                    .value
-                      i.plane.icon.red
-                      |  963
-                    .label
-                      | Publicaciones
-        .red.card.start-xs#aaaaa
-          .content
-            .header Ofertas y Demandas
-            .meta En tiempo real
-            .description
-              .row.center-xs
-                .ui.statistics
-                  .statistic
-                    .value
-                      i.plane.icon.red
-                      |  963
-                    .label
-                      | Publicaciones
-
-
-
-
-
-
-  .ui.segment
-    button#button Next
-    button Next Hover
-  script.
-    $('#aaa')
-      .transition('vertical flip')
-      .transition('clear queue')
-    ;
-    $('#button').click(function () {
-      $('#aaaaa')
-        .transition('fly left')
-      ;
-      $('#aaa')
-        .transition('vertical flip')
-      ;
-    })
-  //  $('#card3').click(function () {
-  //    $('.shape3')
-  //      .shape('set next side', '.second.side')
-  //      .shape('flip left')
-  //    ;
-  //  })
-  //  $('#card4').hover(
-  //    function () {
-  //      $('.shape5').shape('flip over');
-  //    },
-  //    function () {
-  //      $('.shape4').shape('flip back');
-  //    }
-  //  )
 

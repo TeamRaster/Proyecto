@@ -1,0 +1,74 @@
+extends templates/template
+block title
+  | Administracion Comunidades
+block main
+  .row.center-xs.nav-menu
+    .col-xs-12
+      .ui.secondary.menu
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section(href="/home") Inicio
+            i.right.chevron.icon.divider
+            .active.section Administracion Comunidades
+        .right.menu
+          include administrator/right_menu
+  include administrator/sidebar
+  include templates/errorMessage
+  include templates/push-notifications
+  .ui.segment.red.no-margin-top
+    h2.ui.center.aligned.icon.header.red
+      i.circular.users.icon.red
+      |   Administracion Comunidades
+  .contenedor-tabla
+    table.ui.single.line.table.striped
+      thead
+        tr
+          th ID
+          th Nombre comunidad
+          th Categoria
+          th Creador
+          th E-mail
+          th N. Miembros
+          th Admins
+          th Fecha de Creación
+          th Funciones
+      tbody
+        tr
+          td 1
+          td Raster Studios inc.
+          td Software
+          td JUanito Banana
+          td raster@studios.com
+          td 50958
+          td
+            | juanito
+            br
+            | pedrito
+            br
+          td January 11, 2014
+          td
+            a(href="" data-tooltip="Ver" data-position="bottom center"): i.unhide.icon
+            a(href="" data-tooltip="Editar" data-position="bottom center"): i.write.icon
+            a(href="" data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon
+        tr
+          td 2
+          td Raster Studios inc.
+          td Software
+          td JUanito Banana
+          td raster@studios.com
+          td 50958
+          td
+            | juanito
+            br
+            | pedrito
+            br
+          td January 11, 2014
+          td
+            a(href="" data-tooltip="Ver" data-position="bottom center"): i.unhide.icon
+            a(href="" data-tooltip="Editar" data-position="bottom center"): i.write.icon
+            a(href="" data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon
+
+

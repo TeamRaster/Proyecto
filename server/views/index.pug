@@ -7,12 +7,12 @@ block main
       li: a(href='/offers-demands') Oferta y Demanda
       li: a(href='/support-funds') Fondos de Apoyo
       li: a(href='/idis') I+D+I
-      li: a(href='/technological-information') Informacion tecnologica
+      li: a(href='/technological-information') Perspectivas
       if(user)
         //li: a(href='/home' data-tooltip="Ingresa al panel de Administracion" data-position="bottom left")
         li
           .ui.buttons
-            .ui.button.red.basic Administracion
+            .ui.button.red.basic(data-tooltip="Click en la flecha a la derecha" data-position="bottom left") Administracion
             .ui.floating.dropdown.icon.button.red.basic
               i.dropdown.icon
               .menu

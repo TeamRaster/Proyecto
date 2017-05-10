@@ -1,37 +1,23 @@
-.ui.left.vertical.sidebar.menu#sidebar_container
-  .item
-    i.smile.icon
-    |     Configuracion
-    a.item
-      i.block.layout.icon
-      |     Mi perfil
-    a.item
-      i.smile.icon
-      |     Configuracion
-    a.item
-      i.smile.icon
-      |     Usuarios
-  a.item
-    i.block.layout.icon
-    |     Mi perfil
-  a.item
-    i.smile.icon
-    |     Configuracion
-  a.item
-    i.smile.icon
-    |     Usuarios
-  a.item
-    i.smile.icon
-    |     Publicaciones
-  a.item
-    i.smile.icon
+//.ui.left.vertical.sidebar.menu#sidebar_container
+.ui.left.vertical.sidebar.labeled.icon.menu#sidebar_container
+  a(href="/home").item
+    i.home.icon
+    |     Inicio
+  a(href="/offers").item
+    i.world.icon
+    |     Ofertas
+  a(href="/demands").item
+    i.travel.icon
+    |     Demandas
+  a(href="/groups").item
+    i.users.icon
     |     Grupos
-  a.item
-    i.smile.icon
-    |     Comunidad
-  a.item
-    i.smile.icon
-    |     Observatorio
+  a(href="/community").item
+    i.child.icon
+    |     Comunidades
+  a(href="/").item
+    i.pointing.left.icon.red
+    |     Regresar al OTecH
 
 script.
   $('#sidebar').click(function () {

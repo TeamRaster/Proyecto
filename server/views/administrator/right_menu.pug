@@ -11,14 +11,18 @@
     button.ui.right.labeled.icon.button(type="submit")
       i.search.icon
       |     Buscar
-span.item.padding-x-xs.no-margin-x
-  .ui.inline.dropdown
+.item.padding-x-xs.no-margin-x
+  a(data-tooltip="Mensajes recientes" data-position="bottom left").ui.inline.dropdown#btnMessages
     i.grey.mail.icon.col-space-xs-l
   .ui.circular.labels
     .ui.label.red
       | 1
+  script.
+    $('#btnMessages').click(function () {
+      window.location.href = "/messages"
+    })
 .item.padding-x-xs.no-margin-x
-  .ui.inline.dropdown
+  a(data-tooltip="Notificaciones Pendientes" data-position="bottom left").ui.inline.dropdown#btnPush
     i.grey.alarm.icon.col-space-xs-l
   .ui.circular.labels
     .ui.label.blue
@@ -47,10 +51,10 @@ span.item
         i.settings.icon
         | Settings
       a(href="/notifications").item
-        i.archive.icon
+        i.archive.icon.red
         | Notifications
       a(href="/messages").item
-        i.talk.icon
+        i.talk.icon.yellow
         | Messages
       a(href="/accounts/logout").item
         i.sign.out.icon

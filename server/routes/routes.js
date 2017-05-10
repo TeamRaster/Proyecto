@@ -77,5 +77,33 @@ module.exports = (app) => {
             success : req.flash('success')
         })
     })
+    // Comunidad
+    app.get('/community', (req, res) => {
+        res.render('community', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
+    app.get('/communities', (req, res) => {
+        res.render('communities', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
+    app.get('/notifications', (req, res) => {
+        res.render('notifications', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
     return this
 }

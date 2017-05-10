@@ -1,6 +1,6 @@
 extends templates/template
 block title
-  | Groups
+  | Ofertas
 block main
   .row.center-xs.nav-menu
     .col-xs-12
@@ -17,7 +17,266 @@ block main
           include administrator/right_menu
   include administrator/sidebar
   include templates/errorMessage
-  .ui.segment.teal
-    h2.ui.center.aligned.icon.header.teal
-      i.circular.users.icon.teal
-      |   Ofertas
+  include templates/push-notifications
+  .ui.segments.no-margin-top
+    .ui.segment
+      h2.ui.center.aligned.icon.header.teal
+        i.circular.users.icon.teal
+        |   Ofertas
+    .ui.segment.teal
+      button#openModal.ui.active.button.green(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
+        i.plus.icon
+        | Crear Oferta
+      script.
+        $('#openModal').click(function () {
+          $('#formNew')
+            .modal('setting', 'closable', false)
+            .modal('show')
+          ;
+        })
+  .contenedor-tabla
+    table.ui.single.line.table.striped
+      thead
+        tr
+          th ID
+          th Nombre de la Oferta
+          th Usuario que la publico
+          th E-mail
+          th No. Visitas
+          th Fecha de Publicación
+          th Categoria(s)
+          th Funciones
+      tbody
+        tr
+          td 1
+          td Desarrollo de Web y Movil
+          td Raster Studios inc.
+          td exampl@alog.com
+          td 5
+          td Novenber 13, 2016
+          td Tecnologia Software
+          td
+            a(data-tooltip="Ver" data-position="bottom center"): i.unhide.icon.cursor-pointer#view
+            a(data-tooltip="Editar" data-position="bottom center"): i.write.icon.cursor-pointer#update
+            a(data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon.cursor-pointer#remove
+            script.
+              $('#remove').click(function () {
+                $('#confirmationRemove')
+                  .modal({
+                    closable: false,
+                    onApprove: function () {
+                      window.alert('Elemento eliminado con AJAX');
+                    }
+                  })
+                  .modal('show')
+                ;
+              })
+              $('#update').click(function () {
+                $('#formUpdate')
+                  .modal({
+                    closable: false,
+                    transition: 'fade up',
+                  })
+                  .modal('show')
+                ;
+              })
+              $('#view').click(function () {
+                $('#viewSingle')
+                  .modal({
+                    closable: false,
+                    transition: 'horizontal flip'
+                  })
+                  .modal('show')
+                ;
+              })
+  .ui.modal#formNew
+    i.close.icon
+    .header
+      | Nueva Oferta
+      .content_form
+        .ui.segment
+          form.ui.fluid.form(method="POST" action="" enctype="multipart/form-data")
+            .ui.accordion
+              .content.field
+                .field
+                  label Titulo de la Oferta
+                  input(type="text" name="titulOferta" placeholder="Oferta")
+              .title.active
+                i.icon.dropdown
+                |         Datos de la empresa
+              .content.field.active
+                .two.fields
+                  .field
+                    label Nombre de la empresa
+                    input(type='text', name='nombre-empresa', placeholder='Nombre')
+                  .field
+                    label Giro de la empresa
+                    input(type='text', name='giro-empresa', placeholder="Giro de la empresa")
+                .two.fields
+                  .field
+                    label Direccion
+                    input(type="text" name="direccion-empresa" placeholder="Direccion de la empresa")
+                  .field
+                    label Correo electronico
+                    input(type="email" placeholder="correo@ejemplo.com")
+                .two.fields
+                  .field
+                    label Pagina Web
+                    input(type="text" placeholder="Pagina web")
+                .field
+                  label Seleccione una imagen o logo de la empresa
+                  input(type="file")
+
+              .title
+                i.icon.dropdown
+                |         Servicios
+              .content.field
+                .field
+                  label Acerca de la empresa
+                  textarea(rows="3" name="acerca-empresa" placeholder="¿Quienes somos?")
+                .field
+                  label Servicios
+                  textarea(rows="3" name="servicios-empresa" placeholder="Productos y/o Servicios")
+              .title
+                i.icon.dropdown
+                |        Datos de Contacto
+              .content.field
+                .two.fields
+                  .field
+                    label Nombre del contacto
+                    input(type='text', name='nombre-contacto', placeholder='Nombre del contacto')
+                  .field
+                    label Cargo del contacto
+                    input(type='text', name='cargo-contacto', placeholder="Cargo del contacto")
+                .two.fields
+                  .field
+                    label Telefono de contacto
+                    input(type='text', name='telefo-contacto', placeholder='Telefono de contacto')
+                  .field
+                    label Correo de contacto
+                    input(type='text', name='correo-contacto', placeholder='Correo de contacto')
+            button.ui.button.positive.right.labeled.icon(type='submit')
+              | Publicar
+              i.checkmark.icon
+        script.
+          $('.ui.accordion')
+            .accordion()
+          ;
+  // Confirmacion de eliminar elemento
+  .ui.basic.modal#confirmationRemove
+    .ui.icon.header
+      i.remove.icon
+      |     ¿Deseas eliminar este elemento?
+    .content
+      p.font-size-sm El elemento se eliminara permanentemente y ya no podra ser recuperado, ¿Realmente deseas eliminar este elemento?
+    .actions
+      .ui.red.basic.cancel.inverted.button
+        i.remove.icon
+        |       Cancelar
+      a(href="").ui.green.ok.inverted.button
+        i.checkmark.icon
+        |       Aceptar
+
+  // Ventana modal para formulario editar
+  .ui.modal#formUpdate
+    i.close.icon
+    .header
+      | Actualizacion de datos
+      .content_form
+        .ui.segment
+          form.ui.fluid.form(method="POST" action="" enctype="multipart/form-data")
+            .ui.accordion
+              .content.field
+                .field
+                  label Titulo de la Oferta
+                  input(type="text" name="titulOferta" placeholder="Oferta")
+              .title.active
+                i.icon.dropdown
+                |         Datos de la empresa
+              .content.field.active
+                .two.fields
+                  .field
+                    label Nombre de la empresa
+                    input(type='text', name='nombre-empresa', placeholder='Nombre')
+                  .field
+                    label Giro de la empresa
+                    input(type='text', name='giro-empresa', placeholder="Giro de la empresa")
+                .two.fields
+                  .field
+                    label Direccion
+                    input(type="text" name="direccion-empresa" placeholder="Direccion de la empresa")
+                  .field
+                    label Correo electronico
+                    input(type="email" placeholder="correo@ejemplo.com")
+                .two.fields
+                  .field
+                    label Pagina Web
+                    input(type="text" placeholder="Pagina web")
+                .field
+                  label Seleccione una imagen o logo de la empresa
+                  input(type="file")
+
+              .title
+                i.icon.dropdown
+                |         Servicios
+              .content.field
+                .field
+                  label Acerca de la empresa
+                  textarea(rows="3" name="acerca-empresa" placeholder="¿Quienes somos?")
+                .field
+                  label Servicios
+                  textarea(rows="3" name="servicios-empresa" placeholder="Productos y/o Servicios")
+              .title
+                i.icon.dropdown
+                |        Datos de Contacto
+              .content.field
+                .two.fields
+                  .field
+                    label Nombre del contacto
+                    input(type='text', name='nombre-contacto', placeholder='Nombre del contacto')
+                  .field
+                    label Cargo del contacto
+                    input(type='text', name='cargo-contacto', placeholder="Cargo del contacto")
+                .two.fields
+                  .field
+                    label Telefono de contacto
+                    input(type='text', name='telefo-contacto', placeholder='Telefono de contacto')
+                  .field
+                    label Correo de contacto
+                    input(type='text', name='correo-contacto', placeholder='Correo de contacto')
+            button.ui.button.positive.right.labeled.icon(type='submit')
+              | Guardar
+              i.save.icon
+        script.
+          $('.ui.accordion')
+            .accordion()
+          ;
+
+  // Ventana modal para Visualizar
+  .ui.large.modal#viewSingle
+    i.close.icon
+    .header
+      | Modo: Vista Rapida
+      .row.center-xs
+        .col-xs-12
+          article.post
+            header
+              .row.start-xs
+                .col-xs-9.title
+                  h2
+                    a(href='#') Magna sed adipiscing
+                  p Lorem ipsum dolor amet nullam consequat etiam feugiat
+                .col-xs-3.meta
+                  time.published.font-size-xs(datetime='2015-11-01') November 1, 2015
+                  a.author(href='#')
+                    span.name.font-size-xs Jane Doe
+                    img(src='http://lorempixel.com/50/50/', alt='')
+            span.image.featured
+              img(src='http://lorempixel.com/800/550/', alt='')
+            p.text.font-size-sm Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra.
+      .actions
+        .ui.black.deny.button
+          | Cerrar
+        a(href="").ui.positive.right.labeled.icon.button
+          | Ver mas
+          i.folder.open.icon
