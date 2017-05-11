@@ -94,92 +94,127 @@ block main
     .col-xs-11
       .row.start-xs
         .col-xs-9
-          .ui.piled.segment
-            .content
-              h2.header ¿Que esta pasando en este momento?
-            .ui.feed
-              .event
-                .label
-                  img(src='http://lorempixel.com/35/35')
-                .content
-                  .summary
-                    a.user
-                      | Elliot Fu
-                    |  added you as a friend
-                    .date
-                      | 1 Hour Ago
-                  .meta
-                    a.like
-                      i.like.icon
-                      |  4 Likes
-              .event
-                .label
-                  img(src='http://lorempixel.com/35/35')
-                .content
-                  .summary
-                    a Helen Troy
-                    |  added
-                    a 2 new illustrations
-                    .date
-                      | 4 days ago
-                  .extra.images
-                    a
-                      img(src='http://lorempixel.com/84/84')
-                    a
-                      img(src='http://lorempixel.com/84/84')
-                  .meta
-                    a.like
-                      i.like.icon
-                      |  1 Like
-              .event
-                .label
-                  img(src='http://lorempixel.com/35/35')
-                .content
-                  .summary
-                    a.user
-                      | Jenny Hess
-                    |  added you as a friend
-                    .date
-                      | 2 Days Ago
-                  .meta
-                    a.like
-                      i.like.icon
-                      |  8 Likes
-              .event
-                .label
-                  img(src='http://lorempixel.com/35/35')
-                .content
-                  .summary
-                    a Joe Henderson
-                    |  posted on his page
-                    .date
-                      | 3 days ago
-                  .extra.text
-                    | Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
-                  .meta
-                    a.like
-                      i.like.icon
-                      |  5 Likes
-              .event
-                .label
-                  img(src='http://lorempixel.com/35/35')
-                .content
-                  .summary
-                    a Justen Kitsune
-                    |  added
-                    a 2 new photos
-                    |  of you
-                    .date
-                      | 4 days ago
-                  .extra.images
-                    a
-                      img(src='http://lorempixel.com/84/84')
-                    a
-                      img(src='http://lorempixel.com/84/84')
-                  .meta
-                    a.like
-                      i.like.icon
-                      |  41 Likes
+          .ui.segments
+            .ui.segment
+              .content
+                h2.header Agrega un comentario
+              form.ui.reply.form
+                .field
+                  textarea
+                .ui.blue.labeled.submit.icon.button
+                  i.icon.edit
+                  |  Comentar
+
+            .ui.segment.teal
+              .content
+                h2.header ¿Que esta pasando en este momento?
+              .ui.feed
+                -var event = 0
+                while event < 5
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a.user
+                          | Elliot Fu
+                        |  te agrego como su amigo
+                        .date
+                          | 1 Hour Ago
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  4 Likes
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a Helen Troy
+                        |  subio
+                        a 2 nuevas imagenes en el grupo NOMBRE_GRUPO
+                        .date
+                          | 4 days ago
+                      .extra.images
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  1 Like
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a Joe Henderson
+                        |  publico en el grupo NOMBRE_GRUPO
+                        .date
+                          | 3 days ago
+                      .extra.text
+                        | Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  5 Likes
+                  .event
+                    .label
+                      i.pencil.icon.teal
+                    .content
+                      .summary
+                        a Joe Henderson
+                          |  publico una nueva OFERTA en el grupo NOMBRE_GRUPO
+                        .date
+                          | 3 days ago
+                      .extra.text
+                        | Busco trabajadores
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  11 Likes
+                  -event++
+            .ui.segment.orange
+              .content
+                h2.header Noticias de hace un dia
+              .ui.feed
+                -var event1 = 0
+                while event1 < 5
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a.user
+                          | Elliot Fu
+                        |  te agrego como su amigo
+                        .date
+                          | 1 Hour Ago
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  4 Likes
+                  .event
+                    .label
+                      img(src='http://lorempixel.com/35/35')
+                    .content
+                      .summary
+                        a Helen Troy
+                        |  subio
+                        a 2 nuevas imagenes en el grupo NOMBRE_GRUPO
+                        .date
+                          | 4 days ago
+                      .extra.images
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                        a
+                          img(src='http://lorempixel.com/84/84')
+                      .meta
+                        a.like
+                          i.like.icon
+                          |  1 Like
+                  -event1++
         .col-xs-3
           .ui.card
             .content
@@ -190,7 +225,7 @@ block main
                 -var groups = 0
                 while groups < 6
                   .item
-                    i.large.github.middle.aligned.icon
+                    i.large.users.middle.aligned.icon
                     .content
                       a.header Ventas pachuca #{groups}
                       .description Actualizado hace 4#{groups} mins
@@ -202,7 +237,7 @@ block main
                 -var myGroups = 0
                 while myGroups < 6
                   .item
-                    i.large.github.middle.aligned.icon
+                    i.large.child.middle.aligned.icon
                     .content
                       a.header Grupo #{myGroups + 1}
                       .description Actualizado hace 1#{myGroups} mins
