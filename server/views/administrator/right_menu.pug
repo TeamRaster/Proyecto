@@ -1,16 +1,9 @@
 .item
-  .ui.action.input
-    input(type='text', placeholder='Search...')
-    select.ui.compact.selection.dropdown
-      option(value='all') Todo
-      option(selected='', value='articles') Usuarios
-      option(value='products') Ofertas
-      option(value='products') Demandas
-      option(value='products') Fondos de apoyo
-      option(value='products') Grupos
-    button.ui.right.labeled.icon.button(type="submit")
+  .ui.category.search
+    .ui.icon.input
+      input.prompt(type='text', placeholder='Buscar en la pagina...')
       i.search.icon
-      |     Buscar
+    .results
 .item.padding-x-xs.no-margin-x
   a(data-tooltip="Mensajes recientes" data-position="bottom left").ui.inline.dropdown#btnMessages
     i.grey.mail.icon.col-space-xs-l

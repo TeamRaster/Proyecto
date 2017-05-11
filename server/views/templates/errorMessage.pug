@@ -1,33 +1,29 @@
 .row.center-xs
   .col-xs-10.start-xs
     if (err != "" && err !== undefined)
-      .ui.mini.negative.message.transition
+      .ui.mini.negative.message.transition.space-xs
         i.close.icon
         .header
           | ¡Houston, tenemos un problema!
         p= ' ' + err
-      .space-xs
     if (warning != "")
-      .ui.mini.yellow.message.transition
+      .ui.mini.yellow.message.transition.space-xs
         i.close.icon
         .header
           | ¡Alerta!
         p= ' ' + warning
-      .space-xs
     if (info != "")
-      .ui.mini.teal.message.transition
+      .ui.mini.teal.message.transition.space-xs
         i.close.icon
         .header
           | ¡Su atencion por favor!
         p= ' ' + info
-      .space-xs
     if (success != "")
-      .ui.mini.green.message.transition
+      .ui.mini.green.message.transition.space-xs
         i.close.icon
         .header
           | ¡Bien Hecho!
         p= ' ' + success
-      .space-xs
 script.
   $('.message .close')
     .on('click', function () {

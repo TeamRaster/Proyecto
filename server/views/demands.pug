@@ -35,7 +35,7 @@ block main
           ;
         })
   .contenedor-tabla
-    table.ui.single.line.table.striped
+    table.ui.teal.sortable.celled.table.no-margin-top
       thead
         tr
           th ID
@@ -55,10 +55,14 @@ block main
           td 5
           td January 11, 2014
           td tecnologia
-          td
-            a(data-tooltip="Ver" data-position="bottom center"): i.unhide.icon.cursor-pointer#view
-            a(data-tooltip="Editar" data-position="bottom center"): i.write.icon.cursor-pointer#update
-            a(data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon.cursor-pointer#remove
+          td.center.aligned
+            .ui.small.basic.icon.buttons
+              a.ui.button.cursor-pointer#view(data-tooltip="Editar" data-position="bottom center")
+                i.edit.icon.green
+              a.ui.button.cursor-pointer#update(data-tooltip="Ver" data-position="bottom center")
+                i.unhide.icon.blue
+              a.ui.button.cursor-pointer#remove(data-tooltip="Eliminar" data-position="bottom center")
+                i.delete.icon.red
             script.
               $('#remove').click(function () {
                 $('#confirmationRemove')

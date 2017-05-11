@@ -13,6 +13,20 @@ block main
             a.section(href="/home") Inicio
             i.right.chevron.icon.divider
             .active.section Comunidades
+          button.ui.basic.button.margin-xs-left#openFormNew(data-tooltip="Inicia una nueva comunidad" data-position="bottom right" data-inverted="")
+            i.plus.icon
+            | Crear Comunidad
+          script.
+            $('#openFormNew').click(function () {
+              $('#formNewGroup')
+                .modal('setting', 'closable', false)
+                .modal('show')
+              ;
+              $('#second')
+                .modal('attach events', '#formNewGroup .button')
+                .modal('setting', 'closable', false)
+              ;
+            })
         .right.menu
           include administrator/right_menu
   include administrator/sidebar
@@ -23,16 +37,48 @@ block main
       h2.ui.center.aligned.icon.header.grey
         i.circular.users.icon
         |   Comunidades
-    .ui.segment.grey
-      a(href="/")
-        button.ui.active.button.green
-          i.plus.icon
-          | Crear Comunidad
-      a(href="/")
-        button.ui.active.button
-          i.eye.icon
-          | Mis comunidades
-
+  .space-xs
+  .row.center-xs
+    .col-xs-5
+      h2.ui.header
+        | Invitaciones
+        .sub.header Invitaciones de grupos externos que quieren que te unas a ellos
+  .row.center-xs.space-sm
+    .col-xs-11.start-xs
+      -var card = 0
+      .row.center-xs
+        .col-xs-11.start-xs
+          .ui.four.cards
+            while card < 4
+              .card
+                .content
+                  img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+                  .header
+                    | Developers #{card}
+                  .meta
+                    | Categorias de los grupos
+                  .description
+                    | Descripcion del grupo en general
+                .extra.content
+                  .ui.two.buttons
+                    .ui.basic.green.button Aceptar
+                    .ui.basic.red.button Rechazar
+              -card++
+      .space-xs
+      .ui.warning.message
+        i.close.icon
+        .header
+          | Deberias darle un vistazo a esto
+        |   Te invitamos a que revises las solicitudes pendientes que tienes
+      script.
+        $('.message .close')
+          .on('click', function () {
+            $(this)
+              .closest('.message')
+              .transition('fade')
+            ;
+          })
+        ;
   // Main
   - var card = 0;
   .row.center-xs
@@ -59,3 +105,45 @@ block main
       $('.special.cards .image').dimmer({
         on: 'hover'
       });
+  // Formulario Nuevos grupos
+  .ui.modal#formNewGroup
+    i.close.icon
+    .header
+      | Nuevo grupo
+      .content_form
+        .ui.segment
+          form.ui.fluid.form(method="POST" action="" enctype="multipart/form-data")
+            .field
+              label Nombre del grupo
+              input(type="text" name="nameGroup" placeholder="Nombre")
+            .field
+              label Descripcion
+              textarea
+            .field
+              .ui.checkbox
+                input.hidden(type='checkbox', tabindex='0')
+                label Grupo privado
+            script.
+              $('.ui.checkbox')
+                .checkbox()
+              ;
+            .field
+              label Logotipo del grupo
+              input(type="file")
+            //todo Esto puede hacerse con ajax, y jquery para que cuando se presione el boton, se envie el form por post
+            button.ui.button.positive.right.labeled.icon(type='button')
+              | Guardar cambios
+              i.plus.icon
+        script.
+          $('.ui.accordion')
+            .accordion()
+          ;
+  .ui.modal#second
+    i.close.icon
+    .header
+      | Muy bien hecho
+    .image.content
+      .description
+        | El grupo se ha creado con exito, termina de configurarlo y comienza a agregar nuevos miembros
+    .actions
+      .ui.button.positive OK

@@ -52,7 +52,10 @@ module.exports = (app) => {
 // =====================================================================================================================
 // AUTENTICACION LOCAL Y REDES SOCIALES POR 1a Vez =====================================================================
 // =====================================================================================================================
+    // Validacion para que no pueda acceder al formulario de inicio de sesion si ya hay una sesion
     app.get('/accounts/signin', (req, res) => {  // Formualrio para iniciar sesion
+        if(req.user)
+            res.redirect('/')
         res.render('signin', {
             err     : req.flash('err'),  // Si hay mensajes de error, los almacena
             warning : req.flash('warning'),  // Si hay mensajes de Precaucion
@@ -69,6 +72,8 @@ module.exports = (app) => {
 
 // Local ***************************************************************************************************************
     app.get('/accounts/signup', (req, res) => {  // Formulario para registro de usurio
+        if(req.user)
+            res.redirect('/')
         res.render('signup', {
             err     : req.flash('err'),  // Si hay mensajes de error, los almacena
             warning : req.flash('warning'),  // Si hay mensajes de Precaucion

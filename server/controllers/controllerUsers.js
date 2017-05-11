@@ -66,7 +66,13 @@ module.exports = (app) => {
         //         res.redirect(redirect)  // Redirecciona y muestra el error
         //     }
         // })
-        res.render('users')
+        res.render('users', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     }
 
     this.updateUser = (req, res) => {  // Funcion para actualizar un usuario

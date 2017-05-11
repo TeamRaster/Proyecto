@@ -1,4 +1,6 @@
 extends templates/template
+block title
+  | Inicio
 block main
   .row.center-xs.nav-menu
     .col-xs-12
@@ -26,13 +28,18 @@ block main
       include administrator/step
 
   // Seccion de widgets principales
+  .row.center-xs
+    .col-xs-5
+      h2.ui.header
+        | Estadisticas en tiempo real
+        .sub.header Puedes observar en tiempo real datos sobre lo que el OTecH administra
   .space-sm
   .row.center-xs
-    .col-xs-11.start-xs
+    .col-xs-11.col-lg-10.start-xs
       .ui.four.cards
         .red.card
           .content
-            .header Ofertas y Demandas
+            .header Ofertas
             .meta En tiempo real
             .description
               .row.center-xs
@@ -42,10 +49,10 @@ block main
                       i.plane.icon.red
                       |  963
                     .label
-                      | Publicaciones
+                      | Ofertas disponibles
         .red.card
           .content
-            .header Comunidad
+            .header Demandas
             .meta En tiempo real
             .description
               .row.center-xs
@@ -53,12 +60,12 @@ block main
                   .statistic
                     .value
                       i.plane.icon.red
-                      |  88
+                      |  1788
                     .label
-                      | Grupos
+                      | Demandas disponibles
         .red.card
           .content
-            .header Comunidad
+            .header Comunidades
             .meta En tiempo real
             .description
               .row.center-xs
@@ -68,10 +75,10 @@ block main
                       img.ui.circular.inline.image(src='http://lorempixel.com/50/50')
                       |  225
                     .label
-                      | Usuarios
+                      | Comunidades disponibles
         .red.card
           .content
-            .header Administracion
+            .header Usuarios
             .meta En tiempo real
             .description
               .row.center-xs
@@ -79,9 +86,9 @@ block main
                   .statistic
                     .value
                       img.ui.circular.inline.image(src='http://lorempixel.com/50/50')
-                      |  3
+                      |  15
                     .label
-                      | Moderadores
+                      | Usuarios disponibles
   .space-sm
   .row.center-xs
     .col-xs-11
@@ -202,28 +209,28 @@ block main
                   -myGroups++
 
   .space-sm
-  .row.center-xs
-    .col-xs-11.start-xs
-      .ui.segments
-        h5.ui.top.attached.header
-          | Solicitudes de Ammistad
-        .ui.segment
-          .ui.cards
-            .card
-              .content
-                img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
-                .header
-                  | Elliot Fu
-                .meta
-                  | Friends of Veronika
-                .description
-                  | Elliot requested permission to view your contact details
-              .extra.content
-                .ui.two.buttons
-                  .ui.basic.green.button Approve
-                  .ui.basic.red.button Decline
-        .ui.bottom.attached.yellow.message
-          i.warning.icon
-          |   ¡Tienes algunas solicitudes de amistad pendientes, Revisalos!
-  .space-sm
+  //.row.center-xs
+  //  .col-xs-11.start-xs
+  //    .ui.segments
+  //      h5.ui.top.attached.header
+  //        | Solicitudes de Ammistad
+  //      .ui.segment
+  //        .ui.cards
+  //          .card
+  //            .content
+  //              img.right.floated.mini.ui.image(src='http://lorempixel.com/35/35')
+  //              .header
+  //                | Elliot Fu
+  //              .meta
+  //                | Friends of Veronika
+  //              .description
+  //                | Elliot requested permission to view your contact details
+  //            .extra.content
+  //              .ui.two.buttons
+  //                .ui.basic.green.button Approve
+  //                .ui.basic.red.button Decline
+  //      .ui.bottom.attached.yellow.message
+  //        i.warning.icon
+  //        |   ¡Tienes algunas solicitudes de amistad pendientes, Revisalos!
+  //.space-sm
 

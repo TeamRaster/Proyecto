@@ -1,32 +1,24 @@
 extends templates/template
+block title
+  | Ofertas
 block main
-  - var users = 1;
   .row.center-xs.nav-menu
     .col-xs-12
       .ui.secondary.menu
-        a.item(href="/home")
-          | Home
-        a.active.item(href="/users")
-          | Users
-        a.item(href="/offers")
-          | Offers
-        a.item(href="/demands")
-          | Demands
-        a.item(href="/groups")
-          | Groups
-        a.item(href="/publications")
-          | Publications
+        a.item(id="sidebar")
+          i.sidebar.icon
+          | Menu
+        .item
+          .ui.small.breadcrumb
+            a.section(href="/home") Inicio
+            i.right.chevron.icon.divider
+            .active.section Usuarios
         .right.menu
           include administrator/right_menu
-
-  //- Seccion Breadcrumb
-  .row.center-xs.middle-xs.container-breadcrumb
-    .col-xs-11.start-xs
-      .ui.small.breadcrumb
-        a.section(href="/") Home
-        i.right.chevron.icon.divider.teal
-        .active.section Users
-
+  include administrator/sidebar
+  include templates/errorMessage
+  include templates/push-notifications
+  .space-xs
   //Tabla para visualizar todos los usuarios modo Administrador
   .row.center-xs
     .col-xs-11.start-lg
@@ -42,6 +34,7 @@ block main
             th: span(data-tooltip="Cambiar a modo administrador/usuario" data-position="bottom right") Role
             th: span(data-tooltip="Operaciones que puedes realizar" data-position="bottom right") CRUD
         tbody
+          - var users = 1;
           while users < 14
             tr
               td
@@ -54,11 +47,11 @@ block main
               td.center.aligned
                 i.green.circle.check.icon
               td.center.aligned
-                i.green.checkmark.box.icon
+                i.green.circle.check.icon
               td #{users}/Noviembre/20#{users}
               td #{users}/Enero/20#{users} 08:31
               td.center.aligned
-                i.green.checkmark.box.icon
+                i.green.circle.check.icon
               td.collapsing
                 .ui.fitted.slider.checkbox
                   input(type='checkbox')

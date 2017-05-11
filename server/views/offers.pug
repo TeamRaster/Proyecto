@@ -21,9 +21,10 @@ block main
   .ui.segments.no-margin-top
     .ui.segment
       h2.ui.center.aligned.icon.header.teal
-        i.circular.users.icon.teal
+        i.circular.users.icon
         |   Ofertas
-    .ui.segment.teal
+  .row.center-xs.space-xs
+    .col-xs-11
       button#openModal.ui.active.button.green(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
         i.plus.icon
         | Crear Oferta
@@ -34,61 +35,69 @@ block main
             .modal('show')
           ;
         })
-  .contenedor-tabla
-    table.ui.single.line.table.striped
-      thead
-        tr
-          th ID
-          th Nombre de la Oferta
-          th Usuario que la publico
-          th E-mail
-          th No. Visitas
-          th Fecha de Publicación
-          th Categoria(s)
-          th Funciones
-      tbody
-        tr
-          td 1
-          td Desarrollo de Web y Movil
-          td Raster Studios inc.
-          td exampl@alog.com
-          td 5
-          td Novenber 13, 2016
-          td Tecnologia Software
-          td
-            a(data-tooltip="Ver" data-position="bottom center"): i.unhide.icon.cursor-pointer#view
-            a(data-tooltip="Editar" data-position="bottom center"): i.write.icon.cursor-pointer#update
-            a(data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon.cursor-pointer#remove
-            script.
-              $('#remove').click(function () {
-                $('#confirmationRemove')
-                  .modal({
-                    closable: false,
-                    onApprove: function () {
-                      window.alert('Elemento eliminado con AJAX');
-                    }
-                  })
-                  .modal('show')
-                ;
-              })
-              $('#update').click(function () {
-                $('#formUpdate')
-                  .modal({
-                    closable: false,
-                    transition: 'fade up',
-                  })
-                  .modal('show')
-                ;
-              })
-              $('#view').click(function () {
-                $('#viewSingle')
-                  .modal({
-                    closable: false,
-                    transition: 'horizontal flip'
-                  })
-                  .modal('show')
-                ;
-              })
+  .row.center-xs
+    .col-xs-11
+      table.ui.teal.sortable.celled.table.no-margin-top
+        thead
+          tr
+            th ID
+            th Nombre de la Oferta
+            th Usuario que la publico
+            th E-mail
+            th No. Visitas
+            th Fecha de Publicación
+            th Categoria(s)
+            th Funciones
+        tbody
+          -var offer = 0
+          while offer < 10
+            tr
+              td #{offer + 1}
+              td Desarrollo de Web y Movil
+              td Raster Studios inc.
+              td exampl@alog.com
+              td 5#{offer + 1}#{offer + offer}
+              td Novenber 13, 2016
+              td Tecnologia Software
+              td.center.aligned
+                .ui.small.basic.icon.buttons
+                  a.ui.button.cursor-pointer#view(data-tooltip="Editar" data-position="bottom center")
+                    i.edit.icon.green
+                  a.ui.button.cursor-pointer#update(data-tooltip="Ver" data-position="bottom center")
+                    i.unhide.icon.blue
+                  a.ui.button.cursor-pointer#remove(data-tooltip="Eliminar" data-position="bottom center")
+                    i.delete.icon.red
+            -offer++
+              script.
+                $('#remove').click(function () {
+                  $('#confirmationRemove')
+                    .modal({
+                      closable: false,
+                      onApprove: function () {
+                        window.alert('Elemento eliminado con AJAX');
+                      }
+                    })
+                    .modal('show')
+                  ;
+                })
+                $('#update').click(function () {
+                  $('#formUpdate')
+                    .modal({
+                      closable: false,
+                      transition: 'fade up',
+                    })
+                    .modal('show')
+                  ;
+                })
+                $('#view').click(function () {
+                  $('#viewSingle')
+                    .modal({
+                      closable: false,
+                      transition: 'horizontal flip'
+                    })
+                    .modal('show')
+                  ;
+                })
   .ui.modal#formNew
     i.close.icon
     .header
