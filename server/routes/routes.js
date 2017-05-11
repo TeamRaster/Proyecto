@@ -105,7 +105,17 @@ module.exports = (app) => {
             success : req.flash('success')
         })
     })
+    // todo Zona de pruebas (Quitar en produccion)
     app.get('/test-error404', (req, res) => {
+        res.render('error404')
+    })
+    app.get('/test-plantilla1', (req, res) => {
+        res.render('error404')
+    })
+    app.get('/test-plantilla2', (req, res) => {
+        res.render('error404')
+    })
+    app.get('/test-plantilla3', (req, res) => {
         res.render('error404')
     })
     return this
