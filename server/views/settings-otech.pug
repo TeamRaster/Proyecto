@@ -22,18 +22,105 @@ block main
     h2.ui.center.aligned.icon.header.teal
       i.circular.users.icon
       |   Configuracion OTecH
+  .space-xs
+    // Main
+    .row.center-xs
+      .col-xs-11
+        .row
+          .col-xs-12.col-sm-3.start-xs
+            .ui.vertical.pointing.menu#menu_tabs
+              a.active.item(data-tab='1')
+                | Encabezado
+                i.header.icon
+              a.item(data-tab='2')
+                | Slider
+                i.slideshare.icon
+              a.item(data-tab='3')
+                | Que es el OTecH
+                i.info.alternate.icon
+              a.item(data-tab='4')
+                | Mision, Vision
+                i.find.icon
+              a.item(data-tab='5')
+                | Nuestros Servicios
+                i.announcement.icon
+              a.item(data-tab='6')
+                | Publicaciones
+                i.suitcase.icon
+              a.item(data-tab='7')
+                | Ofertas
+                i.newspaper.icon
+              a.item(data-tab='8')
+                | Pie de pagina
+                i.sign.language.icon
+          .col-xs-12.col-sm-9.start-xs
+            .container_page
 
-  #example1.ui.teal.progress(data-percent='30')
-    .bar
-    .label 30% de avance en esta pagina
-  .space-lg
-  h2.ui.center.aligned.icon.header.huge
-    i.warning.circle.icon#icon
-    |   Lo sentimos pero esta pagina aun esta en desarrollo. Pronto se vendran novedades interesantes
-  script.
-    $('#example1').progress();
-    $('#icon')
-      .transition('set looping')
-      .transition('bounce', '2000ms')
-    ;
+              .ui.tab.active(data-tab='1')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Encabezado
+                  .ui.segment
+                    #example1.ui.teal.progress(data-percent='30')
+                      .bar
+                      .label 30% de avance en esta pagina
+                    h2.ui.center.aligned.icon.header.huge
+                      i.warning.circle.icon#icon
+                      |   Lo sentimos pero esta pagina aun esta en desarrollo. Pronto se vendran novedades interesantes
+                    script.
+                      $('#example1').progress();
+                      $('#icon')
+                        .transition('set looping')
+                        .transition('bounce', '2000ms')
+                      ;
 
+              .ui.tab(data-tab='2')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Slider
+                  .ui.segment
+
+
+              .ui.tab(data-tab='3')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header ¿Que es el OTecH?
+                  .ui.segment
+
+
+              .ui.tab(data-tab='4')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Mision, Vision
+                  .ui.segment
+
+
+              .ui.tab(data-tab='5')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Nuestros Servicios
+                  .ui.segment
+
+
+              .ui.tab(data-tab='6')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Publicaciones
+                  .ui.segment
+
+
+              .ui.tab(data-tab='7')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Ofertas
+                  .ui.segment
+
+              .ui.tab(data-tab='8')
+                .ui.segments
+                  .ui.segment
+                    h4.ui.header Pie de pagina
+                  .ui.segment
+
+
+    script.
+      $('#menu_tabs .item').tab();

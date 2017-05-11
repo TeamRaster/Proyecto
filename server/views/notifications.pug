@@ -1,4 +1,6 @@
 extends templates/template
+block title
+  | Notificaciones
 block main
   .row.center-xs.nav-menu
     .col-xs-12
@@ -19,9 +21,9 @@ block main
   include templates/errorMessage
   include templates/push-notifications
 
-  #example1.ui.red.progress(data-percent='30')
+  #example1.ui.teal.progress(data-percent='10')
     .bar
-    .label 30% de avance en esta pagina (Notificaciones)
+    .label 10% de avance en esta pagina (Notificaciones)
   .space-lg
   h2.ui.center.aligned.icon.header.huge
     i.warning.circle.icon#icon

@@ -5,7 +5,7 @@
       i.search.icon
     .results
 .item.padding-x-xs.no-margin-x
-  a(data-tooltip="Mensajes recientes" data-position="bottom left").ui.inline.dropdown#btnMessages
+  a(data-tooltip="Tus mensajes" data-position="bottom left").ui.inline.dropdown#btnMessages
     i.grey.mail.icon.col-space-xs-l
   .ui.circular.labels
     .ui.label.red
@@ -15,7 +15,7 @@
       window.location.href = "/messages"
     })
 .item.padding-x-xs.no-margin-x
-  a(data-tooltip="Notificaciones Pendientes" data-position="bottom left").ui.inline.dropdown#btnPush
+  a(data-tooltip="Tus notificaciones" data-position="bottom left").ui.inline.dropdown#btnPush
     i.grey.alarm.icon.col-space-xs-l
   .ui.circular.labels
     .ui.label.blue
@@ -40,6 +40,9 @@ span.item
       a(href="/profile").item
         i.user.icon
         | My profile
+      a(href="/public/profile").item
+        i.odnoklassniki.icon
+        | Public profile
       a(href="/settings").item
         i.settings.icon
         | Settings

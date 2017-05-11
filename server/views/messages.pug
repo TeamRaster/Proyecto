@@ -1,4 +1,6 @@
 extends templates/template
+block title
+  | Mensajes
 block main
   .row.center-xs.nav-menu
     .col-xs-12
@@ -84,6 +86,17 @@ block main
                 .description.mini-padding-top En linea
         .ui.segment
 
-
-
-  // Termina Pagina
+          // todo, Termina Pagina
+          #example1.ui.teal.progress(data-percent='50')
+            .bar
+            .label 50% de avance en esta pagina
+          .space-lg
+          h2.ui.center.aligned.icon.header.huge
+            i.warning.circle.icon#icon
+            |   Lo sentimos pero esta pagina aun esta en desarrollo. Pronto se vendran novedades interesantes
+          script.
+            $('#example1').progress();
+            $('#icon')
+              .transition('set looping')
+              .transition('bounce', '2000ms')
+            ;
