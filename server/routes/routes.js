@@ -105,5 +105,8 @@ module.exports = (app) => {
             success : req.flash('success')
         })
     })
+    app.get('/test-error404', (req, res) => {
+        res.render('error404')
+    })
     return this
 }
