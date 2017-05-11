@@ -1,0 +1,16 @@
+- var card = 0;
+.row.around-xs
+  while card < 9
+    .col-xs-4.grid-card
+      .ui.column.grid
+        .column
+          .ui.fluid.card
+            .image
+              img(src='http://lorempixel.com/440/275/')
+            .content
+              a.header Daniel Louise #{card++}
+
+script.
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });

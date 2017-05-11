@@ -1,4 +1,6 @@
 extends ./templates/template
+block title
+  | OTecH
 block main
   //- Seccion del menu principal de navegacion
   include ./templates/index/header
@@ -9,7 +11,6 @@ block main
       li: a(href='/idis') I+D+I
       li: a(href='/technological-information') Perspectivas
       if(user)
-        //li: a(href='/home' data-tooltip="Ingresa al panel de Administracion" data-position="bottom left")
         li
           .ui.buttons
             .ui.button.red.basic(data-tooltip="Click en la flecha a la derecha" data-position="bottom left") Administracion
@@ -22,12 +23,15 @@ block main
                 a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
                   i.delete.icon
                   |  Cerrar sesion
-          //.ui.teal.animated.button(tabindex='0')
-          //  .visible.content Panel
-          //  .hidden.content
-          //    i.right.arrow.icon
       else
-        li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+        li
+          button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
+            i.icon.sign.in
+            |   Comenzar
+          script.
+            $('#comenzar').click(function () {
+              window.location.href = "/accounts/signin"
+            })
   //- Seccion del slider principal de imagene s sobre el observatorio
   include ./templates/index/slider
   //- Seccion que ofrecemos, quienes somos

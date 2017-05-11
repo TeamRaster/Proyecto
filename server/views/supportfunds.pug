@@ -1,4 +1,6 @@
 extends ./templates/template
+block title
+  | Fondos de Apoyo
 block main
   include ./templates/index/header
     block menu
@@ -6,8 +8,29 @@ block main
       li: a(href='/offers-demands') Oferta y Demanda
       li: a.active(href='/support-funds') Fondos de Apoyo
       li: a(href='/idis') I+D+I
-      li: a(href='/technological-information') Informacion tecnologica
-      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+      li: a(href='/technological-information') Perspectivas
+      if(user)
+        li
+          .ui.buttons
+            .ui.button.red.basic(data-tooltip="Click en la flecha a la derecha" data-position="bottom left") Administracion
+            .ui.floating.dropdown.icon.button.red.basic
+              i.dropdown.icon
+              .menu
+                a.item.reset_a(href="/home" data-tooltip="Ingresa al panel de Administracion" data-position="bottom left")
+                  i.home.icon
+                  |  Home
+                a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
+                  i.delete.icon
+                  |  Cerrar sesion
+      else
+        li
+          button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
+            i.icon.sign.in
+            |   Comenzar
+          script.
+            $('#comenzar').click(function () {
+              window.location.href = "/accounts/signin"
+            })
   .row-xs
   .row.center-xs.context1
     .col-xs-12.start-xs

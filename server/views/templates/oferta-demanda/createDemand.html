@@ -1,0 +1,73 @@
+
+<div class="content_form">
+  <div class="ui segment">
+    <form class="ui fluid form">
+      <div class="ui accordion">
+        <div class="content field">
+          <div class="field">
+            <label>Titulo de la Demanda</label>
+            <input type="text" name="tituloDemanda" placeholder="Titulo de la demanda"/>
+          </div>
+        </div>
+        <div class="title active"><i class="icon dropdown"></i>        Datos de la empresa</div>
+        <div class="content field active">
+          <div class="two fields">
+            <div class="field">
+              <label>Nombre</label>
+              <input type="text" name="empresaDemanda" placeholder="Nombre"/>
+            </div>
+            <div class="field">
+              <label>Giro de la empresa</label>
+              <input type="text" name="giroDemanda" placeholder="Giro de la empresa"/>
+            </div>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>Direccion de la empresa</label>
+              <input type="text" name="direccionDemanda" placeholder="Direccion de la empresa"/>
+            </div>
+            <div class="field">
+              <label>Telefono</label>
+              <input type="email" placeholder="correo@ejemplo.com"/>
+            </div>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>Telefono</label>
+              <input type="text" name="telefonoDemanda" placeholder="Telefono"/>
+            </div>
+          </div>
+        </div>
+        <div class="title"><i class="icon dropdown"></i>        Servicios</div>
+        <div class="content field">
+          <div class="field"></div>
+          <label>Descripcion de la demanda (sea especifico)</label>
+          <textarea rows="6" name="acerca-empresa" placeholder="Actividad que se desea resolver"></textarea>
+        </div>
+        <div class="title"><i class="icon dropdown"></i>       Datos de Contacto</div>
+        <div class="content field">
+          <div class="field">
+            <label>Nombre del contacto</label>
+            <input type="text" name="nombre-contacto" placeholder="Nombre del contacto"/>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>Telefono de contacto</label>
+              <input type="text" name="telefo-contacto" placeholder="Telefono de contacto"/>
+            </div>
+            <div class="field">
+              <label>Correo de contacto</label>
+              <input type="text" name="correo-contacto" placeholder="Correo de contacto"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui secondary submit button">Publicar Demanda</div>
+    </form>
+  </div>
+</div>
+<script>
+  $('.ui.accordion')
+    .accordion()
+  ;
+</script>

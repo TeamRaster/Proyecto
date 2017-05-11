@@ -308,3 +308,214 @@ a.section-a {
   width: 90%;
   margin: 25px auto;
 }
+
+// Estilos Carlos
+//IDI
+.menu {
+  margin-bottom: 0 !important;
+}
+.container-Idi {
+  background-color: $brand-white; //Para que el contenedor se vea blanco
+  min-height:83vh; // Esto es solo para cuando exista una solo fila
+  .card-panel {
+    display: block;
+    margin: 0 auto;
+
+  }
+  .grid-card {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .center-panel {
+    display: block !important;
+    margin: 1em auto !important;
+  }
+}
+
+.imagen {
+  padding: 0;
+  background: url("../images/conacyt.jpg") no-repeat center center fixed;
+  height: 350px;
+  position: relative;
+
+
+  .title-banner {
+    width: 46%;
+    left: 5%;
+    bottom: 20%;
+    position: absolute;
+
+
+    h2 {
+      color: #fff;
+      font-size: 3em;
+      margin: 10px 15px;
+      // display: inline;
+      border-bottom: 1px solid #fff;
+    }
+    p {
+      color: #fff;
+      margin: 0 20px;
+    }
+  }
+}
+.imagen-impi {
+  padding: 0;
+  background: url("../images/impi.jpg") no-repeat center center fixed;
+  height: 350px;
+  position: relative;
+
+  .title-banner {
+    width: 46%;
+    left: 5%;
+    bottom: 20%;
+    position: absolute;
+
+
+    h2 {
+      color: #fff;
+      font-size: 3em;
+      margin: 10px 15px;
+      // display: inline;
+      border-bottom: 1px solid #fff;
+    }
+    p {
+      color: #fff;
+      margin: 0 20px;
+    }
+  }
+}
+.imagen-ompi {
+  padding: 0;
+  background: url("../images/OMPI_web.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 350px;
+  position: relative;
+
+  .title-banner {
+    width: 46%;
+    left: 5%;
+    bottom: 20%;
+    position: absolute;
+
+
+    h2 {
+      color: #fff;
+      font-size: 3em;
+      margin: 10px 15px;
+      // display: inline;
+      border-bottom: 1px solid #fff;
+    }
+    p {
+      color: #fff;
+      margin: 0 20px;
+    }
+  }
+}
+
+.central {
+  width: 70%;
+  margin: auto;
+  position: relative;
+  .under-heading {
+    margin: 25px 0;
+    h2 {
+      text-align: center;
+      font-size: 2.5em;
+      position: relative;
+    }
+  }
+
+  .container-about.ui.raised.segment {
+    // margin: 15px 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(35%);
+    box-shadow: 0px 0px 10px;
+    background-color: rgba(255,255,255,0.5);
+
+    p {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      color: #000;
+    }
+    .image {
+      width: 45%;
+      // margin: 0 5%;
+      margin: auto;
+      img {
+        width: 100%;
+      }
+    }
+
+  }
+
+  .container-publications {
+    margin: 20px 0;
+
+    .mycard {
+      padding: 0;
+      width: 30%;
+      overflow: hidden;
+      position: relative;
+      margin: 15px;
+      display: inline-block;
+
+      .cont1 {
+        width: 50%;
+        float: left;
+        height: 200px;
+        img {
+          width: 100%;
+        }
+      }
+      .cont2 {
+        width: 49%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        h3,p {
+          text-align: center;
+          margin: 0 0 15px;;
+        }
+        h3 {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .cards{
+      .card {
+        margin: auto;
+        .content {
+          padding: 0;
+
+          .header {
+            margin: 10px 0px;
+            text-align: center;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+
+
+  .container-investigacion {
+    .ui.bottom.attached.tab.segment {
+      height: 195px;
+    }
+  }
+
+  .container-microsite.ui.raised.segment {
+    text-align: center;
+    margin-bottom: 20px;
+    h2.ui.icon.header {
+      margin: 0 15px;
+    }
+  }
+}
+
+
+

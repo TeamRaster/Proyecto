@@ -22,7 +22,13 @@ module.exports = (app) => {
         .post([auth.isLogged, SF.__set])
 
     app.get('/support-funds', (req, res) => {
-        res.render('supportfunds')
+        res.render('supportfunds', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
     })
 
     return this

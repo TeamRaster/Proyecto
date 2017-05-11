@@ -1,0 +1,67 @@
+.content_form
+  .ui.segment
+      form.ui.fluid.form
+        .ui.accordion
+          .content.field
+            .field
+              label Titulo de la Oferta
+              input(type="text" name="titulOferta" placeholder="Oferta")
+          .title.active
+            i.icon.dropdown
+            |         Datos de la empresa
+          .content.field.active
+            .two.fields
+                .field
+                  label Nombre de la empresa
+                  input(type='text', name='nombre-empresa', placeholder='Nombre')
+                .field
+                  label Giro de la empresa
+                  input(type='text', name='giro-empresa', placeholder="Giro de la empresa")
+            .two.fields
+              .field
+                label Direccion
+                input(type="text" name="direccion-empresa" placeholder="Direccion de la empresa")
+              .field
+                label Correo electronico
+                input(type="email" placeholder="correo@ejemplo.com")
+            .two.fields
+              .field
+                label Pagina Web
+                input(type="text" placeholder="Pagina web")
+            .field
+              label Seleccione una imagen o logo de la empresa
+              input(type="file")
+
+          .title
+            i.icon.dropdown
+            |         Servicios
+          .content.field
+            .field
+              label Acerca de la empresa
+              textarea(rows="3" name="acerca-empresa" placeholder="¿Quienes somos?")
+            .field
+             label Servicios
+             textarea(rows="3" name="servicios-empresa" placeholder="Productos y/o Servicios")
+          .title
+            i.icon.dropdown
+            |        Datos de Contacto
+          .content.field
+            .two.fields
+              .field
+                label Nombre del contacto
+                input(type='text', name='nombre-contacto', placeholder='Nombre del contacto')
+              .field
+                label Cargo del contacto
+                input(type='text', name='cargo-contacto', placeholder="Cargo del contacto")
+            .two.fields
+              .field
+                label Telefono de contacto
+                input(type='text', name='telefo-contacto', placeholder='Telefono de contacto')
+            .field
+              label Correo de contacto
+              input(type='text', name='correo-contacto', placeholder='Correo de contacto')
+        .ui.secondary.submit.button Publicar Oferta
+script.
+  $('.ui.accordion')
+    .accordion()
+  ;

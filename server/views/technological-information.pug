@@ -1,4 +1,6 @@
 extends ./templates/template
+block title
+  | Perspectivas
 block main
   include ./templates/index/header
     block menu
@@ -6,11 +8,48 @@ block main
       li: a(href='/offers-demands') Oferta y Demanda
       li: a(href='/support-funds') Fondos de Apoyo
       li: a(href='/idis') I+D+I
-      li: a.active(href='/technological-information') Informacion tecnologica
-      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
-  .row.center-xs
-    .col-xs-6
-      h2 Informacion tecnologica
-  //include ./templates/index/footer
+      li: a.active(href='/technological-information') Perspectivas
+      if(user)
+        li
+          .ui.buttons
+            .ui.button.red.basic(data-tooltip="Click en la flecha a la derecha" data-position="bottom left") Administracion
+            .ui.floating.dropdown.icon.button.red.basic
+              i.dropdown.icon
+              .menu
+                a.item.reset_a(href="/home" data-tooltip="Ingresa al panel de Administracion" data-position="bottom left")
+                  i.home.icon
+                  |  Home
+                a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
+                  i.delete.icon
+                  |  Cerrar sesion
+      else
+        li
+          button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
+            i.icon.sign.in
+            |   Comenzar
+          script.
+            $('#comenzar').click(function () {
+              window.location.href = "/accounts/signin"
+            })
+  .row
+    .col-xs-12
+      .ui.tabular.menu
+        .item.active(data-tab='technology') Observatorios Tecnologicos
+        .item(data-tab='social') Observatorio Ciudadano social
+        .item(data-tab='agronomy') Observatorios Agroindustriales
+      .ui.tab.active(data-tab='technology')
+        .container-Idi
+          include ./templates/observatorios/observatorios
+      .ui.tab(data-tab='social')
+        .container-Idi
+          include ./templates/observatorios/observatorios2
+      .ui.tab(data-tab='agronomy')
+        .container-Idi
+          include ./templates/observatorios/observatorios3
+
+
+  script.
+    $('.tabular.menu .item').tab();
+  include ./templates/index/footer
 
 

@@ -1,24 +1,82 @@
-- var card = 0;
-.row
-  while card < 14
-    .col-xs-3.grid-card
-      .ui.special.cards
-        .card.center-panel
-          .blurring.dimmable.image
-            .ui.inverted.dimmer
-              .content
-                .center
-                  a.ui.primary.button(href="single.html") Ver mas
-            img(src='http://lorempixel.com/300/300/')
-          .content
-            a.header Resultado #{card++}
-            .meta
-              span.date Creado el #{card} de Enero del 2016
-          .extra.content
-            a
-              i.users.icon
-              | #{card} Resultados
-script.
-  $('.special.cards .image').dimmer({
-    on: 'hover'
-  });
+.imagen
+  .title-banner
+    h2 CONACYT
+    p  El consejo Nacional de Ciencia y Tecnologia, es un organismo público descentralizado de la Administracion Pública Federal, integrante del Sector Educativo, con Personalidad jurídica y patrimonio propio. También es responsable de elaborar las políticas de ciencia y tecnologia en México.
+
+.central
+  .under-heading
+    h2 Becas y Posgrados
+  hr
+
+  .container-publications
+    .ui.cards
+      .card
+        .image.ui.fluid
+          a.ui.blue.ribbon.label Becas
+          img(src='/images/flag-mexico.png')
+        .content
+          .header Nacionales
+        .ui.two.bottom.attached.buttons
+          a(href="http://www.conacyt.gob.mx/index.php/becas-y-posgrados/becas-nacionales" target="_blank").ui.primary.button
+            i.play.icon
+            |       Ver más...
+
+      .card
+        .image
+          .image.ui.fluid
+            a.ui.blue.ribbon.label Becas
+            img(src='/images/countries.png')
+        .content
+          .header Al extranjero
+        .ui.two.bottom.attached.buttons
+          a(href="http://www.conacyt.gob.mx/index.php/becas-y-posgrados/becas-en-el-extranjero").ui.primary.button
+            i.play.icon
+            |       Ver más...
+      .card
+        .image
+          .image.ui.fluid
+            a.ui.blue.ribbon.label Becas
+            img(src='/images/idiomas.jpg')
+        .content
+          .header Estudiantes extranjeros
+        .ui.two.bottom.attached.buttons
+          a(href="http://www.conacyt.gob.mx/index.php/becas-y-posgrados/becas-para-estudiantes-extranjeros").ui.primary.button
+            i.play.icon
+            |       Ver más...
+
+  .under-heading
+    h2 Investigaciones SNI
+  hr
+
+  .container-investigacion
+    .ui.top.attached.tabular.menu
+
+      a.item.active(data-tab='first') ¿Qué es?
+      a.item(data-tab='second') ¿Cúales son los beneficios?
+      a.item(data-tab='third') ¿A quién va dirigida?
+    .ui.bottom.attached.tab.segment.active(data-tab='first')
+
+      p El Sistema Nacional de Investigadores fue creado Por Acuerdo Presidencial publicado en el Diario Oficial de la Federación el 26 de julio de 1984, para reconocer la labor de las personas dedicadas a producir conocimiento científico y tecnología. El reconocimiento se otorga a través de la evaluación por pares y consiste en otorgar el nombramiento de investigador nacional. Esta distinción simboliza la calidad y prestigio de las contribuciones científicas.
+    .ui.bottom.attached.tab.segment(data-tab='second')
+      p SNI, a través de sus miembros, es una agrupación en la que están representadas todas las disciplinas científicas que se practican en el país y cubre a una gran mayoría de las instituciones de educación superior e institutos y centros de investigación que operan en México. En este sentido coadyuva a que la actividad científica se desarrolle de la mejor manera posible a lo largo del territorio y a que se instalen grupos de investigación de alto nivel académico en todas las entidades federativas.
+    .ui.bottom.attached.tab.segment(data-tab='third')
+      p Investigadores y tecnólogos que realicen actividades de investigación científica o tecnológica que presenten los productos del trabajo debidamente documentados, y cumplan alguno de los siguientes requisitos: Tener un contrato o convenio vigente, demostrar por medio de un documento oficial que presta servicios por al menos 20 horas a la semana para realizar actividades de investigación científica o tecnológica en alguna de las dependencias, entidades, instituciones de educación superior o centros de investigación de los sectores público, privado o social de México.
+
+  .under-heading
+    h2 Micrositios
+  hr
+
+
+  .container-microsite.ui.raised.segment
+    h2.ui.icon.header
+      i.university.icon
+      .content
+        a(target="_blank" href="http://www.conacyt.gob.mx/index.php/el-conacyt/centros-de-investigacion-conacyt").sub.header Centro de investigación
+    h2.ui.icon.header
+      i.student.icon
+      .content
+        a(target="_blank" href="http://www.conacyt.gob.mx/posgrados/").sub.header Centros de ayuda a posgrados
+    h2.ui.icon.header
+      i.folder.open.icon
+      .content
+        a(target="_blank" href="http://www.siicyt.gob.mx/index.php/estadisticas/bases-de-datos-abiertas").sub.header Datos Abiertos

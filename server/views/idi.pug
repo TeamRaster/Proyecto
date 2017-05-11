@@ -1,4 +1,6 @@
 extends ./templates/template
+block title
+  | I+D+I
 block main
   include ./templates/index/header
     block menu
@@ -6,14 +8,36 @@ block main
       li: a(href='/offers-demands') Oferta y Demanda
       li: a(href='/support-funds') Fondos de Apoyo
       li: a.active(href='/idis') I+D+I
-      li: a(href='/technological-information') Informacion tecnologica
-      li: a(href='/accounts/signin' class="btn-primary btn-outline btn-white" data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="") Comenzar
+      li: a(href='/technological-information') Perspectivas
+      if(user)
+        li
+          .ui.buttons
+            .ui.button.red.basic(data-tooltip="Click en la flecha a la derecha" data-position="bottom left") Administracion
+            .ui.floating.dropdown.icon.button.red.basic
+              i.dropdown.icon
+              .menu
+                a.item.reset_a(href="/home" data-tooltip="Ingresa al panel de Administracion" data-position="bottom left")
+                  i.home.icon
+                  |  Home
+                a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
+                  i.delete.icon
+                  |  Cerrar sesion
+      else
+        li
+          button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
+            i.icon.sign.in
+            |   Comenzar
+          script.
+            $('#comenzar').click(function () {
+              window.location.href = "/accounts/signin"
+            })
   .row
     .col-xs-12
       .ui.tabular.menu
-        .item.active(data-tab='convocations') Convocatorias
-        .item(data-tab='results') Resultados
-        .item(data-tab='national-funds') Fondos Nacionales
+        .item.active(data-tab='convocations') CONACYT
+        .item(data-tab='results') OMPI
+        .item(data-tab='national-funds') IMPI
+        .item(data-tab='prodep') PROMEP
       .ui.tab.active(data-tab='convocations')
         .container-Idi
           include ./templates/IDi/convocations
@@ -23,6 +47,11 @@ block main
       .ui.tab(data-tab='national-funds')
         .container-Idi
           include ./templates/IDi/national-funds
+      .ui.tab(data-tab='prodep')
+        .container-Idi
+          include ./templates/IDi/prodep
+  script.
+    $('.tabular.menu .item').tab();
   script.
     $('.tabular.menu .item').tab();
   include ./templates/index/footer

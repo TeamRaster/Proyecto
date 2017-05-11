@@ -1,28 +1,75 @@
-- var card = 0;
-.row
-  while card < 10
-    .col-xs-3.grid-card
-      .ui.special.cards
-        .card.center-panel
-          .blurring.dimmable.image
-            .ui.dimmer
-              .content
-                .center
-                  a.ui.inverted.button(href="single.html") Ver mas
-            img(src='http://lorempixel.com/290/290/')
-          .content
-            a.header Resultado #{card++}
-            .meta
-              span.date Creado el #{card} de Septiembre del 2016
-          .extra.content
-            a
-              i.users.icon
-              | #{card} Resultados
-script.
-  $('.special.cards .image').dimmer({
-    on: 'hover'
-  });
+.imagen-ompi
+  .title-banner
+    h2 OMPI
+    p La OMPI es el foro mundial en lo que corresponde a servicios, políticas, cooperación e información en materia de propiedad intelectual (P.I.). Es un organismo de las Naciones Unidas, autofinanciado, que cuenta con 188 Estados miembros.
 
-  //-   .extra.content
-  //-     a
-  //-       i.users.icon 2 Members
+
+.central
+  .under-heading
+    h2 Estados Miembros
+
+  .ui.two.column.grid.raised.segment
+    .column
+      .image.ui.fluid.image
+        a.ui.blue.ribbon.label Publicación
+        img(src='/images/worlmap.png')
+
+    .column
+      h2 Estados Miembros
+      p Los estados miembros de la OMPI determinan la orientación estratégica, el presupuesto y las actividades de la Organización a través de sus órganos decisorios.
+      i.info.circle
+      a(href="http://www.wipo.int/members/es/") Estados Miembro de la OMPI
+      p: a(href="http://www.wipo.int/directory/es/") Información por País
+      i.mexico.flag
+      a(href="http://www.wipo.int/directory/es/details.jsp?country_code=MX") México
+
+  .under-heading
+    h2 Servicios Mundiales
+
+  .container-publications.ui.raised.segment
+    .ui.two.column.grid
+      .column
+        .ui.cards
+          .card
+            .content
+              .header WIPO | PCT
+              .description
+                | PCT- El sistema internacional de patentes
+            a(href="http://www.wipo.int/pct/es/").ui.red.bottom.attached.button
+              i.file.pdf.outline.icon
+              |       Ver
+          .card
+            .content
+              .header  WIPO | MADRID
+              .description
+                | Sistema internacional de registro de marcas
+            a(href="http://www.wipo.int/madrid/es/").ui.red.bottom.attached.button
+              i.file.pdf.outline.icon
+              |       Ver
+      .column
+        .ui.cards
+          .card
+            .content
+              .header  WIPO | HAGUE
+              .description
+                | Cierra Diciembre/2017
+            a(href="Sistema internacional de dibujos y modelos industriales").ui.red.bottom.attached.button
+              i.file.pdf.outline.icon
+              |       Ver
+          .card
+            .content
+              .header  WIPO | ADR
+              .description
+                | Cierra Diciembre/2017
+            a(href="http://www.wipo.int/amc/es/").ui.red.bottom.attached.button
+              i.file.pdf.outline.icon
+              |       Ver
+
+  .container-service
+    .ui.card
+      a.image(href="#")
+        img(src="/images/inventores.png")
+      .content
+        a.header(href="#") Steve Jobes
+        .meta
+          aLast Seen 2 days ago

@@ -1,4 +1,6 @@
 extends ./templates/template
+block title
+  | Registro
 block main
   //- Seccion del menu principal de navegacion
   include ./templates/index/header
@@ -7,8 +9,10 @@ block main
       li: a(href='/offers-demands') Oferta y Demanda
       li: a(href='/support-funds') Fondos de Apoyo
       li: a(href='/idis') I+D+I
-      li: a(href='/technological-information') Informacion tecnologica
-      li: a.active(class="btn-primary btn-outline btn-white" data-tooltip="Esta pagina es un formulario para registrarse" data-position="bottom left" data-inverted="") Registro
+      li: a(href='/technological-information') Perspectivas
+      li: button.ui.basic.button#comenzar(data-tooltip="Esta pagina es un formulario para registrarse" data-position="bottom left" data-inverted="")
+        i.icon.sign.up
+        |   Iniciar sesion
 
   include ./templates/errorMessage
   .container

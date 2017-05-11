@@ -13,6 +13,7 @@ module.exports = (app) => {
 
     this.__gets = (req, res) => {
         res.render('iDi', {
+            user    : req.user,
             err          : req.flash('err'),
             warning      : req.flash('warning'),
             info         : req.flash('info'),

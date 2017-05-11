@@ -1,0 +1,60 @@
+- var card = 0;
+.row
+  while card < 10
+    .col-xs-3.grid-card
+      .ui.special.cards
+        .card.center-panel
+          .blurring.dimmable.image
+            .ui.dimmer
+              .content
+                .center
+                  a.ui.inverted.button(href="single-offer.html") Ver mas
+            img(src='http://lorempixel.com/290/290/')
+          .content
+            a.header Resultado #{card++}
+            .meta
+              span.date Creado el #{card} de Septiembre del 2016  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nostrum pariatur nam modi.
+          .extra.content
+            a
+              i.users.icon
+              | #{card} Resultados
+
+
+.row
+  .col-xs-3
+    .ui.card
+      .image
+        img(src='http://lorempixel.com/250/150')
+      .content
+        .header Watchmen
+        .description
+          | In a gritty and alternate 1985 the glory days of costumed vigilantes have been brought to a close by a government crackdown, but after one of the masked veterans is brutally murdered an investigation into the killer is initiated.
+      .ui.two.bottom.attached.buttons
+        .ui.button
+          i.add.icon
+          |       Queue
+        .ui.primary.button
+          i.play.icon
+          |       Watch
+      .ui.popup
+        .header User Rating
+        .ui.star.rating(data-rating='3')
+  .col-xs-3
+    .ui.card
+      .image
+        img(src='http://lorempixel.com/250/150')
+      .content
+        .header Watchmen
+      .ui.two.bottom.attached.buttons
+        .ui.button
+          i.add.icon
+          |       Queue
+        .ui.primary.button
+          i.play.icon
+          |       Watch
+
+script.
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });
+
