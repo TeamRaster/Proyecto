@@ -2,6 +2,12 @@ extends templates/template
 block title
   | Noticias
 block main
+  link(href='http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css', rel='stylesheet')
+  script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js')
+  // include summernote css/js
+  link(href='http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css', rel='stylesheet')
+  script(src='http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js')
   .row.center-xs.nav-menu
     .col-xs-12
       .ui.secondary.menu
@@ -33,6 +39,20 @@ block main
       i.circular.users.icon.teal
       |   Noticias
 
+  .row.center-xs
+    .col-xs-11.start-xs
+      #summernote Escribe tu noticia
+        script.
+          $(document).ready(function () {
+            $('#summernote').summernote({
+              height: 300,                 // set editor height
+              minHeight: null,             // set minimum height of editor
+              maxHeight: null,             // set maximum height of editor
+              focus: true
+            });
+          });
+
+  //***************************************************************************************************+ todo eliminar esto
   #example1.ui.teal.progress(data-percent='30')
     .bar
     .label 30% de avance en esta pagina
@@ -47,3 +67,16 @@ block main
       .transition('bounce', '2000ms')
     ;
 
+  .row.center-xs.border.space-lg
+    .col-xs-11.start-xs
+      .ui.segment
+        .ui.bulleted.list
+          .item Crear un panel donde se puedan visualizar las noticias que se han creado hasta el momento
+          .item Seguir un diseño como el que se viene trabajando
+          .item
+            div Formuarios
+            .list
+              .item Formulario modal para crear una noticia
+              .item Formulario que cubra los campos de una noticia
+              .item Editor
+  //***************************************************************************************************+
