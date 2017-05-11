@@ -22,6 +22,10 @@ block main
                 a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
                   i.delete.icon
                   |  Cerrar sesion
+          script.
+            $('.ui.dropdown')
+              .dropdown()
+            ;
       else
         li
           button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
@@ -34,8 +38,8 @@ block main
   .row
     .col-xs-12
       .ui.tabular.menu
-        .item.active(data-tab='offers') Ofertas
-        .item(data-tab='demands') Demandas
+        .item.active.cursor-pointer(data-tab='offers') Ofertas
+        .item.cursor-pointer(data-tab='demands') Demandas
       .ui.tab.active(data-tab='offers')
         .container-Idi
           include ./templates/oferta-demanda/ofertas

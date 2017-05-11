@@ -22,6 +22,10 @@ block main
                 a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
                   i.delete.icon
                   |  Cerrar sesion
+        script.
+          $('.ui.dropdown')
+            .dropdown()
+          ;
       else
         li
           button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
@@ -31,21 +35,30 @@ block main
             $('#comenzar').click(function () {
               window.location.href = "/accounts/signin"
             })
-  .row
-    .col-xs-12
+  .row.center-xs
+    .col-xs-11.start-xs
       .ui.tabular.menu
-        .item.active(data-tab='technology') Observatorios Tecnologicos
-        .item(data-tab='social') Observatorio Ciudadano social
-        .item(data-tab='agronomy') Observatorios Agroindustriales
+        .item.active.cursor-pointer(data-tab='technology') Observatorios Tecnologicos
+        .item.cursor-pointer(data-tab='social') Observatorio Ciudadano social
+        .item.cursor-pointer(data-tab='agronomy') Observatorios Agroindustriales
       .ui.tab.active(data-tab='technology')
-        .container-Idi
-          include ./templates/observatorios/observatorios
+        .ui.segment
+          .row.center-xs
+            .col-xs-11.start-xs
+              include ./templates/observatorios/observatorios
+        .space-md
       .ui.tab(data-tab='social')
-        .container-Idi
-          include ./templates/observatorios/observatorios2
+        .ui.segment
+          .row.center-xs
+            .col-xs-11.start-xs
+              include ./templates/observatorios/observatorios2
+        .space-md
       .ui.tab(data-tab='agronomy')
-        .container-Idi
-          include ./templates/observatorios/observatorios3
+        .ui.segment
+          .row.center-xs
+            .col-xs-11.start-xs
+              include ./templates/observatorios/observatorios3
+        .space-md
 
 
   script.

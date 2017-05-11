@@ -22,6 +22,10 @@ block main
                 a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
                   i.delete.icon
                   |  Cerrar sesion
+        script.
+          $('.ui.dropdown')
+            .dropdown()
+          ;
       else
         li
           button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
@@ -34,6 +38,7 @@ block main
   .row-xs
   .row.center-xs.context1
     .col-xs-12.start-xs
+      .space-xs
       #context1
         .ui.secondary.menu
           a.item.active(data-tab='1') Convocatorias vigentes

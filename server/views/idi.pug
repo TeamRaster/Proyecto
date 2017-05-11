@@ -22,6 +22,10 @@ block main
                 a.item.reset_a(href="/accounts/logout" data-tooltip="Cierra la sesion activa" data-position="bottom left")
                   i.delete.icon
                   |  Cerrar sesion
+        script.
+          $('.ui.dropdown')
+            .dropdown()
+          ;
       else
         li
           button.ui.basic.button#comenzar(data-tooltip="Inicia sesion o registrate" data-position="bottom left" data-inverted="")
