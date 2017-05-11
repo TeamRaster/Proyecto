@@ -13,11 +13,26 @@ block main
             a.section(href="/home") Inicio
             i.right.chevron.icon.divider
             .active.section Usuarios
+          button#openModalDemands.ui.active.button.basic.green.margin-sm-left(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
+            i.plus.icon
+            | Crear Usuario
+          script.
+            $('#openModalDemands').click(function () {
+              $('.ui.modal#demands')
+                .modal('setting', 'closable', false)
+                .modal('show')
+              ;
+            })
         .right.menu
           include administrator/right_menu
   include administrator/sidebar
   include templates/errorMessage
   include templates/push-notifications
+
+  .ui.segment.teal.no-margin-top
+    h2.ui.center.aligned.icon.header.teal
+      i.circular.users.icon.teal
+      |   Usuarios
   .space-xs
   //Tabla para visualizar todos los usuarios modo Administrador
   .row.center-xs
@@ -75,10 +90,9 @@ block main
             th(colspan='2')
           tr
             th(colspan='8')
-              .ui.right.floated.small.primary.labeled.icon.button
-                i.user.icon
-                |  Agregar Usuario
               .ui.green.small.button
                 | Cambiar role
+              // todo Agregar validacion, is hay mas de 1 elemento seleccionado, se activa
               .ui.small.disabled.button
                 | Cambiar role a los seleccionados
+  .space-xs

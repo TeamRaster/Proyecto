@@ -13,7 +13,7 @@ block main
             a.section(href="/home") Inicio
             i.right.chevron.icon.divider
             .active.section Comunidades
-          button.ui.basic.button.margin-xs-left#openFormNew(data-tooltip="Inicia una nueva comunidad" data-position="bottom right" data-inverted="")
+          button.ui.green.button.margin-sm-left#openFormNew(data-tooltip="Inicia una nueva comunidad" data-position="bottom right" data-inverted="")
             i.plus.icon
             | Crear Comunidad
           script.
@@ -32,11 +32,10 @@ block main
   include administrator/sidebar
   include templates/errorMessage
   include templates/push-notifications
-  .ui.segments.no-margin-top
-    .ui.segment
-      h2.ui.center.aligned.icon.header.grey
-        i.circular.users.icon
-        |   Comunidades
+  .ui.segment.teal.no-margin-top
+    h2.ui.center.aligned.icon.header.teal
+      i.circular.users.icon
+      |   Comunidades
   .space-xs
   .row.center-xs
     .col-xs-5

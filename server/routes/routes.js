@@ -105,6 +105,25 @@ module.exports = (app) => {
             success : req.flash('success')
         })
     })
+    app.get('/settings-otech', (req, res) => {
+        res.render('settings-otech', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
+    app.get('/notices', (req, res) => {
+        res.render('news', {
+            user    : req.user,
+            err     : req.flash('err'),
+            warning : req.flash('warning'),
+            info    : req.flash('info'),
+            success : req.flash('success')
+        })
+    })
+
     // todo Zona de pruebas (Quitar en produccion)
     app.get('/test-error404', (req, res) => {
         res.render('error404')

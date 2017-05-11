@@ -13,27 +13,26 @@ block main
             a.section(href="/home") Inicio
             i.right.chevron.icon.divider
             .active.section Demandas
+          button#openModalDemands.ui.active.button.green.margin-sm-left(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
+            i.plus.icon
+            | Crear Demanda
+          script.
+            $('#openModalDemands').click(function () {
+              $('.ui.modal#demands')
+                .modal('setting', 'closable', false)
+                .modal('show')
+              ;
+            })
         .right.menu
           include administrator/right_menu
   include administrator/sidebar
   include templates/errorMessage
   include templates/push-notifications
-  .ui.segments.no-margin-top
-    .ui.segment
-      h2.ui.center.aligned.icon.header.red
-        i.circular.users.icon.red
-        |   Demandas
-    .ui.segment
-      button#openModalDemands.ui.active.button.green(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
-        i.plus.icon
-        | Crear Demanda
-      script.
-        $('#openModalDemands').click(function () {
-          $('.ui.modal#demands')
-            .modal('setting', 'closable', false)
-            .modal('show')
-          ;
-        })
+  .ui.segment.teal.no-margin-top
+    h2.ui.center.aligned.icon.header.teal
+      i.circular.users.icon
+      |   Demandas
+
   .contenedor-tabla
     table.ui.teal.sortable.celled.table.no-margin-top
       thead

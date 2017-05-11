@@ -1,6 +1,6 @@
 extends templates/template
 block title
-  | Noticias
+  | Configuracion OTecH
 block main
   .row.center-xs.nav-menu
     .col-xs-12
@@ -12,17 +12,7 @@ block main
           .ui.small.breadcrumb
             a.section.section-a(href="/home") Inicio
             i.right.chevron.icon.divider
-            .active.section Noticias
-          button#openModalDemands.ui.active.button.basic.green.margin-sm-left(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
-            i.plus.icon
-            | Crear Noticia
-          script.
-            $('#openModalDemands').click(function () {
-              $('.ui.modal#demands')
-                .modal('setting', 'closable', false)
-                .modal('show')
-              ;
-            })
+            .active.section Configuracion OTecH
         .right.menu
           include administrator/right_menu
   include administrator/sidebar
@@ -30,8 +20,8 @@ block main
   include templates/push-notifications
   .ui.segment.teal.no-margin-top
     h2.ui.center.aligned.icon.header.teal
-      i.circular.users.icon.teal
-      |   Noticias
+      i.circular.users.icon
+      |   Configuracion OTecH
 
   #example1.ui.teal.progress(data-percent='30')
     .bar
