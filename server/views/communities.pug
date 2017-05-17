@@ -150,7 +150,27 @@ block main
 
           })
 
-          community
+          function getIdGroup(groupId){
+
+            let BASE_URL = "http://localhost:3000"
+            $.ajax({'url': BASE_URL + "/groups/" + groupId,
+                'type' : 'GET',
+                'headers' : {'Content-Type' : 'application/json'},
+                //'data' : JSON.stringify(requestObject), // datos a enviar
+                'processData' : false,
+                'success' : function(data){
+                    //data = JSON.parse(data)
+                    console.log("Comunidad obtenida ", data);
+
+                },
+                'error': function(jqXHR, data){
+                    console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
+                    // 'Failed to save the settop box. See server logs for problem.</div>' );
+                    },
+                'dataType' : 'json'
+            });
+
+          }
 
           $('#update.ui.button.cursor-pointer').click(function (grouptag) {
 
@@ -170,7 +190,6 @@ block main
               })
               .modal('show')
 
-              let BASE_URL = "http://localhost:3000"
               if(groupId != null)
               {
                 $.ajax({'url': BASE_URL + "/groups/" + groupId,
