@@ -1,7 +1,8 @@
-'use strict'  // CLIENT SOCKETIO
-
+'use strict'
 
 const redis = require('redis')
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
 const client = redis.createClient()
 
 
@@ -13,6 +14,7 @@ const conn = io.connect(serverUrl);
 */
 module.exports = (app) => {
 
+    const io = require("socket.io")
     const Group = app.models.modelGroups
     const User = app.models.modelUsers
 
@@ -32,11 +34,11 @@ module.exports = (app) => {
         newGroup.save(err => {
             if (err) {
                 console.log(`  Error group no almacenada ${err}`)
-                res.redirect('/groups')
+                res.redirect('/community')
             }
             //fs.rename(req.files.image.path, "public/images/imagesGroup/" + newGroup._id + "." + ext_)
-            console.log('[Successfull]  Grupo CREADOO  con exito')
-            res.redirect('/groups')
+            console.log('[controllerGroup]  Grupo CREADOO  con exito')
+            res.redirect('/community')
             //res.status(200).send({newGroup: newGroup})
         })
     }
@@ -44,44 +46,95 @@ module.exports = (app) => {
 
     this.getGroups = (req, res) => {
 
-        // Group.find({}, (err, storedGroups) => {
-        //     if(err) {
-        //         console.log(`  Error al buscar todo grupo ${err}`)
-        //         res.redirect('/groups')
-        //     }
-        //
-        //     res.render('./viewsUserPlus/groups/index', {groups: storedGroups})
-        // })
-        res.render('groups', {
-            user    : req.user,
-            err     : req.flash('err'),
-            warning : req.flash('warning'),
-            info    : req.flash('info'),
-            success : req.flash('success')
+        Group.find({}, (err, storedGroups) => {
+            if(err) {
+                console.log(`  Error al buscar todo grupo ${err}`)
+                res.status(300).send({error: err})
+                //res.redirect('/groups')
+            }
+            //res.status(400).send({groups: storedGroups})
+
+            let adminsPopulate = {
+                                    path: "members", // miembros
+                                    //match: {isAdmin: {$in: [false] } }  // condicion  Admin como true
+                                }
+
+            User.populate(storedGroups, adminsPopulate, (err, storedGroups) => {
+
+                if(err) {
+                    console.log(`[getGrouP]   Error al buscar  group ${err}`)
+                }
+
+                ///console.log("menber ", Object.keys(storedGroups[0].members));
+
+                res.render('communities', {
+                    groups: storedGroups,
+
+                    user    : req.user,
+                    err     : req.flash('err'),
+                    warning : req.flash('warning'),
+                    info    : req.flash('info'),
+                    success : req.flash('success')
+                })
+
+            });
+
+
+            //res.render('./viewsUserPlus/groups/index', {groups: storedGroups})
         })
     }
 
 
-    this.getGroup = (req, res) => {
-        //console.log('claves ######<## ', Object.keys(req.user.id));
-        client.get('framework27', function(err, reply) {
-            console.log("REDIS ",   reply);
-        });
+    this.subsTo = (req, res) =>{
 
-        console.log('claves ######<## ', (req.user.id), 'feff' );
+        let group = req.params.groupId;
+
+        console.log("[controllerGroup.js] Subscribe group.toString()");
+        //client.subscribe('58d1a19621b3e007f4230909');
+        //client.publish('subscriptions', group.toString() ) // DO   --> realtimeGroups.js
+        client.publish('subscriptions', '58d1a19621b3e007f4230909_Redis' ) //
+
+        res.status(200).send({group: group})
+    }
+
+
+    this.getGroup = (req, res) => {
+    var groups2 = ['gpo1', 'gpo2', 'gpo3']
+    client.sadd(['grupos3', groups2 ], function(err, reply) { // TODO Agregar grupos del usuario ada vez que entre
+                console.log("GRUPOS SETEADOS ", reply);
+                ///res.status(200).send({message: 'done set', reply})
+    })
+
+        var auth = req.get('Authorization');
+
+        eventEmitter.emit('messageGroup', {
+                req: req,
+                res: res,
+                auth: auth
+            }
+        )
+
+        //console.log('claves ######<## ', (req.user.id), 'feff' );
 
         //let groupId
-        let usersST = {}
+        let usersSt = {}
         User.find({}, (err, storedUsers) => { // Obtener usuarios para agregr grupos TODO de momento son todos ...
             if(err) {
                 console.log('=========================================================')
                 console.log(`[groupsCrud/getGroups]: Error al recuperar todos los usuarios guardados ${err}`)
                 console.log('=========================================================')
             }
-            usersST = storedUsers
+            usersSt = storedUsers
         })
 
         Group.findById(req.params.id, (err, storedGroup) => {
+
+            /*io.sockets.on("connection", function (socket) {
+                var self = this;
+                socket.join("58d1a19621b3e007f4230909");  /// ********* Groups
+                socket.join("58d862d41e8ff619c41b3b80");  /// ********* Groups
+            })*/
+
 
             if(err) {
                 console.log(`[getGrouP]   Error al buscar  group ${err}`)
@@ -95,7 +148,7 @@ module.exports = (app) => {
 
             User.populate(storedGroup, adminsPopulate, (err, storedGroup) => {
 
-                if(err) {
+                if(err || !storedGroup) {
                     console.log(`[getGrouP]   Error al buscar  group ${err}`)
                 }
                 //res.status(200).send(storedGroup);
@@ -115,32 +168,32 @@ module.exports = (app) => {
                 */
                 //client.in(room).emit('message', { room: room, message: message });
                 ///client.sockets.in(room).emit('new msg to client', data)
-                console.log(Object.keys(storedGroup), '--------------- ');
+                //console.log(Object.keys(storedGroup), '--------------- ');
                 message = {
-                    messageTo: "Se publico en el canal  CTRLR "  + storedGroup['_id'],
+                    messageTo: "[getGrouP] Se publico en el canal  CTRLR "  + storedGroup['_id'],
                 }
 
                 //client.subscribe(storedGroup['_id'].toString())  //// // TODO     NO vaaqui
 
-                //client.publish('subscribe', 'groupSocketIO')
-
+                client.publish('subscribe', 'groupSocketIO')
                 client.publish('groupRedis', JSON.stringify(message))
-                //client.publish('groupSocketIO', JSON.stringify(message))
+
                 //console.log('Ennnnviarrrr ',  JSON.stringify(message));
                 message = {
                     messageTo: "-------- Entrar A AAAA  "
                 }
 
-                client.emit('subscribe', 'groupSocketIO')
+                client.emit('subscribe', 'groupSocketIO') // deprecated, dont exist TODO
+
                     // client.publish('message', JSON.stringify(message))
                     // client.publish(storedGroup['_id'].toString(), JSON.stringify(message) ) //  descomen
 
                 /*client.publish('notiToGroup', JSON.stringify(message) )
                 client.publish('58d1a19621b3e007f4230909', JSON.stringify(message) )*/
 
-                //res.status("200").send({group: storedGroup,  users: usersST})
 
-                res.render('./viewsUserPlus/groups/view', {group: storedGroup,  users: usersST})
+                //res.render('./viewsUserPlus/groups/view', {group: storedGroup,  users: usersSt})
+                res.status("200").send({group: storedGroup,  users: usersSt})
             });
         })
 
@@ -149,17 +202,30 @@ module.exports = (app) => {
 
     this.notiToGroup = (req, res) => { // notify to group // validar: isMemberGroup
         let groupId = req.params.groupId
-        console.log( " LKeys notif Groups ", Object.keys(req.params))
-        console.log( " LKeys notif Groups ", Object.keys(req.body))
-        let message = req.body.groupMessage
+        /*console.log( " LKeys notif Groups ", Object.keys(req.params))
+        console.log( " LKeys notif Groups ", Object.keys(req.body))*/
+        //let message = req.body.message
+
+        var message = {
+            room : req.body.room,
+            message : req.body.message,
+            type: 'message',
+        }
+
+        console.log("body room ", req.body.room);
 
         console.log('****************** grupo', groupId);
         console.log('****************mensaje del input', message);
 
         console.log("ID GRUPO   ", groupId);
 
-        client.publish('notiToGroup', JSON.stringify(message) )
-        client.publish('58d1a19621b3e007f4230909_Redis', JSON.stringify(message) )
+        console.log(typeof message)
+
+
+        client.publish('notiToGroup', message['message'] )
+        client.publish('58d1a19621b3e007f4230909_Redis', JSON.stringify(message) ) // Room y message
+        //client.publish('58d1a19621b3e007f4230909_Redis', message['message'] )
+        // io.sockets.in(room).emit('message', { room: room, message: message }); con IO
 
         res.status(200).send({ groupId: groupId})
 
@@ -197,7 +263,7 @@ module.exports = (app) => {
                 //client.subscribe(storedGroup['_id'].toString())  //// // TODO     NO vaaqui
                 client.publish(storedGroup['_id'].toString(), JSON.stringify(message) ) //  descomen
 
-                res.render('./viewsUserPlus/groups/view', {group: storedGroup,  users: usersST})
+                res.render('./viewsUserPlus/groups/view', {group: storedGroup,  users: usersSt})
             });
         })*/
 
@@ -234,12 +300,16 @@ module.exports = (app) => {
 
     this.deleteGroup = (req, res) => {
         Group.findOneAndRemove({_id: req.params.id}, (err, storedGroup) => {
+            console.log("[Eliminar]", req.params.id)
             if (err) {
                 console.log(`  Error al eliminar los datos ${err}`)
-                res.redirect('/groups')
+                //res.redirect('/groups')
+                res.status(500).send({message: "Hubo un error en el server"});
             }
             //fs.unlink("public/images/imagesGroup/" + storedGroup.image)
-            res.redirect('/groups')
+
+            res.redirect('/community', {message: "Eliminado correctamente"})
+            //res.status(200).send(storedGroup);
         })
     }
 
@@ -359,12 +429,29 @@ module.exports = (app) => {
         /*    User.populate(myGroups, adminsPopulate, (err, myGroups) => {
                 if(err) {
                     console.log(`getGroupS   Error al buscar  group ${err}`)
+                    res.status(200).send(err);
                 }
-                res.status(200).send(myGroups);
-
                 console.log("/////// Group Admins  ----- " + myGroups +" ------------");
                 //res.render('./viewsUserPlus/groups/view', {group: myGroups})
             });*/
+
+            let arrayGroups = [] // SOLO  Groups ID
+
+            for (var i = 0; i < myGroups.length; i++) {
+                //console.log('[controllerGroups] ADD group  ', myGroups[i]['_id'].toString());
+
+                //Añadir cada grupo a redis
+                client.sadd(['groupsOnline', myGroups[i]["_id"].toString() ], function(err,reply) {
+                        if (err) {
+                            console.log("[controllerGroups] Hubo un error con redis ", err)
+                        }
+                })
+            }
+
+            /*client.sadd(['grupos3', groups2 ], function(err, reply) { // TODO Agregar grupos del usuario ada vez que entre
+                        console.log("GRUPOS SETEADOS ", reply);
+                        ///res.status(200).send({message: 'done set', reply})
+            })*/
 
             res.status(200).send(myGroups);
 
@@ -375,6 +462,42 @@ module.exports = (app) => {
 
         })
     }
+
+    this.getAllGroupsIds = (req, res) => { // REtorna los ids de  todos los grupos disponibles
+
+        let storedGroups
+        let err
+
+        Group.find({}, (err, storedGroups) => {
+
+            console.log("found ", storedGroups);
+            //Groups = storedGroups
+
+            if(err) {
+                console.log(`[CtrlGroups] getGroupsIds   Error al buscar  groupS ${err}`)
+            }
+            return storedGroups;
+
+        })
+
+
+
+        /*grops.exec((error, groups ) => {
+                if(error)
+                    console.log(error);
+                //console.log(groups);
+                console.log("[CtrlGroups] -----------------------------------------------", groups)
+                console.log("------------------------------------");
+            }
+        )*/
+
+        /*console.log("[CtrlGroups]", Groups)
+        console.log("[CtrlGroups]", Object.keys(Groups))
+            console.log("_------------------------")
+            */
+        //return call
+    }
+
 
     this.getGroupAdmins = (req, res) => {
         let groupId = req.params.groupId

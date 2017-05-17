@@ -1,6 +1,10 @@
 'use strict'
 
 module.exports = (app) => {
+
+    const groupsCtrl = app.controllers.controllerGroups
+
+
     app.get('/', (req, res) => {  // Ruta para la pagina incial de la aplicacion
         console.log(`\n[Routes./]: Sesion actual del usuario (req.user) es :: ${JSON.stringify(req.user)}`)
         res.render('index', {
@@ -78,15 +82,7 @@ module.exports = (app) => {
         })
     })
     // Comunidad
-    app.get('/community', (req, res) => {
-        res.render('community', {
-            user    : req.user,
-            err     : req.flash('err'),
-            warning : req.flash('warning'),
-            info    : req.flash('info'),
-            success : req.flash('success')
-        })
-    })
+    app.get('/community', groupsCtrl.getGroups)
     app.get('/communities', (req, res) => {
         res.render('communities', {
             user    : req.user,

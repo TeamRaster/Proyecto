@@ -7,6 +7,7 @@ module.exports = (app) => {
     const GroupsSchema = new Schema({
         title        : String,
         description   : String,
+        category      : String,
         creationDate  : {
             type      : Date,
             default   : Date.now

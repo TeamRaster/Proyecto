@@ -1,6 +1,6 @@
 extends templates/template
 block title
-  | Administracion Comunidades
+  | Administración Comunidades
 block main
   .row.center-xs.nav-menu
     .col-xs-12
@@ -13,6 +13,17 @@ block main
             a.section(href="/home") Inicio
             i.right.chevron.icon.divider
             .active.section Administracion Comunidades
+          button#openModalCommunities.ui.active.button.green.margin-sm-left(data-tooltip="Es necesario llenar todos los campos" data-position="right center" data-inverted="")
+            i.plus.icon
+            | Crear Cominidad
+          script.
+            $('#openModalCommunities').click(function () {
+              $('.ui.modal#communities')
+                .modal('input.type').val('nameXD')
+                .modal('setting', 'closable', false)
+                .modal('show')
+              ;
+            })
         .right.menu
           include administrator/right_menu
   include administrator/sidebar
@@ -36,6 +47,33 @@ block main
           th Fecha de Creación
           th Funciones
       tbody
+
+        each community in groups
+          tr
+            td #1
+            //#{community._id}
+            td #{community.title}
+            td #{community.category}
+            td #{community.mail}
+            td #{community.creator}
+            td #{community.members.length}
+            td
+              each admMember in community.members
+                if admMember.isAdmin == true
+                  |  #{admMember.user}
+                  br
+            td January..
+            //--#{community.creationDate}
+
+            td.center.aligned
+              .ui.small.basic.icon.buttons
+                a.ui.button.cursor-pointer#update(data-tooltip=community._id data-position="bottom center" onClick="getIdGroup("+community._id+")")
+                  i.edit.icon.green
+                a.ui.button.cursor-pointer#view(value=community._id data-tooltip="Ver" data-position="bottom center")
+                  i.unhide.icon.blue
+                a.ui.button.cursor-pointer#remove(value=community._id data-tooltip="Eliminar" data-position="bottom center")
+                  i.delete.icon.red
+
         tr
           td 1
           td Raster Studios inc.
@@ -71,4 +109,263 @@ block main
             a(href="" data-tooltip="Editar" data-position="bottom center"): i.write.icon
             a(href="" data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon
 
+        script.
+          $('#remove.ui.button.cursor-pointer').click({}, function (groupDel ) {
+          grouptag = groupDel
 
+          var groupId = grouptag['target'].getAttribute("value")
+
+          let confirmationRemove = $('#confirmationRemove');
+             //confirmationRemove.find('a').attr("href", "/groups/" + grouptag['target'].getAttribute("value") + "?_method=DELETE");
+              confirmationRemove.modal({
+                closable: false,
+                onApprove: function () {
+
+                  let BASE_URL = "http://localhost:3000"
+                  console.log("Delete", grouptag['target'].getAttribute("value"))
+
+                  $.ajax({'url': BASE_URL + "/groups/" + groupId + "?_method=DELETE",
+                      'type' : 'POST',
+                      'headers' : {'Content-Type' : 'application/json'},
+                      //'data' : JSON.stringify(requestObject), // datos a enviar
+                      'processData' : false,
+                      'success' : function(data){
+                          //data = JSON.parse(data)
+                          console.log("Comunidad eliminado ", data);
+                          window.alert('Elemento eliminado con AJAX');
+
+                      },
+                      'error': function(jqXHR, data){
+                          window.alert('Elemento NO eliminado:', data);
+                          console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
+                          // 'Failed to save the settop box. See server logs for problem.</div>' );
+                          },
+                      'dataType' : 'json'
+                  });
+
+                }
+              })
+              .modal('show')
+            ;
+
+          })
+
+          function getIdGroup(groupId){
+            console.log(groupId)
+            let BASE_URL = "http://localhost:3000"
+            $.ajax({'url': BASE_URL + "/groups/" + groupId,
+                'type' : 'GET',
+                'headers' : {'Content-Type' : 'application/json'},
+                //'data' : JSON.stringify(requestObject), // datos a enviar
+                'processData' : false,
+                'success' : function(data){
+                    //data = JSON.parse(data)
+                    console.log("Comunidad obtenida ", data);
+
+                },
+                'error': function(jqXHR, data){
+                    console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
+                    // 'Failed to save the settop box. See server logs for problem.</div>' );
+                    },
+                'dataType' : 'json'
+            });
+
+          }
+
+          $('#update.ui.button.cursor-pointer').click(function (grouptag) {
+
+
+            let formUpdate = $('#formUpdate')
+              //$('.ui.large.modal#formUpdate').find("input[name='titleCommunity']").val("fedededef")
+              //.modal().header.val("dwdw")
+              .modal({
+                closable: false,
+                transition: 'fade up',
+              })
+              .modal('show')
+
+
+            ;
+          })
+
+          $('#view.ui.button.cursor-pointer').click(function () {
+            $('#viewSingle')
+              .modal({
+                closable: false,
+                transition: 'vertical flip'
+              })
+              .modal('show')
+            ;
+          })
+
+  // Ventana modal para nuevas comunidades
+  .ui.modal#communities
+    i.close.icon
+    .header
+      | Nueva Cominidad
+      .content_form
+        .ui.segment
+          form.ui.fluid.form(method="POST" action="/groups" enctype="multipart/form-data")
+            .ui.accordion
+              .content.field
+                .field
+                  label Titulo de la Cominidad
+                  input(type="text" name="title" placeholder="Titulo de la comunidad", required)
+              .title.active
+                i.icon.dropdown
+                |         Descripcion de la empresa
+              .content.field.active
+                .two.fields
+                  .field
+                    label Categoría
+                    input(type='text', name='category', placeholder='Categoría', required)
+
+                .two.fields
+                  .field
+                    label Direccion de la empresa
+                    input(type="text" name="direccionCominidad" placeholder="Direccion de la empresa", required)
+                  .field
+                    label Email
+                    input(type="email" name="email" placeholder="correo@ejemplo.com", required)
+                .two.fields
+                  .field
+                    label Telefono
+                    input(type="text" name="telefonoCominidad" placeholder="Telefono", required)
+
+              .title
+                i.icon.dropdown
+                |         Servicios
+              .content.field
+                .field
+                label Descripcion de la comunidad (sea especifico)
+                textarea(rows="6" name="description" placeholder="Actividad que se desea resolver", required)
+              .title
+                i.icon.dropdown
+                |        Datos de Contacto
+              .content.field
+                .field
+                  label Nombre del contacto
+                  input(type='text', name='nombre-contacto', placeholder='Nombre del contacto', required)
+                .two.fields
+                  .field
+                    label Telefono de contacto
+                    input(type='text', name='telefo-contacto', placeholder='Telefono de contacto', required)
+                  .field
+                    label Correo de contacto
+                    input(type='text', name='correo-contacto', placeholder='Correo de contacto', required)
+            button.ui.button.positive.right.labeled.icon(type='submit')
+              | Crear
+              i.checkmark.icon
+        script.
+          $('.ui.accordion')
+            .accordion()
+          ;
+
+  // Confirmacion de eliminar elemento
+  .ui.basic.modal#confirmationRemove
+    .ui.icon.header
+      i.remove.icon
+      |     ¿Deseas eliminar este elemento?
+    .content
+      p.font-size-sm El elemento se eliminará permanentemente y ya no podrá ser recuperado, ¿Realmente deseas eliminar este elemento?
+    .actions
+      .ui.red.basic.cancel.inverted.button
+        i.remove.icon
+        |       Cancelar
+      a(href="#").ui.green.ok.inverted.button
+        i.checkmark.icon
+        |       Aceptar
+
+  // Ventana modal para formulario editar
+  .ui.large.modal#formUpdate
+    i.close.icon
+    .header
+      | Actualizacion de datos
+      .content_form
+        .ui.segment
+          form.ui.fluid.form(method="POST" action="" enctype="multipart/form-data")
+            .ui.accordion
+              .content.field
+                .field
+                  label Titulo de la Cominidad
+                  input(type="text" name="titleCommunity" placeholder="Titulo de la comunidad" value="test")
+              .title.active
+                i.icon.dropdown
+                |         Datos de la empresa
+              .content.field.active
+                .two.fields
+                  .field
+                    label Nombre
+                    input(type='text', name='empresaCominidad', placeholder='Nombre' value="test")
+                  .field
+                    label Giro de la empresa
+                    input(type='text', name='giroCominidad', placeholder="Giro de la empresa" value="test")
+                .two.fields
+                  .field
+                    label Direccion de la empresa
+                    input(type="text" name="direccionCominidad" placeholder="Direccion de la empresa" value="test")
+                  .field
+                    label Correo
+                    input(type="email" placeholder="correo@ejemplo.com" value="test@test.com")
+                .two.fields
+                  .field
+                    label Telefono
+                    input(type="text" name="telefonoCominidad" placeholder="Telefono" value="test")
+
+              .title
+                i.icon.dropdown
+                |         Servicios
+              .content.field
+                .field
+                label Descripcion de la comunidad (sea especifico)
+                textarea(rows="6" name="acerca-empresa" placeholder="Actividad que se desea resolver" value="test")
+              .title
+                i.icon.dropdown
+                |        Datos de Contacto
+              .content.field
+                .field
+                  label Nombre del contacto
+                  input(type='text', name='nombre-contacto', placeholder='Nombre del contacto' value="test")
+                .two.fields
+                  .field
+                    label Telefono de contacto
+                    input(type='text', name='telefo-contacto', placeholder='Telefono de contacto' value="test")
+                  .field
+                    label Correo de contacto
+                    input(type='email', name='correo-contacto', placeholder='Correo de contacto' value="test@test.com")
+            button.ui.button.positive.right.labeled.icon(type='submit')
+              | Guardar
+              i.save.icon
+        script.
+          $('.ui.accordion')
+            .accordion()
+          ;
+
+  // Ventana modal para Visualizar
+  .ui.modal#viewSingle
+    i.close.icon
+    .header
+      | Modo: Vista Rapida
+      .row.center-xs
+        .col-xs-12
+          article.post
+            header
+              .row.start-xs
+                .col-xs-9.title
+                  h2
+                    a(href='#') Magna sed adipiscing
+                  p Lorem ipsum dolor amet nullam consequat etiam feugiat
+                .col-xs-3.meta
+                  time.published.font-size-xs(datetime='2015-11-01') November 1, 2015
+                  a.author(href='#')
+                    span.name.font-size-xs Jane Doe
+                    img(src='http://lorempixel.com/50/50/', alt='')
+            span.image.featured
+              img(src='http://lorempixel.com/800/550/', alt='')
+            p.text.font-size-sm Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      .actions
+        .ui.black.deny.button
+          | Cerrar
+        a(href="").ui.positive.right.labeled.icon.button
+          | Ver mas
+          i.folder.open.icon

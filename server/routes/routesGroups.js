@@ -9,11 +9,24 @@ module.exports = (app) => {
     const auth = require('../middlewares/auth')  // Llamada del middleware para la validacion de las rutas
 
     client.on('connect', function() {
-        // console.log('connected REDIS ');
+        console.log('connected REDIS ');
+    });
+
+    // Experimento partial view pug ..
+    app.get('/page', function(req,res){
+        if (req.xhr) {
+            console.log("XHRR ---")
+            res.render("page", {pets: "renders AJAX 2", layout: false});
+            //res.render('page', {layout: !req.xhr});
+        }
+        else{
+            console.log("FULL GET")
+            res.render("page_full", {pets: "GET"});
+        }
+
     });
 
     app.get('/groups/redis', (req, res) => {  // TESTS REDIS
-
         res.render('./viewsUserPlus/tests/redis')
 
     })
@@ -22,11 +35,10 @@ module.exports = (app) => {
     app.get('/groups/redis/set', (req, res) => {
 
     // //client.del('tags', function(err, reply) { delete
-
-    client.sadd(['tags', 'angularjs', 'backbonejs', 'emberjs'], function(err, reply) {
-          console.log(reply);
-        res.status(200).send({message: 'done set', reply})
-    })
+        client.sadd(['tags', 'angularjs', 'backbonejs', 'emberjs'], function(err, reply) {
+              console.log(reply);
+            res.status(200).send({message: 'done set', reply})
+        })
 
     })
 
@@ -34,8 +46,7 @@ module.exports = (app) => {
     app.get('/groups/redis/get', (req, res) => {
 
         client.smembers('tags', function(err, reply) {
-            console.log(reply);
-            res.status(200).send({message: 'done set', reply})
+            console.log("GRUPOS OBTENIDOS ", reply);
         });
 
     })  // TESTS REDIS
@@ -56,6 +67,10 @@ module.exports = (app) => {
         .get(controllerGroups.getGroup)
         .put(controllerGroups.updateGroup)
         .delete(controllerGroups.deleteGroup)
+
+    // miembros y subscripciones a Grupos
+    app.route('/groups/subscribe/:groupId')
+        .post(controllerGroups.subsTo)
 
         // miembros y solicitudes de Grupos
     app.route('/groups/member/:groupId/:userId') // Crud a MIEMBROS de grupos  * SOLO ADMINS
