@@ -84,7 +84,7 @@ module.exports = (app) => {
     // Comunidad
     app.get('/community', groupsCtrl.getGroups)
     app.get('/communities', (req, res) => {
-        res.render('communities', {
+        res.render('community', {
             user    : req.user,
             err     : req.flash('err'),
             warning : req.flash('warning'),

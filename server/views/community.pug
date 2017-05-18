@@ -87,23 +87,6 @@ block main
       .grid-card
         .ui.special.four.cards
 
-          each community in groups
-
-            .card.center-panel
-              .blurring.dimmable.image
-                .ui.dimmer
-                  .content
-                    .center
-                      .ui.inverted.button Unirme
-                img(src="http://lorempixel.com/300/220")
-              .content
-                a.header Community #{community.title}
-                .description
-                  p  #{community.description}
-              .extra.content
-                a: i.users.icon
-                | 2 Members
-
           while card < 18
             .card.center-panel
               .blurring.dimmable.image

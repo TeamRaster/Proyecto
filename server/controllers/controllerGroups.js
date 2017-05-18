@@ -307,9 +307,10 @@ module.exports = (app) => {
                 res.status(500).send({message: "Hubo un error en el server"});
             }
             //fs.unlink("public/images/imagesGroup/" + storedGroup.image)
+            //res.redirect('/community')
 
-            res.redirect('/community', {message: "Eliminado correctamente"})
-            //res.status(200).send(storedGroup);
+            //res.render('community', {message: "Eliminado correctamente"})
+            res.status(200).send({storedGroup, message: "Eliminado correctamente"});
         })
     }
 
