@@ -67,7 +67,7 @@ block main
 
             td.center.aligned
               .ui.small.basic.icon.buttons
-                a.ui.button.cursor-pointer#update(data-tooltip=community._id data-position="bottom center" onClick='getIdGroup(\""+community._id+"\")' )
+                a.ui.button.cursor-pointer#update(data-tooltip=community._id data-position="bottom center", onClick="getIdGroup(\""+ community._id +"\")" )
                   i.edit.icon.green
                 a.ui.button.cursor-pointer#view(value=community._id data-tooltip="Ver" data-position="bottom center")
                   i.unhide.icon.blue
@@ -133,7 +133,6 @@ block main
                           //data = JSON.parse(data)
                           console.log("Comunidad eliminado ", data);
                           window.alert('Elemento eliminado con AJAX');
-
                       },
                       'error': function(jqXHR, data){
                           window.alert('Elemento NO eliminado:', data);
@@ -151,6 +150,7 @@ block main
           })
 
           function getIdGroup(groupId){
+            console.log("Comunidad ", groupId);
 
             let BASE_URL = "http://localhost:3000"
             $.ajax({'url': BASE_URL + "/groups/" + groupId,
@@ -174,12 +174,6 @@ block main
 
           $('#update.ui.button.cursor-pointer').click(function (grouptag) {
 
-            var groupId = "default"
-            console.log("Comunidad ", groupId);
-
-            groupId = grouptag['target'].getAttribute("value")
-            console.log("Comunidad ", groupId);
-            console.log("Comunidad nula?? ", groupId != null);
 
             let formUpdate = $('#formUpdate')
               //$('.ui.large.modal#formUpdate').find("input[name='titleCommunity']").val("fedededef")
@@ -190,30 +184,11 @@ block main
               })
               .modal('show')
 
-              if(groupId != null)
-              {
-                $.ajax({'url': BASE_URL + "/groups/" + groupId,
-                    'type' : 'GET',
-                    'headers' : {'Content-Type' : 'application/json'},
-                    //'data' : JSON.stringify(requestObject), // datos a enviar
-                    'processData' : false,
-                    'success' : function(data){
-                        //data = JSON.parse(data)
-                        console.log("Comunidad obtenida ", data);
 
-                    },
-                    'error': function(jqXHR, data){
-                        console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
-                        // 'Failed to save the settop box. See server logs for problem.</div>' );
-                        },
-                    'dataType' : 'json'
-                });
-              }
-
-              formUpdate.find("input[name='titleCommunity']").val("fedededef")
+              /*formUpdate.find("input[name='titleCommunity']").val("fedededef")
               formUpdate.find("input[name='titleCommunity']").val("fedededef")
               formUpdate.find("input[name='titleCommunity']").val("fedededefed")
-              formUpdate.find("input[name='titleCommunity']").val("fedededefefw")
+              formUpdate.find("input[name='titleCommunity']").val("fedededefefw")*/
             ;
           })
           $('#view.ui.button.cursor-pointer').click(function () {
