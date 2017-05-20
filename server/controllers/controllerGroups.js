@@ -274,7 +274,7 @@ module.exports = (app) => {
 
         Group.findById(req.params.id, (err, storedGroup) => {
             if(err) {
-                console.log(`  Error al buscar el g     rupo ${err}`)
+                console.log(` [controllerGoups] Error al buscar el grupo ${err}`)
                 res.redirect('/groups')
             }
             storedGroup.business    = req.body.business

@@ -67,7 +67,7 @@ block main
 
             td.center.aligned
               .ui.small.basic.icon.buttons
-                a.ui.button.cursor-pointer#update(data-value=community._id data-tooltip="Editar" data-position="bottom center", onClick="getGroupById(\""+ community._id +"\")" )
+                a.ui.button.cursor-pointer#update(data-value=community._id data-tooltip="Editar" data-position="bottom center")
                   i.edit.icon.green
                 a.ui.button.cursor-pointer#view(data-value=community._id data-tooltip="Ver" data-position="bottom center")
                   i.unhide.icon.blue
@@ -128,7 +128,6 @@ block main
                   $.ajax({'url': BASE_URL + "/groups/" + groupId + "?_method=DELETE",
                       'type' : 'POST',
                       'headers' : {'Content-Type' : 'application/json'},
-                      //'data' : JSON.stringify(requestObject), // datos a enviar
                       'processData' : false,
                       'success' : function(data){
 
@@ -153,19 +152,54 @@ block main
 
           })
 
+
           //Funcione obtener comunidad con AJAX
           function getGroupById(groupId){
             console.log("Comunidad ", groupId);
 
-            let BASE_URL = "http://localhost:3000"
             $.ajax({'url': BASE_URL + "/groups/" + groupId,
                 'type' : 'GET',
                 'headers' : {'Content-Type' : 'application/json'},
-                //'data' : JSON.stringify(requestObject), // datos a enviar
+                'processData' : false,
+                'success' : function(data){
+                    //data = JSON.parse(data)
+                    return data;
+                    console.log("Comunidad obtenida ", data);
+
+                },
+                'error': function(jqXHR, data){
+                    console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
+                    return data
+                    // 'Failed to save the settop box. See server logs for problem.</div>' );
+                    },
+                'dataType' : 'json'
+            });
+
+          }
+
+          $('#update.ui.button.cursor-pointer').click(function () {
+            var group = this
+            var groupId = group.getAttribute("data-value")
+
+
+            $.ajax({'url': BASE_URL + "/groups/" + groupId,
+                'type' : 'GET',
+                'headers' : {'Content-Type' : 'application/json'},
                 'processData' : false,
                 'success' : function(data){
                     //data = JSON.parse(data)
                     console.log("Comunidad obtenida ", data);
+                    let formUpdate = $('#formUpdate');
+
+                    formUpdate
+                    .modal({
+                      closable: false,
+                      transition: 'fade up',
+                    })
+                    .modal('show')
+                    .find("input[name='titleCommunity']").val("acamoc");
+                    // concatenar valor groups
+                    formUpdate.find("form").attr("action", function(i, actVal){return (actVal + groupId.toString() + "?_method=PUT") } );
 
                 },
                 'error': function(jqXHR, data){
@@ -175,36 +209,41 @@ block main
                 'dataType' : 'json'
             });
 
-          }
 
-          $('#update.ui.button.cursor-pointer').click(function () {
-            console.log("super this ", this )
-            console.log("super this ", this.getAttribute("value") )
-
-            let formUpdate = $('#formUpdate')
               //$('.ui.large.modal#formUpdate').find("input[name='titleCommunity']").val("fedededef")
               //.modal().header.val("dwdw")
-              .modal({
-                closable: false,
-                transition: 'fade up',
-              })
-              .modal('show')
-
-
-              /*formUpdate.find("input[name='titleCommunity']").val("fedededef")
-              formUpdate.find("input[name='titleCommunity']").val("fedededef")
-              formUpdate.find("input[name='titleCommunity']").val("fedededefed")
-              formUpdate.find("input[name='titleCommunity']").val("fedededefefw")*/
-            ;
           })
+
           $('#view.ui.button.cursor-pointer').click(function () {
-            $('#viewSingle')
-              .modal({
-                closable: false,
-                transition: 'vertical flip'
-              })
-              .modal('show')
-            ;
+            var group = this
+            var groupId = group.getAttribute("data-value")
+
+              $.ajax({'url': BASE_URL + "/groups/" + groupId,
+                  'type' : 'GET',
+                  'headers' : {'Content-Type' : 'application/json'},
+                  'processData' : false,
+                  'success' : function(data){
+                      //data = JSON.parse(data)
+                      console.log("Comunidad View ", data);
+
+                      $('#viewSingle')
+                      .modal({
+                      closable: false,
+                      transition: 'vertical flip'
+                      })
+                      .modal('show')
+                      .find("#nameGroup").text(data.group['_id'])
+                      ;
+
+                  },
+                  'error': function(jqXHR, data){
+                      console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
+                      // 'Failed to save the settop box. See server logs for problem.</div>' );
+                      },
+                  'dataType' : 'json'
+              });
+
+
           })
 
   // Ventana modal para nuevas comunidades
@@ -292,7 +331,8 @@ block main
       | Actualizacion de datos
       .content_form
         .ui.segment
-          form.ui.fluid.form(method="POST" action="" enctype="multipart/form-data")
+
+          form.ui.fluid.form(method="POST" action="/groups/" enctype="multipart/form-data")
             .ui.accordion
               .content.field
                 .field
@@ -362,7 +402,7 @@ block main
               .row.start-xs
                 .col-xs-9.title
                   h2
-                    a(href='#') Magna sed adipiscing
+                    a(id="nameGroup" href='#') Magna sed adipiscing
                   p Lorem ipsum dolor amet nullam consequat etiam feugiat
                 .col-xs-3.meta
                   time.published.font-size-xs(datetime='2015-11-01') November 1, 2015
