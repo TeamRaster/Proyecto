@@ -32,14 +32,15 @@ block main
   .ui.segment.red.no-margin-top
     h2.ui.center.aligned.icon.header.red
       i.circular.users.icon.red
-      |   Administracion Comunidades
+      |   Administración Comunidades
   .contenedor-tabla
     table.ui.single.line.table.striped
       thead
         tr
           th ID
-          th Nombre comunidad
-          th Categoria
+          th Comunidad
+          th Categoría / Subcategoría
+          th Privacidad
           th Creador
           th E-mail
           th N. Miembros
@@ -52,8 +53,9 @@ block main
           tr
             td #1
             //#{community._id}
-            td #{community.title}
-            td #{community.category}
+            td #{community.name}
+            td #{community.category} | #{community.subcategory}
+            td #{community.privacy   }
             td #{community.mail}
             td #{community.creator}
             td #{community.members.length}
@@ -77,23 +79,7 @@ block main
         tr
           td 1
           td Raster Studios inc.
-          td Software
-          td JUanito Banana
-          td raster@studios.com
-          td 50958
-          td
-            | juanito
-            br
-            | pedrito
-            br
-          td January 11, 2014
-          td
-            a(href="" data-tooltip="Ver" data-position="bottom center"): i.unhide.icon
-            a(href="" data-tooltip="Editar" data-position="bottom center"): i.write.icon
-            a(href="" data-tooltip="Eliminar" data-position="bottom center"): i.remove.icon
-        tr
-          td 2
-          td Raster Studios inc.
+          td Cat | subcat
           td Software
           td JUanito Banana
           td raster@studios.com
@@ -152,31 +138,6 @@ block main
 
           })
 
-
-          //Funcione obtener comunidad con AJAX
-          function getGroupById(groupId){
-            console.log("Comunidad ", groupId);
-
-            $.ajax({'url': BASE_URL + "/groups/" + groupId,
-                'type' : 'GET',
-                'headers' : {'Content-Type' : 'application/json'},
-                'processData' : false,
-                'success' : function(data){
-                    //data = JSON.parse(data)
-                    return data;
-                    console.log("Comunidad obtenida ", data);
-
-                },
-                'error': function(jqXHR, data){
-                    console.log("[DeleteCommunityAJAX] Error al enviar peticion: ", data);
-                    return data
-                    // 'Failed to save the settop box. See server logs for problem.</div>' );
-                    },
-                'dataType' : 'json'
-            });
-
-          }
-
           $('#update.ui.button.cursor-pointer').click(function () {
             var group = this
             var groupId = group.getAttribute("data-value")
@@ -196,10 +157,16 @@ block main
                       closable: false,
                       transition: 'fade up',
                     })
-                    .modal('show')
-                    .find("input[name='titleCommunity']").val("acamoc");
-                    // concatenar valor groups
-                    formUpdate.find("form").attr("action", function(i, actVal){return (actVal + groupId.toString() + "?_method=PUT") } );
+                    .modal('show');
+
+                    // Valores actuales del grupo a campos del formulario
+                    formUpdate.find("input[name='nameCommunity']").val(data.group.name);
+                    formUpdate.find("textarea[name='descriptionCommunity']").val(data.group.description);
+                    formUpdate.find("input[name='categoryCommunity']").val(data.group.category);
+                    formUpdate.find("input[name='subcategoryCommunity']").val(data.group.subcategory);
+                    formUpdate.find("checkbox[name='privacyCommunity']").val(data.group.privacy);
+
+                    formUpdate.find("form").attr("action", "/groups/" + groupId.toString() + "?_method=PUT");
 
                 },
                 'error': function(jqXHR, data){
@@ -250,60 +217,37 @@ block main
   .ui.modal#communities
     i.close.icon
     .header
-      | Nueva Cominidad
+      | Nueva Comunidad
       .content_form
         .ui.segment
-          form.ui.fluid.form(method="POST" action="/groups" enctype="multipart/form-data")
-            .ui.accordion
-              .content.field
-                .field
-                  label Titulo de la Cominidad
-                  input(type="text" name="title" placeholder="Titulo de la comunidad", required)
-              .title.active
-                i.icon.dropdown
-                |         Descripcion de la empresa
-              .content.field.active
-                .two.fields
-                  .field
-                    label Categoría
-                    input(type='text', name='category', placeholder='Categoría', required)
-
-                .two.fields
-                  .field
-                    label Direccion de la empresa
-                    input(type="text" name="direccionCominidad" placeholder="Direccion de la empresa", required)
-                  .field
-                    label Email
-                    input(type="email" name="email" placeholder="correo@ejemplo.com", required)
-                .two.fields
-                  .field
-                    label Telefono
-                    input(type="text" name="telefonoCominidad" placeholder="Telefono", required)
-
-              .title
-                i.icon.dropdown
-                |         Servicios
-              .content.field
-                .field
-                label Descripcion de la comunidad (sea especifico)
-                textarea(rows="6" name="description" placeholder="Actividad que se desea resolver", required)
-              .title
-                i.icon.dropdown
-                |        Datos de Contacto
-              .content.field
-                .field
-                  label Nombre del contacto
-                  input(type='text', name='nombre-contacto', placeholder='Nombre del contacto', required)
-                .two.fields
-                  .field
-                    label Telefono de contacto
-                    input(type='text', name='telefo-contacto', placeholder='Telefono de contacto', required)
-                  .field
-                    label Correo de contacto
-                    input(type='text', name='correo-contacto', placeholder='Correo de contacto', required)
+          form.ui.fluid.form(method="POST" action="/groups")
+            .field
+              label Nombre del la comunidad
+              input(type="text" name="nameCommunity" placeholder="Nombre")
+            .field
+              label Categoría
+              input(type="text" name="categoryCommunity")
+            .field
+              label Subcategoría
+              input(type="text" name="subcategoryCommunity")
+            .field
+              label Descripcion
+              textarea(name="descriptionCommunity")
+            .field
+              .ui.checkbox
+                input.hidden(type='checkbox', tabindex='0', name="privacyCommunity")
+                label Comunidad privada
+            script.
+              $('.ui.checkbox')
+                .checkbox()
+              ;
+            .field
+              label Logotipo del la comunidad
+              input(type="file")
+            //todo Esto puede hacerse con ajax, y jquery para que cuando se presione el boton, se envie el form por post
             button.ui.button.positive.right.labeled.icon(type='submit')
-              | Crear
-              i.checkmark.icon
+              | Guardar cambios
+              i.plus.icon
         script.
           $('.ui.accordion')
             .accordion()
@@ -324,71 +268,47 @@ block main
         i.checkmark.icon
         |       Aceptar
 
+
   // Ventana modal para formulario editar
   .ui.large.modal#formUpdate
     i.close.icon
     .header
-      | Actualizacion de datos
+      | Actualización de datos
       .content_form
         .ui.segment
 
-          form.ui.fluid.form(method="POST" action="/groups/" enctype="multipart/form-data")
-            .ui.accordion
-              .content.field
-                .field
-                  label Titulo de la Cominidad
-                  input(type="text" name="titleCommunity" placeholder="Titulo de la comunidad" value="test")
-              .title.active
-                i.icon.dropdown
-                |         Datos de la empresa
-              .content.field.active
-                .two.fields
-                  .field
-                    label Nombre
-                    input(type='text', name='empresaCominidad', placeholder='Nombre' value="test")
-                  .field
-                    label Giro de la empresa
-                    input(type='text', name='giroCominidad', placeholder="Giro de la empresa" value="test")
-                .two.fields
-                  .field
-                    label Direccion de la empresa
-                    input(type="text" name="direccionCominidad" placeholder="Direccion de la empresa" value="test")
-                  .field
-                    label Correo
-                    input(type="email" placeholder="correo@ejemplo.com" value="test@test.com")
-                .two.fields
-                  .field
-                    label Telefono
-                    input(type="text" name="telefonoCominidad" placeholder="Telefono" value="test")
-
-              .title
-                i.icon.dropdown
-                |         Servicios
-              .content.field
-                .field
-                label Descripcion de la comunidad (sea especifico)
-                textarea(rows="6" name="acerca-empresa" placeholder="Actividad que se desea resolver" value="test")
-              .title
-                i.icon.dropdown
-                |        Datos de Contacto
-              .content.field
-                .field
-                  label Nombre del contacto
-                  input(type='text', name='nombre-contacto', placeholder='Nombre del contacto' value="test")
-                .two.fields
-                  .field
-                    label Telefono de contacto
-                    input(type='text', name='telefo-contacto', placeholder='Telefono de contacto' value="test")
-                  .field
-                    label Correo de contacto
-                    input(type='email', name='correo-contacto', placeholder='Correo de contacto' value="test@test.com")
+          form.ui.fluid.form(method="POST" action="")
+            .field
+              label Nombre del la comunidad
+              input(type="text" name="nameCommunity" placeholder="Nombre")
+            .field
+              label Categoría
+              input(type="text" name="categoryCommunity")
+            .field
+              label Subcategoría
+              input(type="text" name="subcategoryCommunity")
+            .field
+              label Descripcion
+              textarea(name="descriptionCommunity")
+            .field
+              .ui.checkbox(id='check2' )
+                //TODO valores del check box ** Al cargar
+                  $("#formUpdate").find("#check2").addClass("checked");
+                  $("#formUpdate").find("input[name='privacyCommunity']").attr("checked","true");;
+                  $("#formUpdate").find("input[name='privacyCommunity']").val("off");
+                input.hidden(type='checkbox', tabindex='0', name="privacyCommunity")
+                label Comunidad privada
+            script.
+              $('.ui.checkbox')
+                .checkbox()
+              ;
+            .field
+              label Logotipo del la comunidad
+              input(type="file")
+            //todo Esto puede hacerse con ajax, y jquery para que cuando se presione el boton, se envie el form por post
             button.ui.button.positive.right.labeled.icon(type='submit')
-              | Guardar
-              i.save.icon
-        script.
-          $('.ui.accordion')
-            .accordion()
-          ;
+              | Guardar cambios
+              i.plus.icon
 
   // Ventana modal para Visualizar
   .ui.modal#viewSingle

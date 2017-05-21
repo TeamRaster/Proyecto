@@ -81,7 +81,12 @@ module.exports = (app) => {
     this.getFiles = (req, res) => {
 
         Folder.find({}, (err, storedFolders) => {
-            User.populate(storedFolders, {path: "creator"}, (err, storedFolders) => {
+            let usersPopulate = {
+                path: "creator",
+                select : "-password -provider -administrator" // Campos a excluir del usuario
+            }
+
+            User.populate(storedFolders, usersPopulate, (err, storedFolders) => {
                 if(err) {
                     console.log(`getGroup   Error al buscar  Ueser group ${err}`)
                 }

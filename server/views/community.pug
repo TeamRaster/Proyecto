@@ -3,6 +3,29 @@ block title
   | Comunidades
 block main
   script(src="/js/ajaxGroups.js")
+  script.
+    $(document).ready(function() {
+
+    let BASE_URL = "http://localhost:3000"
+
+        $.ajax({'url': BASE_URL + '/groups',
+            'type' : 'GET',
+            'headers' : {'Content-Type' : 'application/json'},
+            'success' : function(data){
+                console.log("Mis grupos ", data);
+
+            },
+
+            'error': function(jqXHR, data){
+                console.log("[CLientGroups] Error al enviar petioción: ", data);
+                // 'Failed to save the settop box. See server logs for problem.</div>' );
+                },
+            'dataType' : 'json'
+        });
+
+    });
+
+
 
   .row.center-xs.nav-menu
     .col-xs-12
@@ -80,13 +103,33 @@ block main
             ;
           })
         ;
-  // Main
-  - var card = 0;
+  // Main  Todas las comunidadaes
   .row.center-xs
     .col-xs-11.start-xs
       .grid-card
         .ui.special.four.cards
 
+        if(groups)
+          each community in groups
+            .card.center-panel
+              .blurring.dimmable.image
+                .ui.dimmer
+                  .content
+                    .center
+                      .ui.inverted.button Unirme #{community._id}
+                img(src="http://lorempixel.com/300/220")
+              .content
+                a.header Communidad #{community.name}
+                .description
+                  p  #{community.description}
+                    br
+                    | #{community.category} | #{community.subcategory}
+              .extra.content
+                a: i.users.icon
+                |  #{community.members.length} Members
+
+
+          - var card = 0;
           while card < 18
             .card.center-panel
               .blurring.dimmable.image

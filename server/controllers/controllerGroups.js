@@ -4,6 +4,7 @@ const redis = require('redis')
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 const client = redis.createClient()
+const multer = require('multer') // Modulo para el manejo de archivos, crear, mover, eliminar, renombrar etc
 
 
 // no usado
@@ -14,30 +15,54 @@ const conn = io.connect(serverUrl);
 */
 module.exports = (app) => {
 
+    const auth = app.middlewares.auth  // Llamada del middleware para la validacion de las rutas
+            , find = app.middlewares.find  // Llamada del middleware para la busqueda
+            , validate = app.middlewares.validations  // Llama al middleware para las validaciones
+
     const io = require("socket.io")
     const Group = app.models.modelGroups
     const User = app.models.modelUsers
 
+    //TODO decada método se pude ver que campos de la base de datos no son necesatrio retornar ...
+    let storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, 'public/images/imagesPublications/')  // URL donde se almacenan las imagenes
+        },
+        filename: function (req, file, cb) {
+            cb(null, 'imageSource-' + Date.now() + '.' + file.originalname.split('.').pop())  // Renombra el archivo, despues lo mueve
+        },
+        onError: function (error, next) {
+            console.log(`\n[[controllerGroups.storage]: Ups hay un error => ${error}`)
+            next(error)
+        }
+    })
+        , upload = multer({ storage: storage })  // Usa el storage especificado con anterioridad
+
+
     this.setGroup = (req, res) => {
         ///let ext_ = req.files.image.name.split(".").pop()
+        if(req.body)   {
+            console.log("[controllerGroups.set] Group ", JSON.stringify(req.body))}
 
         let newGroup = new Group({
-            title      : req.body.title,
-            description   : req.body.description,
+            name      : req.body.nameCommunity,
+            description      : req.body.descriptionCommunity,
+            category      : req.body.categoryCommunity,
+            subcategory      : req.body.subcategoryCommunity,
+            privacy   : req.body.privacyCommunity // Public / private
             //creator      : 'id_creator',
-            // contact       : 'id_contact', // todo usar id de cada equema para relacionarlo
+            // contact       : 'id_contact', // todo usar id de cada esquema para relacionarlo
             // creator       : 'id_creator'
         })
-
-        console.log(JSON.stringify(newGroup));
+        console.log("[controllerGroups.set] Privacy ", req.body.privacyCommunity)
 
         newGroup.save(err => {
             if (err) {
-                console.log(`  Error group no almacenada ${err}`)
+                console.log(`[controllerGroups.set] Error group no almacenada ${err}`)
                 res.redirect('/community')
             }
             //fs.rename(req.files.image.path, "public/images/imagesGroup/" + newGroup._id + "." + ext_)
-            console.log('[controllerGroup]  Grupo CREADOO  con exito')
+            console.log('[controllerGroup.set]  Grupo CREADOO  con exito')
             res.redirect('/community')
             //res.status(200).send({newGroup: newGroup})
         })
@@ -48,7 +73,7 @@ module.exports = (app) => {
 
         Group.find({}, (err, storedGroups) => {
             if(err) {
-                console.log(`  Error al buscar todo grupo ${err}`)
+                console.log(` [controllerGroups.get] Error al buscar todo grupo ${err}`)
                 res.status(300).send({error: err})
                 //res.redirect('/groups')
             }
@@ -56,26 +81,37 @@ module.exports = (app) => {
 
             let adminsPopulate = {
                                     path: "members", // miembros
-                                    //match: {isAdmin: {$in: [false] } }  // condicion  Admin como true
-                                }
+                                    //match: {isAdmin: {$in: [false] } },  // condicion  Admin como true
+                                    select : "-password -provider -administrator" // Campos a excluir del usuario
+            }
 
             User.populate(storedGroups, adminsPopulate, (err, storedGroups) => {
 
                 if(err) {
-                    console.log(`[getGrouP]   Error al buscar  group ${err}`)
+                    console.log(`[controllerGroups.getGrouP]   Error al buscar  group ${err}`)
                 }
 
-                ///console.log("menber ", Object.keys(storedGroups[0].members));
 
-                res.render('communities', {
-                    groups: storedGroups,
+                if (req.xhr) { // Si la petición es AJAX devuelve solo los satos solicitados
+                    console.log("XHRR ---")
+                    res.status(200).send(storedGroups)
+                }
+                else{ // Si no, renderizar página completa
+                    console.log("FULL GET")
+                    res.render('communities', {
+                        groups: storedGroups,
 
-                    user    : req.user,
-                    err     : req.flash('err'),
-                    warning : req.flash('warning'),
-                    info    : req.flash('info'),
-                    success : req.flash('success')
-                })
+                        user    : req.user,
+                        err     : req.flash('err'),
+
+                        warning : req.flash('warning'),
+                        info    : req.flash('info'),
+                        success : req.flash('success')
+                    })
+
+                }
+
+
 
             });
 
@@ -89,7 +125,7 @@ module.exports = (app) => {
 
         let group = req.params.groupId;
 
-        console.log("[controllerGroup.js] Subscribe group.toString()");
+        console.log("[controllerGroup.subTo] Subscribe group.toString()");
         //client.subscribe('58d1a19621b3e007f4230909');
         //client.publish('subscriptions', group.toString() ) // DO   --> realtimeGroups.js
         client.publish('subscriptions', '58d1a19621b3e007f4230909_Redis' ) //
@@ -101,7 +137,7 @@ module.exports = (app) => {
     this.getGroup = (req, res) => {
     var groups2 = ['gpo1', 'gpo2', 'gpo3']
     client.sadd(['grupos3', groups2 ], function(err, reply) { // TODO Agregar grupos del usuario ada vez que entre
-                console.log("GRUPOS SETEADOS ", reply);
+                console.log("[controllerGroups.getGroup] GRUPOS SETEADOS ", reply);
                 ///res.status(200).send({message: 'done set', reply})
     })
 
@@ -143,6 +179,8 @@ module.exports = (app) => {
 
             let adminsPopulate = {
                                     path: "members", // miembros
+                                    select : "-password -provider -administrator" // Campos a excluir del usuario
+
                                     //match: {isAdmin: {$in: [false] } }  // condicion  Admin como true
                                 }
 
@@ -242,6 +280,7 @@ module.exports = (app) => {
 
             let adminsPopulate = {
                                     path: "members", // miembros
+                                    select : "-password -provider -administrator" // Campos a excluir del usuario
                                     //match: {isAdmin: {$in: [false] } }  // condicion  Admin como true
                                  }
 
@@ -274,22 +313,23 @@ module.exports = (app) => {
 
         Group.findById(req.params.id, (err, storedGroup) => {
             if(err) {
-                console.log(` [controllerGoups] Error al buscar el grupo ${err}`)
+                console.log(` [controllerGoups/updateGroup] Error al buscar el grupo ${err}`)
                 res.redirect('/groups')
             }
-            storedGroup.business    = req.body.business
-            storedGroup.description = req.body.description
-            storedGroup.category    = req.body.category
-
-            if (req.files.image.name != "") {
-                let ext_ = req.files.image.name.split(".").pop()
+            storedGroup.name      = req.body.nameCommunity
+            storedGroup.description      = req.body.descriptionCommunity
+            storedGroup.category      = req.body.categoryCommunity
+            storedGroup.subcategory      = req.body.subcategoryCommunity
+            storedGroup.privacy   = req.body.privacyCommunity
+            /*if (req.files.image.name != "") {
+              //  let ext_ = req.files.image.name.split(".").pop()
                 /*fs.unlink("public/images/imagesGroup/" + storedGroup.image)
                 fs.rename(req.files.image.path, "public/images/imagesGroup/" + storedGroup.image)*/
-            }
+        //}
 
             storedGroup.save(err => {
                 if (err) {
-                    console.log(`  Error al actualizar los datos ${err}`)
+                    console.log(`  [ctrlGroups/updateGroup] Error al actualizar los datos ${err}`)
                     res.redirect('/groups')
                 }
                 res.redirect('/groups')
@@ -300,9 +340,9 @@ module.exports = (app) => {
 
     this.deleteGroup = (req, res) => {
         Group.findOneAndRemove({_id: req.params.id}, (err, storedGroup) => {
-            console.log("[Eliminar]", req.params.id)
+            console.log(" [ctrlGroups/deleteGroup] [Eliminar]", req.params.id)
             if (err) {
-                console.log(`  Error al eliminar los datos ${err}`)
+                console.log(` [ctrlGroups/deleteGroup]  Error al eliminar los datos ${err}`)
                 //res.redirect('/groups')
                 res.status(500).send({message: "Hubo un error en el server"});
             }
@@ -317,8 +357,8 @@ module.exports = (app) => {
 
     /*/**************Operacion es sobre miembros y Requests */////////////
     this.addMemberToGroup = (req, res) => {
-        console.log(req.params.groupId +"------------------------------");
-        console.log(req.params.userId +"-----IDUSR -------------------------");
+        console.log(req.params.groupId +" [ctrlGroups/addMemberToGroup] ------------------------------");
+        console.log(req.params.userId +"[ctrlGroups/addMemberToGroup] -----IDUSR -------------------------");
         let groupId = req.params.groupId;
         let userId = req.params.userId;
         let update = req.body;
@@ -337,16 +377,15 @@ module.exports = (app) => {
                 if (err) {
                   return res.status(500).send({message: 'Error en DateB ' + err});
                 }
-                console.log("______________________________________________________");
-                console.log(" Miembro gregado al grupos   --",groupUpdated);
+                console.log("[ctrlGroups/addMemberToGroup] Miembro gregado al grupos   ----",groupUpdated);
                 return res.status(200).send({group: groupUpdated});
             });
             ///    res.redirect('/groups')
     }
 
     this.deleteMemberFromGroup = (req, res) => {
-        console.log(req.params.groupId +"------------------------------");
-        console.log(req.params.userId +"------------------------------");
+        console.log("[ctrlGroups/deleteMemberFromGroup] Group: ", req.params.groupId +"------------------------------");
+        console.log("[ctrlGroups/deleteMemberFromGroup] User: ", req.params.userId +"------------------------------");
         let groupId = req.params.groupId;
         let userId = req.params.userId;
         //let user = req.user
@@ -378,19 +417,19 @@ module.exports = (app) => {
         let comment = req.params.comment
 
             if (user != undefined){
-                console.log(Object.keys(req.session) + "sess ")
-                console.log(user['_id'])
+                console.log("[ctrlGroups/sendRequest]  ", Object.keys(req.session) + "sess ")
+                console.log("[ctrlGroups/sendRequest] user Id: ", user['_id'])
                 userId = user['_id']
             }
             else {
                 res.redirect('/accounts/signin')
             }
 
-        console.log("---------------------Solicitud a grupo  ", groupId, userId);
+        console.log("[ctrlGroups/sendRequest] -Solicitud a grupo, userId  ", groupId, userId);
 
         Group.count({ '_id': groupId, 'requests.sendBy': {$in: userId} },  (err, countRequestToGroup) => { // TODO posible error -> validar si existe el grupo
 
-            console.log("countRequestToGroupttttttttt ", countRequestToGroup);
+            console.log("[ctrlGroups/sendRequest]  countRequestToGroup:  ", countRequestToGroup);
             if (countRequestToGroup == 0) { // NO envió solicitud al grupo antes !
                 Group.findOneAndUpdate(
                     //{ '_id': groupId, 'requests.sendBy': {$in: userId}}, // condiciones
@@ -419,7 +458,7 @@ module.exports = (app) => {
         //let userId = req.params.userId
         let userId = req.user['_id']
 
-        console.log("Grupos con userid  ##### ", userId);
+        console.log("[ctrlGroups/getMyGroups] Grupos con userid  ##### ", userId);
 
         let memberConditions =  {
                                     'members.user': userId,
@@ -444,7 +483,7 @@ module.exports = (app) => {
                 //Añadir cada grupo a redis
                 client.sadd(['groupsOnline', myGroups[i]["_id"].toString() ], function(err,reply) {
                         if (err) {
-                            console.log("[controllerGroups] Hubo un error con redis ", err)
+                            console.log("[controllerGroups /getMyGroups] Hubo un error con redis ", err)
                         }
                 })
             }
@@ -475,7 +514,7 @@ module.exports = (app) => {
             //Groups = storedGroups
 
             if(err) {
-                console.log(`[CtrlGroups] getGroupsIds   Error al buscar  groupS ${err}`)
+                console.log(`[CtrlGroups/getAllGroupsIds]    Error al buscar  groupS ${err}`)
             }
             return storedGroups;
 
@@ -499,6 +538,35 @@ module.exports = (app) => {
         //return call
     }
 
+    this.getGroupMembers = (req, res) => {
+        let groupId = req.params.groupId
+
+        Group.findById(groupId, (err, storedGroup) => {
+
+            let membersPopulate = {
+                path: "members",
+                select : "-password -provider -administrator" // Campos a excluir del usuario
+            }
+
+            User.populate(storedGroup, membersPopulate, (err, storedGroup) => {
+                if(err) {
+                    console.log(` [controllerGroups.getGroupMembers]   Error al buscar  miembros ${err}`)
+                    res.status(500).send({err: "Error al obtener los miembros del grupo"})
+                }
+                //res.status(200).send(storedGroup);
+                console.log("[controllerGroups.getGroupMembers] " + storedGroup +" ------------");
+                res.status(400).send(storedGroup)
+                res.render('./viewsUserPlus/groups/view', {group: storedGroup})
+            });
+
+            if(err) {
+                console.log(`[controllerGroups.getGroupMembers]   Error al buscar  miembros ${err}`)
+                res.status(500).send({err: "Error al obtener los miembros del grupo"})
+            }
+
+        })
+
+    }
 
     this.getGroupAdmins = (req, res) => {
         let groupId = req.params.groupId
@@ -506,20 +574,21 @@ module.exports = (app) => {
         Group.findById(groupId, (err, storedGroup) => {
             let adminsPopulate = {
                                     path: "members", // miembros
-                                    match: {isAdmin: {$in: [true] } }  // condicion  Admin como true
+                                    match: {isAdmin: {$in: [true] } },  // condicion  Admin como true
+                                    select : "-password -provider -administrator" // Campos a excluir del usuario
                                 }
 
             User.populate(storedGroup, adminsPopulate, (err, storedGroup) => {
                 if(err) {
-                    console.log(`getGroup   Error al buscar  group ${err}`)
+                    console.log(`[ctrlGroups/getGroupAdmins]  Error al buscar  group ${err}`)
                 }
                 //res.status(200).send(storedGroup);
-                console.log("/////// Group Admins  ----- " + storedGroup +" ------------");
+                console.log("[ctrlGroups/getGroupAdmins]  Group Admins  ----- " + storedGroup +" ------------");
                 res.render('./viewsUserPlus/groups/view', {group: storedGroup})
             });
 
             if(err) {
-                console.log(`getGroupAdmins   Error al buscar  group ${err}`)
+                console.log(`[ctrlGroups/getGroupAdmins]  Error al buscar  group ${err}`)
                 res.redirect('/groups')
             }
 
@@ -530,7 +599,7 @@ module.exports = (app) => {
     this.isMemberGroup = (req, res, next) => { // middleware saber si es miembro del grupo
             let groupId = req.params.groupId
             let user = req.user
-            console.log("isMemberGroup_______________________________________",groupId, " ", user, "_______________________-")
+            console.log("[ctrlGroups/isMemberGroup]_______________________________________",groupId, " ", user, "_______________________-")
             let userId = user['_id']
             console.log(user['_id']+"########################")
 
@@ -556,7 +625,7 @@ module.exports = (app) => {
     this.isAdmin = (req, res, next) => { // middleware saber si es admin del grupo
             let groupId = req.params.groupId
             let user = req.user // TODO req.user serialize
-            console.log("ISADMIN_______________________________________",groupId, " ", user, "_______________________-")
+            console.log("[ctrlGroups/isAdmin] Group: ",groupId, " -User: ", user, "_______________________-")
             let userId = user['_id']
             console.log(user['_id']+"########################")
 
@@ -574,12 +643,12 @@ module.exports = (app) => {
                 }
 
                 if (storedGroup.length != 0) {
-                    console.log('ADMIN GROUP --------------------------------', Object.keys(storedGroup));
+                    console.log('[ctrlGroups/isAdmin]  ADMIN GROUP --------------------------------', Object.keys(storedGroup));
                     return next()
                     //return true
                 }
             })
-            console.log({status: 401, message: "[groupsCrudController.isAdmin] No es admin de este grupo :3 Ah ah ah "})
+            console.log( "[groupsCrudController.isAdmin] No es admin de este grupo :3 Ah ah ah ")
             return false
             //return res.status(401).send({message: "No es admin de este grupo :3 Ah ah ah "});
         //}
@@ -600,10 +669,13 @@ module.exports = (app) => {
             res.redirect('/accounts/signin')
         }*/
 
-        console.log("---------------------Agregado ADMIN a grupo  ", groupId, userId);
+        console.log("[ctrlGroups/addAdminToGroup] -Agregado ADMIN a grupo, userId ", groupId, userId);
         /*let adminsPopulate = {
             path: "members", // miembros
-            match: {isAdmin: {$in: [true] } }  // condicion  Admin como true
+            match: {isAdmin: {$in: [true] } },  // condicion  Admin como true
+            select : "-password -provider -administrator" // Campos a excluir del usuario
+
+
         }*/
 
         //$inc incrementar un campo: {campo: nVecesUm}
@@ -624,7 +696,7 @@ module.exports = (app) => {
 
     }
 
-    this.deleteAdminFromGroup = (req, res) => { // Eliminar admins al grupo TODO(Solo admins del grupo) Solo el fundaddor ???
+    this.deleteAdminFromGroup = (req, res) => { // Eliminar admins al grupo TODO(Solo admins del grupo puede usar) Solo el fundaddor ???
         let groupId = req.params.groupId
         //let user = req.user
         let userId = req.params.userId
@@ -639,7 +711,7 @@ module.exports = (app) => {
             res.redirect('/accounts/signin')
         }*/
 
-        console.log("---------------------Eliminar admin del grupo  ", groupId, userId);
+        console.log(" [ctrlGroups/deleteAdminFromGroup]----Eliminar admin del grupo, userId  ", groupId, userId);
 
         Group.findOneAndUpdate(
             { '_id': groupId,  'members.user':  userId },// condiciones
@@ -674,7 +746,7 @@ module.exports = (app) => {
                 res.redirect('/accounts/signin')
             }
 
-        console.log("---------------------Solicitud a grupo  ", groupId, userId);
+        console.log(" [CtrlGroups/replyRequest] -Solicitud a grupo , userId ", groupId, userId);
 
         Group.update(
             { _id: groupId },

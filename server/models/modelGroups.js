@@ -5,9 +5,11 @@ const Schema = mongoose.Schema
 
 module.exports = (app) => {
     const GroupsSchema = new Schema({
-        title        : String,
+        name        : String,
         description   : String,
         category      : String,
+        subcategory   : String,
+        privacy:  { type: String}, //, enum: ["public", "private"] },
         creationDate  : {
             type      : Date,
             default   : Date.now
@@ -22,14 +24,13 @@ module.exports = (app) => {
             isAdmin   : {type: Boolean, default: false},
             date:  { type: Date, default: Date.now }
         }],
-        type:  { type: String, enum: ["public", "private"] },
 
         requests: [{ // solicitudes al grupo
             sendBy:{
                 type: Schema.Types.ObjectId,
                 ref: "User"
             },
-            comment: {type: String, default: 'Me gustaría ser parte de su grupo'},
+            comment: {type: String, default: 'Me gustaría ser parte de su comunidad'},
             date:  { type: Date, default: Date.now }
         }],
     })

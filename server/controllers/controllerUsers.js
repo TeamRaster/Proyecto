@@ -17,7 +17,7 @@ module.exports = (app) => {
             user.local.password = req.body.password,
             user.administrator  = req.body.options === "true" ? true : false,
             user.photo          = req.file.filename,
-            user.path           = req.file.destination,
+            user.path           = req.file.destination, // TODO  Interesante ...
             user.creationDate.hour = moment().format('LT')  // Ingresa el formato de la hora
             user.creationDate.date = moment().format('L')  // Ingresa el formato de la fecha
 
